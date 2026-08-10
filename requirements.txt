@@ -1,0 +1,49 @@
+# --- Core deep learning (install CUDA-matched torch first if needed) ---
+# RTX 50 / CUDA 12.8 example:
+#   pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
+torch==2.11.0.dev20251224+cu128
+torchvision==0.25.0.dev20251224+cu128
+torchaudio==2.10.0.dev20251224+cu128
+
+# --- Training acceleration & fine-tuning ---
+unsloth==2025.12.9
+unsloth_zoo==2025.12.7
+xformers==0.0.33.post2
+bitsandbytes==0.49.0
+peft
+trl
+accelerate
+
+# --- Models & data ---
+transformers
+datasets
+modelscope
+sentencepiece
+tokenizers
+huggingface-hub
+hf_transfer
+safetensors
+
+# --- Scientific / general ---
+numpy
+pandas
+scipy
+sympy
+matplotlib
+tqdm
+psutil
+filelock
+regex
+PyYAML
+jsonschema
+
+# --- Logging / UI ---
+tensorboard
+rich
+
+# --- Serving (optional but included) ---
+fastapi
+pydantic
+uvicorn
+httpx
+aiohttp

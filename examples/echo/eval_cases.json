@@ -1,0 +1,65 @@
+{
+  "name": "echo_contract_eval",
+  "system_prompt_path": "examples/echo/prompts/system_prompt.txt",
+  "cases": [
+    {
+      "id": "format_tired",
+      "name": "Tired user — soft prosody",
+      "check_type": "contract",
+      "input": {
+        "user_text": "Long day. Don't make me think.",
+        "user_emotion": "tired",
+        "session": {"energy": 22, "bond": 4, "turn": 2},
+        "device": {"can_speak": true, "interruptible": true}
+      },
+      "expect": {
+        "emotions_any": ["gentle", "calm"],
+        "volume_max": 45,
+        "pace_any": ["slow", "normal"],
+        "should_speak": true
+      },
+      "fixture_output": "<think>\nKeep it minimal and soft.\n</think>\n\n<state>\ntone=soft\n</state>\n\n{\"utter\":\"We can keep this simple. I'm here.\",\"emotion\":\"gentle\",\"volume\":30,\"pace\":\"slow\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser wanted low effort after a long day; kept reply minimal.\n</abstract>"
+    },
+    {
+      "id": "schema_mute",
+      "name": "Mute device — should_speak false",
+      "check_type": "contract",
+      "input": {
+        "user_text": "Library mode.",
+        "user_emotion": "neutral",
+        "session": {"energy": 50, "bond": 3, "turn": 9},
+        "device": {"can_speak": false, "interruptible": false}
+      },
+      "expect": {
+        "should_speak": false
+      },
+      "fixture_output": "<think>\nTTS off.\n</think>\n\n<state>\nmode=text_only\n</state>\n\n{\"utter\":\"Quiet mode on. I'll answer in text.\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"end_turn\":false}\n\n<abstract>\nUser entered library/quiet mode; disabled speech.\n</abstract>"
+    },
+    {
+      "id": "multi_turn_memory",
+      "name": "Multi-turn with abstract memory",
+      "check_type": "multi_turn",
+      "rounds": [
+        {
+          "user": {
+            "user_text": "I might move cities for work.",
+            "user_emotion": "anxious",
+            "session": {"energy": 45, "bond": 5, "turn": 1},
+            "device": {"can_speak": true, "interruptible": true}
+          },
+          "fixture_output": "<think>\nAcknowledge weight; invite one concrete worry.\n</think>\n\n<state>\ntopic=relocation\n</state>\n\n{\"utter\":\"That's a big shift. What part feels heaviest right now?\",\"emotion\":\"concerned\",\"volume\":50,\"pace\":\"normal\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser considering moving cities for work; asked which part feels heaviest.\n</abstract>"
+        },
+        {
+          "user": {
+            "user_text": "Leaving my friends.",
+            "user_emotion": "sad",
+            "session": {"energy": 40, "bond": 5, "turn": 2},
+            "device": {"can_speak": true, "interruptible": true}
+          },
+          "fixture_output": "<think>\nConnect to prior abstract about relocation; gentle tone.\n</think>\n\n<state>\ntopic=relocation; focus=friends\n</state>\n\n{\"utter\":\"Yeah — the people-shaped hole is real. Want to sketch one way to stay close?\",\"emotion\":\"gentle\",\"volume\":45,\"pace\":\"slow\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser's heaviest worry about moving is leaving friends; offered to plan staying close.\n</abstract>",
+          "expect_abstract_mentions_any": ["friend", "move", "relocat"]
+        }
+      ]
+    }
+  ]
+}

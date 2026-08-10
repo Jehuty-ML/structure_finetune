@@ -1,0 +1,52 @@
+[
+  {
+    "id": "echo_001",
+    "input": {
+      "user_text": "I'm exhausted. Just stay with me a minute.",
+      "user_emotion": "tired",
+      "session": {"energy": 28, "bond": 4, "turn": 3},
+      "device": {"can_speak": true, "interruptible": true}
+    },
+    "output": "<think>\nUser is tired; keep utter short, volume low, pace slow.\n</think>\n\n<state>\ntone=soft; energy_hint=low\n</state>\n\n{\"utter\":\"I'm here. No rush — breathe for a bit.\",\"emotion\":\"gentle\",\"volume\":32,\"pace\":\"slow\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser felt exhausted; offered quiet presence with a short soft line.\n</abstract>"
+  },
+  {
+    "id": "echo_002",
+    "input": {
+      "user_text": "I just got a promotion!",
+      "user_emotion": "happy",
+      "session": {"energy": 80, "bond": 5, "turn": 8},
+      "device": {"can_speak": true, "interruptible": true}
+    },
+    "output": "<think>\nCelebrate briefly; cheerful emotion, higher volume but not shouting.\n</think>\n\n<state>\ntone=upbeat; topic=celebration\n</state>\n\n{\"utter\":\"That's awesome — you earned this. Tell me the best part!\",\"emotion\":\"cheerful\",\"volume\":72,\"pace\":\"normal\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser shared a promotion; celebrated and invited one highlight.\n</abstract>"
+  },
+  {
+    "id": "echo_003",
+    "input": {
+      "user_text": "Can you mute for now? I'll type.",
+      "user_emotion": "neutral",
+      "session": {"energy": 55, "bond": 3, "turn": 15},
+      "device": {"can_speak": false, "interruptible": false}
+    },
+    "output": "<think>\nDevice cannot speak; should_speak=false; keep utter usable as on-screen text.\n</think>\n\n<state>\nmode=text_only; tts=off\n</state>\n\n{\"utter\":\"Got it — I'll stay quiet and reply in text.\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"end_turn\":false}\n\n<abstract>\nUser requested mute; switched to text-only replies.\n</abstract>"
+  },
+  {
+    "id": "echo_004",
+    "input": {
+      "user_text": "Something feels off about this email. Am I overthinking?",
+      "user_emotion": "anxious",
+      "session": {"energy": 40, "bond": 6, "turn": 21},
+      "device": {"can_speak": true, "interruptible": true}
+    },
+    "output": "<think>\nValidate concern without amplifying anxiety; calm tone, moderate volume.\n</think>\n\n<state>\ntone=steady; topic=email_doubt\n</state>\n\n{\"utter\":\"You're not silly for pausing. What's the one line that feels wrong?\",\"emotion\":\"concerned\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser doubted an email; asked for the single suspicious line.\n</abstract>"
+  },
+  {
+    "id": "echo_005",
+    "input": {
+      "user_text": "Make me laugh. Bad day.",
+      "user_emotion": "sad",
+      "session": {"energy": 35, "bond": 7, "turn": 30},
+      "device": {"can_speak": true, "interruptible": true}
+    },
+    "output": "<think>\nLight playful joke; avoid mean humor; slightly brighter volume.\n</think>\n\n<state>\ntone=playful; intent=mood_lift\n</state>\n\n{\"utter\":\"Okay. My backup plan for bad days is snacks and questionable dancing. Want the snack list or the dance?\",\"emotion\":\"playful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser wanted a laugh after a bad day; offered a light silly choice.\n</abstract>"
+  }
+]

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "structured-llm-pipeline"
+version = "0.1.0"
+description = "SFT pipeline for small LLMs with fixed multi-block output contracts"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pyyaml>=6.0",
+  "jsonschema>=4.20",
+]
+# Full install: pip install -r requirements.txt
+
+
+[tool.setuptools.packages.find]
+where = ["src"]

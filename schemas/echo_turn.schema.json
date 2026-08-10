@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/echo_turn.schema.json",
+  "title": "EchoVoiceTurn",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "utter",
+    "emotion",
+    "volume",
+    "pace",
+    "should_speak",
+    "end_turn"
+  ],
+  "properties": {
+    "utter": {
+      "type": "string",
+      "minLength": 1,
+      "description": "TTS-safe spoken text only"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": ["gentle", "cheerful", "calm", "concerned", "playful", "neutral"]
+    },
+    "volume": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "pace": {
+      "type": "string",
+      "enum": ["slow", "normal", "fast"]
+    },
+    "should_speak": {
+      "type": "boolean"
+    },
+    "end_turn": {
+      "type": "boolean"
+    }
+  }
+}
