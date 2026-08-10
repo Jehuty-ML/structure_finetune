@@ -1,0 +1,19 @@
+# 逃跑：combat → explore（与 attack 同 fsm，需强化 phase 转场）
+id: combat_flee
+repeat: 2
+fsm_in:
+  phase: combat
+  node: round_player
+assert:
+  phase: explore
+  node: cave_mouth
+  allowed: "move,talk,open_inventory"
+  action: flee
+  target: none
+  end_turn: "1"
+stats_base:
+  hp: "70"
+  mp: "15"
+  loc: "洞穴入口"
+  quest: "找药草"
+  flags: "has_map,fled_combat"

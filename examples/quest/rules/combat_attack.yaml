@@ -1,0 +1,18 @@
+# 战斗中攻击：保持 combat（与 flee 同 fsm，靠 user_text 区分）
+id: combat_attack
+fsm_in:
+  phase: combat
+  node: round_player
+assert:
+  phase: combat
+  node: round_enemy
+  allowed: "attack,skill,item,flee"
+  action: attack
+  target: wolf
+  end_turn: "0"
+stats_base:
+  hp: "76"
+  mp: "18"
+  loc: "洞穴入口"
+  quest: "找药草"
+  flags: "has_map,in_combat"

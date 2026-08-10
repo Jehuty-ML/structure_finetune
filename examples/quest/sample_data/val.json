@@ -1,323 +1,31 @@
 [
   {
-    "id": "quest_syn_0164_combat_attack",
+    "id": "quest_combat_flee_0077",
     "input": {
-      "user_text": "挥剑。",
+      "user_text": "转身就跑。",
       "fsm": {
         "phase": "combat",
         "node": "round_player"
       },
       "stats": {
-        "hp": "78",
-        "mp": "19",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n仍在战斗中输出伤害；禁止切回 explore。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你挥剑命中，灰狼退后一步。轮到它了。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗中已攻击；进入敌方回合；仍在洞穴入口。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0165_combat_attack",
-    "input": {
-      "user_text": "挥剑。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "74",
-        "mp": "19",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家攻击；保持 combat；node→round_enemy；action=attack；不是 flee。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你挥剑命中，灰狼退后一步。轮到它了。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n仍在 combat；刚完成 attack；未逃离。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0139_dialogue_npc",
-    "input": {
-      "user_text": "跟草药师说话。",
-      "fsm": {
-        "phase": "explore",
-        "node": "village_square"
-      },
-      "stats": {
-        "hp": "92",
-        "mp": "25",
-        "loc": "村子广场",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n进入 dialogue；action=talk；不是 combat/flee。\n</think>\n\n<state>\nphase=dialogue; node=herbalist_hello; allowed=talk,open_inventory\n</state>\n\n<say>\n草药师推了推眼镜：药草在北谷，小心狼群。\n</say>\n\n<cmd>\naction=talk; target=herbalist; end_turn=0\n</cmd>\n\n<stats>\nhp=92; mp=25; loc=村子广场; quest=找药草; flags=has_map,met_herbalist\n</stats>\n\n<abstract>\n对话中见过草药师；得知药草在北谷；人在村子广场。\n</abstract>",
-    "meta": {
-      "scenario": "dialogue_npc",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0119_explore_enter_cave",
-    "input": {
-      "user_text": "钻进洞口。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "81",
-        "mp": "19",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家选择进洞；仍属探索，节点切到 cave_mouth；action=move。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n洞口阴冷，石壁上有爪痕。你举着火把走进去。\n</say>\n\n<cmd>\naction=move; target=cave_mouth; end_turn=0\n</cmd>\n\n<stats>\nhp=81; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,entered_cave\n</stats>\n\n<abstract>\n人在洞穴入口；探索中；尚未遇敌。\n</abstract>",
-    "meta": {
-      "scenario": "explore_enter_cave",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0024_combat_start",
-    "input": {
-      "user_text": "战斗开始了。",
-      "fsm": {
-        "phase": "explore",
-        "node": "cave_mouth"
-      },
-      "stats": {
-        "hp": "75",
-        "mp": "19",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n从探索切入战斗；禁止 flee；先给战斗菜单。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n战斗爆发。灰狼盯着你，等你出招。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n已进入 combat；尚未逃跑；在洞穴入口。\n</abstract>",
-    "meta": {
-      "scenario": "combat_start",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0200_combat_start",
-    "input": {
-      "user_text": "遇敌了。",
-      "fsm": {
-        "phase": "explore",
-        "node": "cave_mouth"
-      },
-      "stats": {
-        "hp": "75",
-        "mp": "18",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n从探索切入战斗；禁止 flee；先给战斗菜单。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼低吼着挡住去路。轮到你行动。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n已进入 combat；尚未逃跑；在洞穴入口。\n</abstract>",
-    "meta": {
-      "scenario": "combat_start",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0022_combat_flee",
-    "input": {
-      "user_text": "快逃。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "68",
+        "hp": "70",
         "mp": "16",
         "loc": "洞穴入口",
         "quest": "找药草"
       }
     },
-    "output": "<think>\n用户明确逃跑；phase: combat→explore；action=flee；end_turn=1；禁止 advance；禁止停留 combat。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你跌跌撞撞逃出交战，停在洞穴入口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=68; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\nflee 成功；phase 已回 explore；人在洞穴入口。\n</abstract>",
+    "output": "<think>\n逃跑分支：输出 explore + flee + end_turn=1；不要写成仍在战斗。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n尘土里只剩你的脚步声。你已离开战斗。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\nphase=explore；flags 含 fled_combat；任务找药草。\n</abstract>",
     "meta": {
       "scenario": "combat_flee",
-      "contract": "quest_v1"
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 1
     }
   },
   {
-    "id": "quest_syn_0269_dialogue_npc",
+    "id": "quest_combat_flee_0045",
     "input": {
-      "user_text": "和老人谈谈。",
-      "fsm": {
-        "phase": "explore",
-        "node": "village_square"
-      },
-      "stats": {
-        "hp": "89",
-        "mp": "25",
-        "loc": "村子广场",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n进入 dialogue；action=talk；不是 combat/flee。\n</think>\n\n<state>\nphase=dialogue; node=herbalist_hello; allowed=talk,open_inventory\n</state>\n\n<say>\n草药师推了推眼镜：药草在北谷，小心狼群。\n</say>\n\n<cmd>\naction=talk; target=herbalist; end_turn=0\n</cmd>\n\n<stats>\nhp=89; mp=25; loc=村子广场; quest=找药草; flags=has_map,met_herbalist\n</stats>\n\n<abstract>\n对话中见过草药师；得知药草在北谷；人在村子广场。\n</abstract>",
-    "meta": {
-      "scenario": "dialogue_npc",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0205_shop_buy",
-    "input": {
-      "user_text": "购买治疗药。",
-      "fsm": {
-        "phase": "shop",
-        "node": "shop_main"
-      },
-      "stats": {
-        "hp": "92",
-        "mp": "24",
-        "loc": "杂货店",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n商店购买；保持 shop；action=buy。\n</think>\n\n<state>\nphase=shop; node=shop_main; allowed=buy,talk\n</state>\n\n<say>\n你买下治疗药水，背包沉了一点。\n</say>\n\n<cmd>\naction=buy; target=potion_red; end_turn=0\n</cmd>\n\n<stats>\nhp=92; mp=24; loc=杂货店; quest=找药草; flags=has_map,has_potion\n</stats>\n\n<abstract>\n在杂货店买了红药；任务仍是找药草。\n</abstract>",
-    "meta": {
-      "scenario": "shop_buy",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0089_explore_enter_cave",
-    "input": {
-      "user_text": "去洞穴里看看。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "81",
-        "mp": "18",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家选择进洞；仍属探索，节点切到 cave_mouth；action=move。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n火光照亮潮湿石壁，你踏进洞穴入口。\n</say>\n\n<cmd>\naction=move; target=cave_mouth; end_turn=0\n</cmd>\n\n<stats>\nhp=81; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,entered_cave\n</stats>\n\n<abstract>\n人在洞穴入口；探索中；尚未遇敌。\n</abstract>",
-    "meta": {
-      "scenario": "explore_enter_cave",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0326_explore_enter_cave",
-    "input": {
-      "user_text": "钻进洞口。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "78",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家选择进洞；仍属探索，节点切到 cave_mouth；action=move。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你弯腰钻入洞穴，潮气扑面而来。\n</say>\n\n<cmd>\naction=move; target=cave_mouth; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,entered_cave\n</stats>\n\n<abstract>\n人在洞穴入口；探索中；尚未遇敌。\n</abstract>",
-    "meta": {
-      "scenario": "explore_enter_cave",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0098_combat_flee",
-    "input": {
-      "user_text": "溜了溜了。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "69",
-        "mp": "14",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n战斗中的 flee 转场：输出 phase=explore，绝不是 combat，也绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n逃出来了。战斗结束，你回到洞口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=69; mp=14; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n不在战斗中；刚从灰狼身边逃走；地点洞穴入口。\n</abstract>",
-    "meta": {
-      "scenario": "combat_flee",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0231_combat_start",
-    "input": {
-      "user_text": "狼堵住了路。",
-      "fsm": {
-        "phase": "explore",
-        "node": "cave_mouth"
-      },
-      "stats": {
-        "hp": "75",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n从探索切入战斗；禁止 flee；先给战斗菜单。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼低吼着挡住去路。轮到你行动。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_start",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0286_combat_start",
-    "input": {
-      "user_text": "狼堵住了路。",
-      "fsm": {
-        "phase": "explore",
-        "node": "cave_mouth"
-      },
-      "stats": {
-        "hp": "77",
-        "mp": "19",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n遭遇战；phase: explore→combat；node=round_player；action=prompt_choice。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n敌人扑来！请选择攻击、技能、道具或逃跑。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=77; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_start",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0310_explore_fork",
-    "input": {
-      "user_text": "看看左边的小路。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "78",
-        "mp": "19",
-        "loc": "森林路口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n探索路口；保持 explore；action=prompt_choice；禁止 advance（advance 只用于 cutscene）。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n脚印分叉了。你停下来打量两边。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=19; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n仍在森林路口观望；未开战；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "explore_fork",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0266_combat_flee",
-    "input": {
-      "user_text": "逃跑。",
+      "user_text": "拉开距离逃跑。",
       "fsm": {
         "phase": "combat",
         "node": "round_player"
@@ -329,226 +37,64 @@
         "quest": "找药草"
       }
     },
-    "output": "<think>\n用户明确逃跑；phase: combat→explore；action=flee；end_turn=1；禁止 advance；禁止停留 combat。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你转身狂奔，灰狼的吼声被甩在身后。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=14; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n不在战斗中；刚从灰狼身边逃走；地点洞穴入口。\n</abstract>",
+    "output": "<think>\n与 attack 同输入 fsm，但本条转场后 state.phase 只能是 explore，绝不是 combat。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你顾不上掉落的药水，先逃出交战圈。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=14; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已逃离战斗回到洞穴入口；phase=explore；任务未完成。\n</abstract>",
     "meta": {
       "scenario": "combat_flee",
-      "contract": "quest_v1"
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 0
     }
   },
   {
-    "id": "quest_syn_0041_shop_buy",
+    "id": "quest_combat_start_0148",
     "input": {
-      "user_text": "购买治疗药。",
-      "fsm": {
-        "phase": "shop",
-        "node": "shop_main"
-      },
-      "stats": {
-        "hp": "92",
-        "mp": "25",
-        "loc": "杂货店",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n商店购买；保持 shop；action=buy。\n</think>\n\n<state>\nphase=shop; node=shop_main; allowed=buy,talk\n</state>\n\n<say>\n你买下治疗药水，背包沉了一点。\n</say>\n\n<cmd>\naction=buy; target=potion_red; end_turn=0\n</cmd>\n\n<stats>\nhp=92; mp=25; loc=杂货店; quest=找药草; flags=has_map,has_potion\n</stats>\n\n<abstract>\n在杂货店买了红药；任务仍是找药草。\n</abstract>",
-    "meta": {
-      "scenario": "shop_buy",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0206_dialogue_npc",
-    "input": {
-      "user_text": "和老人谈谈。",
-      "fsm": {
-        "phase": "explore",
-        "node": "village_square"
-      },
-      "stats": {
-        "hp": "89",
-        "mp": "26",
-        "loc": "村子广场",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n进入 dialogue；action=talk；不是 combat/flee。\n</think>\n\n<state>\nphase=dialogue; node=herbalist_hello; allowed=talk,open_inventory\n</state>\n\n<say>\n草药师推了推眼镜：药草在北谷，小心狼群。\n</say>\n\n<cmd>\naction=talk; target=herbalist; end_turn=0\n</cmd>\n\n<stats>\nhp=89; mp=26; loc=村子广场; quest=找药草; flags=has_map,met_herbalist\n</stats>\n\n<abstract>\n对话中见过草药师；得知药草在北谷；人在村子广场。\n</abstract>",
-    "meta": {
-      "scenario": "dialogue_npc",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0315_shop_buy",
-    "input": {
-      "user_text": "购买治疗药。",
-      "fsm": {
-        "phase": "shop",
-        "node": "shop_main"
-      },
-      "stats": {
-        "hp": "91",
-        "mp": "26",
-        "loc": "杂货店",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n商店购买；保持 shop；action=buy。\n</think>\n\n<state>\nphase=shop; node=shop_main; allowed=buy,talk\n</state>\n\n<say>\n你买下治疗药水，背包沉了一点。\n</say>\n\n<cmd>\naction=buy; target=potion_red; end_turn=0\n</cmd>\n\n<stats>\nhp=91; mp=26; loc=杂货店; quest=找药草; flags=has_map,has_potion\n</stats>\n\n<abstract>\n在杂货店买了红药；任务仍是找药草。\n</abstract>",
-    "meta": {
-      "scenario": "shop_buy",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0357_combat_attack",
-    "input": {
-      "user_text": "我攻击。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "76",
-        "mp": "18",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家攻击；保持 combat；node→round_enemy；action=attack；不是 flee。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n剑刃擦过毛皮，狼发出怒吼。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n仍在 combat；刚完成 attack；未逃离。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0135_explore_enter_cave",
-    "input": {
-      "user_text": "钻进洞口。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "81",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家选择进洞；仍属探索，节点切到 cave_mouth；action=move。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n火光照亮潮湿石壁，你踏进洞穴入口。\n</say>\n\n<cmd>\naction=move; target=cave_mouth; end_turn=0\n</cmd>\n\n<stats>\nhp=81; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,entered_cave\n</stats>\n\n<abstract>\n人在洞穴入口；探索中；尚未遇敌。\n</abstract>",
-    "meta": {
-      "scenario": "explore_enter_cave",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0054_combat_flee",
-    "input": {
-      "user_text": "我选择逃跑。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "69",
-        "mp": "14",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n战斗中的 flee 转场：输出 phase=explore，绝不是 combat，也绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n总算甩开了，心跳还很快。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=69; mp=14; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n不在战斗中；刚从灰狼身边逃走；地点洞穴入口。\n</abstract>",
-    "meta": {
-      "scenario": "combat_flee",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0153_combat_attack",
-    "input": {
-      "user_text": "我攻击。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "74",
-        "mp": "19",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家攻击；保持 combat；node→round_enemy；action=attack；不是 flee。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n剑刃擦过毛皮，狼发出怒吼。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n仍在 combat；刚完成 attack；未逃离。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0045_explore_fork",
-    "input": {
-      "user_text": "我往前走。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "80",
-        "mp": "20",
-        "loc": "森林路口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n仍在 explore/forest_fork；给玩家选路菜单；cmd 只能是 prompt_choice，绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n林雾更浓了。左边是兽径，右边是旧桥。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=20; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n探索中停在森林路口；任务找药草；已有地图；未进洞。\n</abstract>",
-    "meta": {
-      "scenario": "explore_fork",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0270_combat_start",
-    "input": {
-      "user_text": "前面跳出一只狼。",
+      "user_text": "它扑向火把光圈。",
       "fsm": {
         "phase": "explore",
         "node": "cave_mouth"
       },
       "stats": {
-        "hp": "75",
-        "mp": "17",
+        "hp": "78",
+        "mp": "19",
         "loc": "洞穴入口",
         "quest": "找药草"
       }
     },
-    "output": "<think>\n从探索切入战斗；禁止 flee；先给战斗菜单。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼低吼着挡住去路。轮到你行动。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n已进入 combat；尚未逃跑；在洞穴入口。\n</abstract>",
+    "output": "<think>\n从探索切入战斗：explore→combat；给战斗菜单；禁止停留 explore。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n敌人扑来！请选择攻击、技能、道具或逃跑。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n遇敌后进入玩家回合；人在洞穴入口。\n</abstract>",
     "meta": {
       "scenario": "combat_start",
-      "contract": "quest_v1"
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_start",
+      "repeat": 1
     }
   },
   {
-    "id": "quest_syn_0144_explore_fork",
+    "id": "quest_explore_fork_0193",
     "input": {
-      "user_text": "停在岔路口看看。",
+      "user_text": "前面分叉了，怎么办？",
       "fsm": {
         "phase": "explore",
         "node": "forest_fork"
       },
       "stats": {
         "hp": "82",
-        "mp": "19",
+        "mp": "20",
         "loc": "森林路口",
         "quest": "找药草"
       }
     },
-    "output": "<think>\n探索路口；保持 explore；action=prompt_choice；禁止 advance（advance 只用于 cutscene）。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n这条路通向山洞。要进去吗？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=19; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n探索中停在森林路口；任务找药草；已有地图；未进洞。\n</abstract>",
+    "output": "<think>\n仍在 forest_fork；给玩家选路；cmd 只能是 prompt_choice。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n右边的石阶更陡，左边的草径更软。怎么走？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=20; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n仍在森林路口观望；未开战；任务找药草。\n</abstract>",
     "meta": {
       "scenario": "explore_fork",
-      "contract": "quest_v1"
+      "contract": "quest_v2_rules",
+      "rule_id": "explore_fork",
+      "repeat": 0
     }
   },
   {
-    "id": "quest_syn_0048_explore_fork",
+    "id": "quest_explore_fork_0202",
     "input": {
-      "user_text": "朝山洞方向走。",
+      "user_text": "踩着落叶往前。",
       "fsm": {
         "phase": "explore",
         "node": "forest_fork"
@@ -560,247 +106,64 @@
         "quest": "找药草"
       }
     },
-    "output": "<think>\n探索路口；保持 explore；action=prompt_choice；禁止 advance（advance 只用于 cutscene）。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你还能听见远处的水声。选一条路吧。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=21; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n探索中停在森林路口；任务找药草；已有地图；未进洞。\n</abstract>",
+    "output": "<think>\n探索路口；保持 phase=explore；action=prompt_choice；禁止 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n这条路通向山洞。要进去吗？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=21; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n探索中停在森林路口；任务找药草；已有地图；未进洞。\n</abstract>",
     "meta": {
       "scenario": "explore_fork",
-      "contract": "quest_v1"
+      "contract": "quest_v2_rules",
+      "rule_id": "explore_fork",
+      "repeat": 0
     }
   },
   {
-    "id": "quest_syn_0211_explore_enter_cave",
+    "id": "quest_combat_start_0146",
     "input": {
-      "user_text": "我选择进洞。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "80",
-        "mp": "19",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家选择进洞；仍属探索，节点切到 cave_mouth；action=move。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n火光照亮潮湿石壁，你踏进洞穴入口。\n</say>\n\n<cmd>\naction=move; target=cave_mouth; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,entered_cave\n</stats>\n\n<abstract>\n人在洞穴入口；探索中；尚未遇敌。\n</abstract>",
-    "meta": {
-      "scenario": "explore_enter_cave",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0174_combat_start",
-    "input": {
-      "user_text": "狼堵住了路。",
-      "fsm": {
-        "phase": "explore",
-        "node": "cave_mouth"
-      },
-      "stats": {
-        "hp": "76",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n遭遇战；phase: explore→combat；node=round_player；action=prompt_choice。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼低吼着挡住去路。轮到你行动。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_start",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0350_combat_flee",
-    "input": {
-      "user_text": "不想打了，跑！",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "69",
-        "mp": "14",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n逃跑成功；切回 explore/cave_mouth；cmd 必须是 flee 且 end_turn=1。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n逃出来了。战斗结束，你回到洞口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=69; mp=14; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\nflee 成功；phase 已回 explore；人在洞穴入口。\n</abstract>",
-    "meta": {
-      "scenario": "combat_flee",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0033_combat_attack",
-    "input": {
-      "user_text": "我攻击。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "76",
-        "mp": "18",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n仍在战斗中输出伤害；禁止切回 explore。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n剑刃擦过毛皮，狼发出怒吼。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n仍在 combat；刚完成 attack；未逃离。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0069_combat_attack",
-    "input": {
-      "user_text": "打它。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "74",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n仍在战斗中输出伤害；禁止切回 explore。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n一击命中要害，敌人怒视着你。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n仍在 combat；刚完成 attack；未逃离。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0012_combat_start",
-    "input": {
-      "user_text": "有怪物！",
-      "fsm": {
-        "phase": "explore",
-        "node": "cave_mouth"
-      },
-      "stats": {
-        "hp": "74",
-        "mp": "18",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n遭遇战；phase: explore→combat；node=round_player；action=prompt_choice。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n战斗爆发。灰狼盯着你，等你出招。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_start",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0333_explore_fork",
-    "input": {
-      "user_text": "我往前走。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "82",
-        "mp": "20",
-        "loc": "森林路口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n探索路口；保持 explore；action=prompt_choice；禁止 advance（advance 只用于 cutscene）。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n林雾更浓了。左边是兽径，右边是旧桥。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=20; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n仍在森林路口观望；未开战；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "explore_fork",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0191_combat_flee",
-    "input": {
-      "user_text": "溜了溜了。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "72",
-        "mp": "14",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n战斗中的 flee 转场：输出 phase=explore，绝不是 combat，也绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你跌跌撞撞逃出交战，停在洞穴入口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=14; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已逃离战斗回到洞穴入口；任务未完成。\n</abstract>",
-    "meta": {
-      "scenario": "combat_flee",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0320_combat_start",
-    "input": {
-      "user_text": "战斗开始了。",
+      "user_text": "警告：敌对生物接近。",
       "fsm": {
         "phase": "explore",
         "node": "cave_mouth"
       },
       "stats": {
         "hp": "75",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n遭遇战开始；输出 combat + prompt_choice；不要写成仍在探索。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼低吼着挡住去路。轮到你行动。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\nphase=combat；等待玩家指令；任务找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_start",
+      "repeat": 1
+    }
+  },
+  {
+    "id": "quest_combat_start_0178",
+    "input": {
+      "user_text": "它扑向火把光圈。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "74",
         "mp": "19",
         "loc": "洞穴入口",
         "quest": "找药草"
       }
     },
-    "output": "<think>\n遭遇战；phase: explore→combat；node=round_player；action=prompt_choice。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼低吼着挡住去路。轮到你行动。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n已进入 combat；尚未逃跑；在洞穴入口。\n</abstract>",
+    "output": "<think>\n输入 fsm 虽是 explore，本回合转场后 state.phase 必须是 combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼侧身堵死退路。你要怎么做？\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
     "meta": {
       "scenario": "combat_start",
-      "contract": "quest_v1"
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_start",
+      "repeat": 2
     }
   },
   {
-    "id": "quest_syn_0256_shop_buy",
+    "id": "quest_combat_flee_0088",
     "input": {
-      "user_text": "买一瓶药水。",
-      "fsm": {
-        "phase": "shop",
-        "node": "shop_main"
-      },
-      "stats": {
-        "hp": "90",
-        "mp": "25",
-        "loc": "杂货店",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n商店购买；保持 shop；action=buy。\n</think>\n\n<state>\nphase=shop; node=shop_main; allowed=buy,talk\n</state>\n\n<say>\n店主递过红药：三枚银币，祝你一路平安。\n</say>\n\n<cmd>\naction=buy; target=potion_red; end_turn=0\n</cmd>\n\n<stats>\nhp=90; mp=25; loc=杂货店; quest=找药草; flags=has_map,has_potion\n</stats>\n\n<abstract>\n在杂货店买了红药；任务仍是找药草。\n</abstract>",
-    "meta": {
-      "scenario": "shop_buy",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0235_explore_fork",
-    "input": {
-      "user_text": "往雾里走两步。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "82",
-        "mp": "19",
-        "loc": "森林路口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n仍在 explore/forest_fork；给玩家选路菜单；cmd 只能是 prompt_choice，绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n林雾更浓了。左边是兽径，右边是旧桥。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=19; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n探索中停在森林路口；任务找药草；已有地图；未进洞。\n</abstract>",
-    "meta": {
-      "scenario": "explore_fork",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0044_combat_flee",
-    "input": {
-      "user_text": "快逃。",
+      "user_text": "选择：逃跑。",
       "fsm": {
         "phase": "combat",
         "node": "round_player"
@@ -812,325 +175,472 @@
         "quest": "找药草"
       }
     },
-    "output": "<think>\n用户明确逃跑；phase: combat→explore；action=flee；end_turn=1；禁止 advance；禁止停留 combat。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n逃出来了。战斗结束，你回到洞口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已逃离战斗回到洞穴入口；任务未完成。\n</abstract>",
+    "output": "<think>\n逃跑分支：输出 explore + flee + end_turn=1；不要写成仍在战斗。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n撤退完成。周遭暂时安静下来。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已退出 combat；回到 explore/cave_mouth；任务找药草。\n</abstract>",
     "meta": {
       "scenario": "combat_flee",
-      "contract": "quest_v1"
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 1
     }
   },
   {
-    "id": "quest_syn_0331_explore_fork",
+    "id": "quest_explore_fork_0208",
     "input": {
-      "user_text": "看看左边的小路。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "79",
-        "mp": "21",
-        "loc": "森林路口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n仍在 explore/forest_fork；给玩家选路菜单；cmd 只能是 prompt_choice，绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n这条路通向山洞。要进去吗？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=21; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n探索中停在森林路口；任务找药草；已有地图；未进洞。\n</abstract>",
-    "meta": {
-      "scenario": "explore_fork",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0138_explore_enter_cave",
-    "input": {
-      "user_text": "去洞穴里看看。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "81",
-        "mp": "18",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家选择进洞；仍属探索，节点切到 cave_mouth；action=move。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n火光照亮潮湿石壁，你踏进洞穴入口。\n</say>\n\n<cmd>\naction=move; target=cave_mouth; end_turn=0\n</cmd>\n\n<stats>\nhp=81; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,entered_cave\n</stats>\n\n<abstract>\n已进入洞穴入口；任务仍是找药草；地图在身。\n</abstract>",
-    "meta": {
-      "scenario": "explore_enter_cave",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0112_explore_fork",
-    "input": {
-      "user_text": "看看左边的小路。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "79",
-        "mp": "20",
-        "loc": "森林路口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n仍在 explore/forest_fork；给玩家选路菜单；cmd 只能是 prompt_choice，绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n这条路通向山洞。要进去吗？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=20; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n仍在森林路口观望；未开战；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "explore_fork",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0225_combat_start",
-    "input": {
-      "user_text": "遇敌了。",
-      "fsm": {
-        "phase": "explore",
-        "node": "cave_mouth"
-      },
-      "stats": {
-        "hp": "76",
-        "mp": "19",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n从探索切入战斗；禁止 flee；先给战斗菜单。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼低吼着挡住去路。轮到你行动。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_start",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0280_combat_attack",
-    "input": {
-      "user_text": "挥剑。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "78",
-        "mp": "19",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n仍在战斗中输出伤害；禁止切回 explore。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你挥剑命中，灰狼退后一步。轮到它了。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n仍在 combat；刚完成 attack；未逃离。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0254_combat_attack",
-    "input": {
-      "user_text": "普通攻击。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "76",
-        "mp": "18",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家攻击；保持 combat；node→round_enemy；action=attack；不是 flee。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n剑刃擦过毛皮，狼发出怒吼。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n仍在 combat；刚完成 attack；未逃离。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0104_explore_fork",
-    "input": {
-      "user_text": "往雾里走两步。",
-      "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
-      },
-      "stats": {
-        "hp": "80",
-        "mp": "19",
-        "loc": "森林路口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n仍在 explore/forest_fork；给玩家选路菜单；cmd 只能是 prompt_choice，绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n这条路通向山洞。要进去吗？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=19; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n仍在森林路口观望；未开战；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "explore_fork",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0178_combat_attack",
-    "input": {
-      "user_text": "我攻击。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "77",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家攻击；保持 combat；node→round_enemy；action=attack；不是 flee。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n一击命中要害，敌人怒视着你。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=77; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗中已攻击；进入敌方回合；仍在洞穴入口。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0201_combat_attack",
-    "input": {
-      "user_text": "砍它一刀。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "78",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n玩家攻击；保持 combat；node→round_enemy；action=attack；不是 flee。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n剑刃擦过毛皮，狼发出怒吼。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗中已攻击；进入敌方回合；仍在洞穴入口。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0299_shop_buy",
-    "input": {
-      "user_text": "我要红药。",
-      "fsm": {
-        "phase": "shop",
-        "node": "shop_main"
-      },
-      "stats": {
-        "hp": "90",
-        "mp": "24",
-        "loc": "杂货店",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n商店购买；保持 shop；action=buy。\n</think>\n\n<state>\nphase=shop; node=shop_main; allowed=buy,talk\n</state>\n\n<say>\n你买下治疗药水，背包沉了一点。\n</say>\n\n<cmd>\naction=buy; target=potion_red; end_turn=0\n</cmd>\n\n<stats>\nhp=90; mp=24; loc=杂货店; quest=找药草; flags=has_map,has_potion\n</stats>\n\n<abstract>\n在杂货店买了红药；任务仍是找药草。\n</abstract>",
-    "meta": {
-      "scenario": "shop_buy",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0259_combat_start",
-    "input": {
-      "user_text": "遇敌了。",
-      "fsm": {
-        "phase": "explore",
-        "node": "cave_mouth"
-      },
-      "stats": {
-        "hp": "76",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n遭遇战；phase: explore→combat；node=round_player；action=prompt_choice。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n战斗爆发。灰狼盯着你，等你出招。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_start",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0277_combat_start",
-    "input": {
-      "user_text": "狼堵住了路。",
-      "fsm": {
-        "phase": "explore",
-        "node": "cave_mouth"
-      },
-      "stats": {
-        "hp": "77",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n从探索切入战斗；禁止 flee；先给战斗菜单。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n敌人扑来！请选择攻击、技能、道具或逃跑。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=77; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_start",
-      "contract": "quest_v1"
-    }
-  },
-  {
-    "id": "quest_syn_0159_explore_fork",
-    "input": {
-      "user_text": "我往前走。",
+      "user_text": "往潮湿的那条小径走。",
       "fsm": {
         "phase": "explore",
         "node": "forest_fork"
       },
       "stats": {
         "hp": "82",
+        "mp": "21",
+        "loc": "森林路口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n探索路口；保持 phase=explore；action=prompt_choice；禁止 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你听见狼嚎很远，近处仍是安静的岔路。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=21; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n探索中停在森林路口；任务找药草；已有地图；未进洞。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest_v2_rules",
+      "rule_id": "explore_fork",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_flee_0079",
+    "input": {
+      "user_text": "退出战斗。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n与 attack 同输入 fsm，但本条转场后 state.phase 只能是 explore，绝不是 combat。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n顾不上脸面，你窜出战场，靠着石壁喘气。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n不在战斗中；刚从灰狼身边逃走；地点洞穴入口。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 1
+    }
+  },
+  {
+    "id": "quest_combat_start_0118",
+    "input": {
+      "user_text": "它扑向火把光圈。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n从探索切入战斗：explore→combat；给战斗菜单；禁止停留 explore。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼侧身堵死退路。你要怎么做？\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_start",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_flee_0049",
+    "input": {
+      "user_text": "退出战斗。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "70",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n用户逃跑：必须 phase=explore（禁止再写 combat）；action=flee；end_turn=1；node=cave_mouth。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n撤退完成。周遭暂时安静下来。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n不在战斗中；刚从灰狼身边逃走；地点洞穴入口。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_flee_0075",
+    "input": {
+      "user_text": "拉开距离逃跑。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n逃跑分支：输出 explore + flee + end_turn=1；不要写成仍在战斗。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n火把都快灭了，但你逃成功了。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\nflee 成功；phase 已回 explore；人在洞穴入口；不在 combat。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 1
+    }
+  },
+  {
+    "id": "quest_explore_fork_0201",
+    "input": {
+      "user_text": "从灌木边绕过去。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "80",
         "mp": "20",
         "loc": "森林路口",
         "quest": "找药草"
       }
     },
-    "output": "<think>\n仍在 explore/forest_fork；给玩家选路菜单；cmd 只能是 prompt_choice，绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你还能听见远处的水声。选一条路吧。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=20; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n仍在森林路口观望；未开战；任务找药草。\n</abstract>",
+    "output": "<think>\n仍在 forest_fork；给玩家选路；cmd 只能是 prompt_choice。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n一块苔石挡住中间。绕左，还是绕右？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=20; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n仍在森林路口观望；未开战；任务找药草。\n</abstract>",
     "meta": {
       "scenario": "explore_fork",
-      "contract": "quest_v1"
+      "contract": "quest_v2_rules",
+      "rule_id": "explore_fork",
+      "repeat": 0
     }
   },
   {
-    "id": "quest_syn_0046_explore_enter_cave",
+    "id": "quest_combat_attack_0009",
     "input": {
-      "user_text": "去洞穴里看看。",
+      "user_text": "刺它。",
       "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
+        "phase": "combat",
+        "node": "round_player"
       },
       "stats": {
-        "hp": "79",
+        "hp": "77",
         "mp": "17",
         "loc": "洞穴入口",
         "quest": "找药草"
       }
     },
-    "output": "<think>\n玩家选择进洞；仍属探索，节点切到 cave_mouth；action=move。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你弯腰钻入洞穴，潮气扑面而来。\n</say>\n\n<cmd>\naction=move; target=cave_mouth; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,entered_cave\n</stats>\n\n<abstract>\n人在洞穴入口；探索中；尚未遇敌。\n</abstract>",
+    "output": "<think>\nphase 仍为 combat；end_turn=0；不要写成 advance。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你打出伤害后收势。灰狼扑上前来。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=77; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗中已攻击；进入敌方回合；仍在洞穴入口。\n</abstract>",
     "meta": {
-      "scenario": "explore_enter_cave",
-      "contract": "quest_v1"
+      "scenario": "combat_attack",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_attack",
+      "repeat": 0
     }
   },
   {
-    "id": "quest_syn_0109_explore_enter_cave",
+    "id": "quest_combat_attack_0024",
     "input": {
-      "user_text": "我选择进洞。",
+      "user_text": "物理攻击。",
       "fsm": {
-        "phase": "explore",
-        "node": "forest_fork"
+        "phase": "combat",
+        "node": "round_player"
       },
       "stats": {
-        "hp": "79",
+        "hp": "74",
         "mp": "19",
         "loc": "洞穴入口",
         "quest": "找药草"
       }
     },
-    "output": "<think>\n玩家选择进洞；仍属探索，节点切到 cave_mouth；action=move。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n火光照亮潮湿石壁，你踏进洞穴入口。\n</say>\n\n<cmd>\naction=move; target=cave_mouth; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,entered_cave\n</stats>\n\n<abstract>\n已进入洞穴入口；任务仍是找药草；地图在身。\n</abstract>",
+    "output": "<think>\nphase 仍为 combat；end_turn=0；不要写成 advance。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n剑刃擦过毛皮，狼发出怒吼。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻击后转入 round_enemy；人仍在洞穴入口。\n</abstract>",
     "meta": {
-      "scenario": "explore_enter_cave",
-      "contract": "quest_v1"
+      "scenario": "combat_attack",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_attack",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_explore_fork_0182",
+    "input": {
+      "user_text": "看看左边的小路。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "82",
+        "mp": "21",
+        "loc": "森林路口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n探索路口；保持 phase=explore；action=prompt_choice；禁止 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你还能听见远处的水声。选一条路吧。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=21; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n未遇敌；停留 forest_fork；任务仍是找药草。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest_v2_rules",
+      "rule_id": "explore_fork",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_flee_0081",
+    "input": {
+      "user_text": "我不要打了。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n与 attack 同输入 fsm，但本条转场后 state.phase 只能是 explore，绝不是 combat。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n总算甩开了，心跳还很快。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n不在战斗中；刚从灰狼身边逃走；地点洞穴入口。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 1
+    }
+  },
+  {
+    "id": "quest_combat_start_0176",
+    "input": {
+      "user_text": "警告：敌对生物接近。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n从探索切入战斗：explore→combat；给战斗菜单；禁止停留 explore。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n敌人扑来！请选择攻击、技能、道具或逃跑。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\nphase=combat；等待玩家指令；任务找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_start",
+      "repeat": 2
+    }
+  },
+  {
+    "id": "quest_combat_flee_0058",
+    "input": {
+      "user_text": "选择：逃跑。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "70",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n逃跑分支：输出 explore + flee + end_turn=1；不要写成仍在战斗。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n顾不上脸面，你窜出战场，靠着石壁喘气。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已逃离战斗回到洞穴入口；phase=explore；任务未完成。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_flee_0051",
+    "input": {
+      "user_text": "我不要打了。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "68",
+        "mp": "14",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n逃跑分支：输出 explore + flee + end_turn=1；不要写成仍在战斗。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你转身狂奔，灰狼的吼声被甩在身后。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=68; mp=14; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已退出 combat；回到 explore/cave_mouth；任务找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_flee_0047",
+    "input": {
+      "user_text": "转身就跑。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\nflee 成功：combat→explore；cmd.action=flee；禁止 advance；禁止停留 combat。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n狼没有追出太远。你停在洞穴入口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\nflee 成功；phase 已回 explore；人在洞穴入口；不在 combat。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_explore_fork_0192",
+    "input": {
+      "user_text": "到岔口停一下。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "80",
+        "mp": "21",
+        "loc": "森林路口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n探索路口；保持 phase=explore；action=prompt_choice；禁止 advance。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n火光只能照清三步。请选择探索方向。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=21; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n探索中停在森林路口；任务找药草；已有地图；未进洞。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest_v2_rules",
+      "rule_id": "explore_fork",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_explore_fork_0197",
+    "input": {
+      "user_text": "抬头看看路标。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "78",
+        "mp": "19",
+        "loc": "森林路口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n不进入 combat；不写 flee/attack；只提示岔路选择。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n这条路通向山洞。要进去吗？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=19; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n仍在森林路口观望；未开战；任务找药草。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest_v2_rules",
+      "rule_id": "explore_fork",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_flee_0048",
+    "input": {
+      "user_text": "保命要紧，逃。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "68",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n用户逃跑：必须 phase=explore（禁止再写 combat）；action=flee；end_turn=1；node=cave_mouth。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n尘土里只剩你的脚步声。你已离开战斗。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=68; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\nflee 成功；phase 已回 explore；人在洞穴入口；不在 combat。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_start_0116",
+    "input": {
+      "user_text": "警告：敌对生物接近。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n遇敌！必须输出 phase=combat（禁止再写 explore）；node=round_player；action=prompt_choice。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n敌人扑来！请选择攻击、技能、道具或逃跑。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_start",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_attack_0019",
+    "input": {
+      "user_text": "砍！",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "76",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\nphase 仍为 combat；end_turn=0；不要写成 advance。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你打出伤害后收势。灰狼扑上前来。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\nphase=combat；action=attack 已执行；任务找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_attack",
+      "repeat": 0
+    }
+  },
+  {
+    "id": "quest_combat_flee_0078",
+    "input": {
+      "user_text": "保命要紧，逃。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "71",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n用户逃跑：必须 phase=explore（禁止再写 combat）；action=flee；end_turn=1；node=cave_mouth。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n逃回洞口。任务还在，命也还在。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=71; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\nphase=explore；flags 含 fled_combat；任务找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_rules",
+      "rule_id": "combat_flee",
+      "repeat": 1
     }
   }
 ]

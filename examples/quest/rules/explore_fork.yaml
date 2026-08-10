@@ -1,0 +1,18 @@
+# 探索路口：保持 explore，给出选路菜单
+id: explore_fork
+fsm_in:
+  phase: explore
+  node: forest_fork
+assert:
+  phase: explore
+  node: forest_fork
+  allowed: "move,talk,open_inventory"
+  action: prompt_choice
+  target: cave_entrance
+  end_turn: "0"
+stats_base:
+  hp: "80"
+  mp: "20"
+  loc: "森林路口"
+  quest: "找药草"
+  flags: "has_map"

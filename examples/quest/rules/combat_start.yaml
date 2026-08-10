@@ -1,0 +1,19 @@
+# 遇敌：explore → combat（易被 explore 多数类淹没，组装时重复采样）
+id: combat_start
+repeat: 3
+fsm_in:
+  phase: explore
+  node: cave_mouth
+assert:
+  phase: combat
+  node: round_player
+  allowed: "attack,skill,item,flee"
+  action: prompt_choice
+  target: combat_menu
+  end_turn: "0"
+stats_base:
+  hp: "76"
+  mp: "18"
+  loc: "洞穴入口"
+  quest: "找药草"
+  flags: "has_map,in_combat"

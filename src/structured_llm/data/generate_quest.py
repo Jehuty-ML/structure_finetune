@@ -1,311 +1,104 @@
-"""Quest RPG 模板合成数据。"""
+"""Quest 数据组装：规则卡 + 改写文案（非排列组合抽奖）。
+
+设计：
+1) examples/quest/rules/*.yaml  — 决策标签（fsm_in / assert）
+2) examples/quest/rewrites/*.json — 每卡独立 user_text/say/...
+3) 每个 user_text 只生成一行；全局 user_text 不得跨卡重复
+4) train/val 按 user_text 留出，避免同源泄漏
+"""
 
 from __future__ import annotations
 
+import json
+import hashlib
 import random
+from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 from structured_llm.contract.kv import format_kv
+from structured_llm.contract.quest_validator import validate_quest_turn
+
+ROOT_DEFAULT = Path(__file__).resolve().parents[3]
+RULES_DIR_DEFAULT = ROOT_DEFAULT / "examples" / "quest" / "rules"
+REWRITES_DIR_DEFAULT = ROOT_DEFAULT / "examples" / "quest" / "rewrites"
 
 
-SCENARIOS: list[dict[str, Any]] = [
-    {
-        "tag": "explore_fork",
-        "weight": 1.6,
-        "user_texts": [
-            "我往前走。",
-            "看看左边的小路。",
-            "朝山洞方向走。",
-            "往雾里走两步。",
-            "停在岔路口看看。",
-        ],
-        "fsm_in": {"phase": "explore", "node": "forest_fork"},
-        "thinks": [
-            "探索路口；保持 explore；action=prompt_choice；禁止 advance（advance 只用于 cutscene）。",
-            "仍在 explore/forest_fork；给玩家选路菜单；cmd 只能是 prompt_choice，绝不是 advance。",
-        ],
-        "state": {
-            "phase": "explore",
-            "node": "forest_fork",
-            "allowed": "move,talk,open_inventory",
-        },
-        "says": [
-            "这条路通向山洞。要进去吗？",
-            "林雾更浓了。左边是兽径，右边是旧桥。",
-            "你还能听见远处的水声。选一条路吧。",
-            "脚印分叉了。你停下来打量两边。",
-        ],
-        "cmd": {"action": "prompt_choice", "target": "cave_entrance", "end_turn": "0"},
-        "stats": {
-            "hp": "80",
-            "mp": "20",
-            "loc": "森林路口",
-            "quest": "找药草",
-            "flags": "has_map",
-        },
-        "abstracts": [
-            "探索中停在森林路口；任务找药草；已有地图；未进洞。",
-            "仍在森林路口观望；未开战；任务找药草。",
-        ],
-    },
-    {
-        "tag": "explore_enter_cave",
-        "weight": 1.0,
-        "user_texts": [
-            "进山洞。",
-            "我选择进洞。",
-            "去洞穴里看看。",
-            "钻进洞口。",
-        ],
-        "fsm_in": {"phase": "explore", "node": "forest_fork"},
-        "thinks": [
-            "玩家选择进洞；仍属探索，节点切到 cave_mouth；action=move。",
-        ],
-        "state": {
-            "phase": "explore",
-            "node": "cave_mouth",
-            "allowed": "move,talk,open_inventory",
-        },
-        "says": [
-            "洞口阴冷，石壁上有爪痕。你举着火把走进去。",
-            "你弯腰钻入洞穴，潮气扑面而来。",
-            "火光照亮潮湿石壁，你踏进洞穴入口。",
-        ],
-        "cmd": {"action": "move", "target": "cave_mouth", "end_turn": "0"},
-        "stats": {
-            "hp": "80",
-            "mp": "18",
-            "loc": "洞穴入口",
-            "quest": "找药草",
-            "flags": "has_map,entered_cave",
-        },
-        "abstracts": [
-            "已进入洞穴入口；任务仍是找药草；地图在身。",
-            "人在洞穴入口；探索中；尚未遇敌。",
-        ],
-    },
-    {
-        "tag": "combat_start",
-        "weight": 1.2,
-        "user_texts": [
-            "有怪物！",
-            "前面跳出一只狼。",
-            "战斗开始了。",
-            "狼堵住了路。",
-            "遇敌了。",
-        ],
-        "fsm_in": {"phase": "explore", "node": "cave_mouth"},
-        "thinks": [
-            "遭遇战；phase: explore→combat；node=round_player；action=prompt_choice。",
-            "从探索切入战斗；禁止 flee；先给战斗菜单。",
-        ],
-        "state": {
-            "phase": "combat",
-            "node": "round_player",
-            "allowed": "attack,skill,item,flee",
-        },
-        "says": [
-            "灰狼低吼着挡住去路。轮到你行动。",
-            "敌人扑来！请选择攻击、技能、道具或逃跑。",
-            "战斗爆发。灰狼盯着你，等你出招。",
-        ],
-        "cmd": {"action": "prompt_choice", "target": "combat_menu", "end_turn": "0"},
-        "stats": {
-            "hp": "76",
-            "mp": "18",
-            "loc": "洞穴入口",
-            "quest": "找药草",
-            "flags": "has_map,in_combat",
-        },
-        "abstracts": [
-            "战斗开始，玩家回合；地点洞穴入口；任务找药草。",
-            "已进入 combat；尚未逃跑；在洞穴入口。",
-        ],
-    },
-    {
-        "tag": "combat_attack",
-        "weight": 1.0,
-        "user_texts": [
-            "我攻击。",
-            "普通攻击。",
-            "砍它一刀。",
-            "挥剑。",
-            "打它。",
-        ],
-        "fsm_in": {"phase": "combat", "node": "round_player"},
-        "thinks": [
-            "玩家攻击；保持 combat；node→round_enemy；action=attack；不是 flee。",
-            "仍在战斗中输出伤害；禁止切回 explore。",
-        ],
-        "state": {
-            "phase": "combat",
-            "node": "round_enemy",
-            "allowed": "attack,skill,item,flee",
-        },
-        "says": [
-            "你挥剑命中，灰狼退后一步。轮到它了。",
-            "一击命中要害，敌人怒视着你。",
-            "剑刃擦过毛皮，狼发出怒吼。",
-        ],
-        "cmd": {"action": "attack", "target": "wolf", "end_turn": "0"},
-        "stats": {
-            "hp": "76",
-            "mp": "18",
-            "loc": "洞穴入口",
-            "quest": "找药草",
-            "flags": "has_map,in_combat",
-        },
-        "abstracts": [
-            "战斗中已攻击；进入敌方回合；仍在洞穴入口。",
-            "仍在 combat；刚完成 attack；未逃离。",
-        ],
-    },
-    {
-        "tag": "dialogue_npc",
-        "weight": 0.8,
-        "user_texts": [
-            "和老人谈谈。",
-            "我想问问路。",
-            "跟草药师说话。",
-        ],
-        "fsm_in": {"phase": "explore", "node": "village_square"},
-        "thinks": [
-            "进入 dialogue；action=talk；不是 combat/flee。",
-        ],
-        "state": {
-            "phase": "dialogue",
-            "node": "herbalist_hello",
-            "allowed": "talk,open_inventory",
-        },
-        "says": [
-            "草药师推了推眼镜：药草在北谷，小心狼群。",
-            "老人说：带上地图，北谷深处有你要的叶子。",
-        ],
-        "cmd": {"action": "talk", "target": "herbalist", "end_turn": "0"},
-        "stats": {
-            "hp": "90",
-            "mp": "25",
-            "loc": "村子广场",
-            "quest": "找药草",
-            "flags": "has_map,met_herbalist",
-        },
-        "abstracts": [
-            "对话中见过草药师；得知药草在北谷；人在村子广场。",
-        ],
-    },
-    {
-        "tag": "shop_buy",
-        "weight": 0.7,
-        "user_texts": [
-            "买一瓶药水。",
-            "我要红药。",
-            "购买治疗药。",
-        ],
-        "fsm_in": {"phase": "shop", "node": "shop_main"},
-        "thinks": [
-            "商店购买；保持 shop；action=buy。",
-        ],
-        "state": {
-            "phase": "shop",
-            "node": "shop_main",
-            "allowed": "buy,talk",
-        },
-        "says": [
-            "店主递过红药：三枚银币，祝你一路平安。",
-            "你买下治疗药水，背包沉了一点。",
-        ],
-        "cmd": {"action": "buy", "target": "potion_red", "end_turn": "0"},
-        "stats": {
-            "hp": "90",
-            "mp": "25",
-            "loc": "杂货店",
-            "quest": "找药草",
-            "flags": "has_map,has_potion",
-        },
-        "abstracts": [
-            "在杂货店买了红药；任务仍是找药草。",
-        ],
-    },
-    {
-        "tag": "cutscene_advance",
-        # 压到极低：advance 易泄漏到 explore/flee
-        "weight": 0.15,
-        "user_texts": [
-            "跳过过场动画。",
-            "播放下一段过场。",
-            "过场往后翻。",
-        ],
-        "fsm_in": {"phase": "cutscene", "node": "intro_1"},
-        "thinks": [
-            "输入 fsm.phase 已是 cutscene，才允许 action=advance；探索/战斗绝不能 advance。",
-        ],
-        "state": {
-            "phase": "cutscene",
-            "node": "intro_2",
-            "allowed": "advance",
-        },
-        "says": [
-            "画面淡入：远山之间，有人低声念着药草的名字。",
-            "旁白响起：风暴将至，你必须在日落前找到那株叶子。",
-        ],
-        "cmd": {"action": "advance", "target": "intro_2", "end_turn": "0"},
-        "stats": {
-            "hp": "100",
-            "mp": "30",
-            "loc": "过场",
-            "quest": "找药草",
-            "flags": "intro",
-        },
-        "abstracts": [
-            "过场推进到 intro_2；任务找药草尚未开始探索。",
-        ],
-    },
-    {
-        "tag": "combat_flee",
-        "weight": 2.2,
-        "user_texts": [
-            "我跑！",
-            "撤退。",
-            "逃离战斗。",
-            "逃跑。",
-            "不想打了，跑！",
-            "快逃。",
-            "溜了溜了。",
-            "我选择逃跑。",
-        ],
-        "fsm_in": {"phase": "combat", "node": "round_player"},
-        "thinks": [
-            "用户明确逃跑；phase: combat→explore；action=flee；end_turn=1；禁止 advance；禁止停留 combat。",
-            "逃跑成功；切回 explore/cave_mouth；cmd 必须是 flee 且 end_turn=1。",
-            "战斗中的 flee 转场：输出 phase=explore，绝不是 combat，也绝不是 advance。",
-        ],
-        "state": {
-            "phase": "explore",
-            "node": "cave_mouth",
-            "allowed": "move,talk,open_inventory",
-        },
-        "says": [
-            "你狼狈地退出战斗，回到洞口喘息。",
-            "总算甩开了，心跳还很快。",
-            "你转身狂奔，灰狼的吼声被甩在身后。",
-            "你跌跌撞撞逃出交战，停在洞穴入口。",
-            "逃出来了。战斗结束，你回到洞口。",
-        ],
-        "cmd": {"action": "flee", "target": "none", "end_turn": "1"},
-        "stats": {
-            "hp": "70",
-            "mp": "15",
-            "loc": "洞穴入口",
-            "quest": "找药草",
-            "flags": "has_map,fled_combat",
-        },
-        "abstracts": [
-            "已逃离战斗回到洞穴入口；任务未完成。",
-            "flee 成功；phase 已回 explore；人在洞穴入口。",
-            "不在战斗中；刚从灰狼身边逃走；地点洞穴入口。",
-        ],
-    },
-]
+@dataclass(frozen=True)
+class RuleCard:
+    id: str
+    fsm_in: dict[str, str]
+    assert_fields: dict[str, str]
+    stats_base: dict[str, str]
+    repeat: int = 1
+
+
+@dataclass(frozen=True)
+class RewriteBank:
+    rule_id: str
+    user_texts: list[str]
+    thinks: list[str]
+    says: list[str]
+    abstracts: list[str]
+
+
+def _load_yaml(path: Path) -> dict[str, Any]:
+    try:
+        import yaml
+    except ImportError as exc:
+        raise ImportError("需要 PyYAML：pip install pyyaml") from exc
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError(f"规则卡必须是 mapping：{path}")
+    return data
+
+
+def load_rule_cards(rules_dir: str | Path | None = None) -> list[RuleCard]:
+    d = Path(rules_dir) if rules_dir else RULES_DIR_DEFAULT
+    cards: list[RuleCard] = []
+    for path in sorted(d.glob("*.yaml")):
+        raw = _load_yaml(path)
+        cards.append(
+            RuleCard(
+                id=str(raw["id"]),
+                fsm_in={k: str(v) for k, v in dict(raw["fsm_in"]).items()},
+                assert_fields={k: str(v) for k, v in dict(raw["assert"]).items()},
+                stats_base={k: str(v) for k, v in dict(raw["stats_base"]).items()},
+                repeat=max(1, int(raw.get("repeat", 1))),
+            )
+        )
+    if not cards:
+        raise FileNotFoundError(f"未找到规则卡：{d}")
+    return cards
+
+
+def load_rewrite_banks(rewrites_dir: str | Path | None = None) -> dict[str, RewriteBank]:
+    d = Path(rewrites_dir) if rewrites_dir else REWRITES_DIR_DEFAULT
+    banks: dict[str, RewriteBank] = {}
+    for path in sorted(d.glob("*.json")):
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        rid = str(raw["rule_id"])
+        users = [str(x).strip() for x in raw.get("user_texts", []) if str(x).strip()]
+        thinks = [str(x).strip() for x in raw.get("thinks", []) if str(x).strip()]
+        says = [str(x).strip() for x in raw.get("says", []) if str(x).strip()]
+        abstracts = [str(x).strip() for x in raw.get("abstracts", []) if str(x).strip()]
+        if not users or not thinks or not says or not abstracts:
+            raise ValueError(f"改写库字段不完整：{path}")
+        # 卡内 user_text 去重，保序
+        seen: set[str] = set()
+        uniq_users: list[str] = []
+        for u in users:
+            if u not in seen:
+                seen.add(u)
+                uniq_users.append(u)
+        banks[rid] = RewriteBank(
+            rule_id=rid,
+            user_texts=uniq_users,
+            thinks=thinks,
+            says=says,
+            abstracts=abstracts,
+        )
+    return banks
 
 
 def render_quest_output(
@@ -326,74 +119,167 @@ def render_quest_output(
     )
 
 
-def _pick_text(sc: dict[str, Any], key_plural: str, key_singular: str, rng: random.Random) -> str:
-    if key_plural in sc and sc[key_plural]:
-        return rng.choice(sc[key_plural])
-    return str(sc[key_singular])
+def _pick(_rng: random.Random, items: list[str], salt: str) -> str:
+    h = int(hashlib.md5(salt.encode("utf-8")).hexdigest(), 16)
+    return items[h % len(items)]
 
 
-def build_row(sc: dict[str, Any], rng: random.Random, index: int) -> dict[str, Any]:
-    hp = int(sc["stats"]["hp"]) + rng.randint(-2, 2)
-    mp = max(0, int(sc["stats"]["mp"]) + rng.randint(-1, 1))
-    stats = dict(sc["stats"])
-    stats["hp"] = str(max(1, hp))
-    stats["mp"] = str(mp)
-    say = _pick_text(sc, "says", "say", rng)
-    user_text = rng.choice(sc["user_texts"])
-    think = _pick_text(sc, "thinks", "think", rng)
-    abstract = _pick_text(sc, "abstracts", "abstract", rng)
-    out = render_quest_output(
-        think=think,
-        state=dict(sc["state"]),
-        say=say,
-        cmd=dict(sc["cmd"]),
-        stats=stats,
-        abstract=abstract,
-    )
-    return {
-        "id": f"quest_syn_{index:04d}_{sc['tag']}",
-        "input": {
-            "user_text": user_text,
-            "fsm": dict(sc["fsm_in"]),
-            "stats": {
-                "hp": stats["hp"],
-                "mp": stats["mp"],
-                "loc": stats["loc"],
-                "quest": stats["quest"],
-            },
-        },
-        "output": out,
-        "meta": {"scenario": sc["tag"], "contract": "quest_v1"},
+def _jitter_stats(base: dict[str, str], rng: random.Random) -> dict[str, str]:
+    stats = dict(base)
+    try:
+        hp = int(stats.get("hp", "80")) + rng.randint(-2, 2)
+        mp = max(0, int(stats.get("mp", "20")) + rng.randint(-1, 1))
+        stats["hp"] = str(max(1, hp))
+        stats["mp"] = str(mp)
+    except ValueError:
+        pass
+    return stats
+
+
+def _assert_matches_card(row: dict[str, Any], card: RuleCard) -> list[str]:
+    problems: list[str] = []
+    vr = validate_quest_turn(row["output"], input_obj=row.get("input"))
+    if not vr.ok:
+        return list(vr.errors)
+    assert vr.parsed is not None
+    af = card.assert_fields
+    mapping = {
+        "phase": vr.parsed.state.get("phase"),
+        "node": vr.parsed.state.get("node"),
+        "allowed": vr.parsed.state.get("allowed"),
+        "action": vr.parsed.cmd.get("action"),
+        "target": vr.parsed.cmd.get("target"),
+        "end_turn": vr.parsed.cmd.get("end_turn"),
     }
+    for key, expect in af.items():
+        got = mapping.get(key)
+        if got != expect:
+            problems.append(f"{card.id} 字段 {key}={got!r} != {expect!r}")
+    return problems
 
 
-def _weighted_choice(rng: random.Random) -> dict[str, Any]:
-    weights = [float(sc.get("weight", 1.0)) for sc in SCENARIOS]
-    return rng.choices(SCENARIOS, weights=weights, k=1)[0]
+def assemble_dataset(
+    *,
+    rules_dir: str | Path | None = None,
+    rewrites_dir: str | Path | None = None,
+    seed: int = 3407,
+    max_per_rule: int | None = None,
+) -> list[dict[str, Any]]:
+    cards = load_rule_cards(rules_dir)
+    banks = load_rewrite_banks(rewrites_dir)
+    missing = [c.id for c in cards if c.id not in banks]
+    if missing:
+        raise FileNotFoundError(f"缺少改写库：{missing}")
 
+    # 全局 user_text 不得跨卡重复
+    owner: dict[str, str] = {}
+    for card in cards:
+        for u in banks[card.id].user_texts:
+            if u in owner and owner[u] != card.id:
+                raise ValueError(
+                    f"user_text 跨卡重复：{u!r} 同时属于 {owner[u]} 与 {card.id}"
+                )
+            owner[u] = card.id
 
-def generate_dataset(count: int, seed: int = 3407) -> list[dict[str, Any]]:
-    rng = random.Random(seed)
     rows: list[dict[str, Any]] = []
-    # 每种场景至少一条，避免稀有转场被抽空
-    for i, sc in enumerate(SCENARIOS):
-        if len(rows) >= count:
-            break
-        rows.append(build_row(sc, random.Random(seed + i), i + 1))
-    while len(rows) < count:
-        idx = len(rows) + 1
-        sc = _weighted_choice(rng)
-        rows.append(build_row(sc, rng, idx))
-    return rows[:count]
+    idx = 0
+    for card in cards:
+        bank = banks[card.id]
+        users = list(bank.user_texts)
+        if max_per_rule is not None:
+            users = users[: max(1, max_per_rule)]
+        for rep in range(card.repeat):
+            for user_text in users:
+                idx += 1
+                rng = random.Random(f"{seed}:{card.id}:{rep}:{user_text}")
+                think = _pick(rng, bank.thinks, f"t:{rep}:{user_text}")
+                say = _pick(rng, bank.says, f"s:{rep}:{user_text}")
+                abstract = _pick(rng, bank.abstracts, f"a:{rep}:{user_text}")
+                stats = _jitter_stats(card.stats_base, rng)
+                state = {
+                    "phase": card.assert_fields["phase"],
+                    "node": card.assert_fields["node"],
+                    "allowed": card.assert_fields["allowed"],
+                }
+                cmd = {
+                    "action": card.assert_fields["action"],
+                    "target": card.assert_fields.get("target", "none"),
+                    "end_turn": card.assert_fields["end_turn"],
+                }
+                out = render_quest_output(think, state, say, cmd, stats, abstract)
+                row = {
+                    "id": f"quest_{card.id}_{idx:04d}",
+                    "input": {
+                        "user_text": user_text,
+                        "fsm": dict(card.fsm_in),
+                        "stats": {
+                            "hp": stats["hp"],
+                            "mp": stats["mp"],
+                            "loc": stats["loc"],
+                            "quest": stats["quest"],
+                        },
+                    },
+                    "output": out,
+                    "meta": {
+                        "scenario": card.id,
+                        "contract": "quest_v2_rules",
+                        "rule_id": card.id,
+                        "repeat": rep,
+                    },
+                }
+                problems = _assert_matches_card(row, card)
+                if problems:
+                    raise ValueError(f"组装失败 {row['id']}: {problems}")
+                rows.append(row)
+    return rows
+
+
+def generate_dataset(
+    count: int | None = None,
+    seed: int = 3407,
+    *,
+    rules_dir: str | Path | None = None,
+    rewrites_dir: str | Path | None = None,
+) -> list[dict[str, Any]]:
+    """兼容旧入口：count 表示每卡最多取多少条 user_text；None=全量。"""
+    max_per_rule = count
+    return assemble_dataset(
+        rules_dir=rules_dir,
+        rewrites_dir=rewrites_dir,
+        seed=seed,
+        max_per_rule=max_per_rule,
+    )
 
 
 def split_train_val(
     rows: list[dict[str, Any]], val_ratio: float = 0.15, seed: int = 3407
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """按 user_text 留出验证集（同一说法不会同时出现在 train/val）。"""
     rng = random.Random(seed)
-    shuffled = list(rows)
-    rng.shuffle(shuffled)
-    n_val = max(1, int(len(shuffled) * val_ratio))
-    if n_val >= len(shuffled):
-        n_val = max(1, len(shuffled) // 5)
-    return shuffled[n_val:], shuffled[:n_val]
+    by_user: dict[str, list[dict[str, Any]]] = {}
+    for row in rows:
+        u = str(row["input"]["user_text"])
+        by_user.setdefault(u, []).append(row)
+    users = list(by_user.keys())
+    rng.shuffle(users)
+    n_val = max(1, int(len(users) * val_ratio))
+    if n_val >= len(users):
+        n_val = max(1, len(users) // 5)
+    val_users = set(users[:n_val])
+    train: list[dict[str, Any]] = []
+    val: list[dict[str, Any]] = []
+    for u, group in by_user.items():
+        (val if u in val_users else train).extend(group)
+    rng.shuffle(train)
+    rng.shuffle(val)
+    return train, val
+
+
+def dataset_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    from collections import Counter
+
+    return {
+        "n": len(rows),
+        "unique_user": len({r["input"]["user_text"] for r in rows}),
+        "by_rule": dict(Counter(r["meta"]["rule_id"] for r in rows)),
+    }
