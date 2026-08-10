@@ -1,22 +1,22 @@
-# Design notes
+# 设计说明
 
-## Problem
+## 问题
 
-Small LLMs are attractive for voice companions (latency, cost, privacy), but product surfaces need **structured side channels** in the same generation as natural language. Prompt-only control is unstable on 1.7B–8B models once you add multi-turn history, long system prompts, or edge-case user text.
+小模型很适合语音伙伴（延迟、成本、隐私），但产品界面需要在同一次生成里，同时给出自然语言和 **结构化旁路通道**。仅靠 Prompt 控制，在 1.7B～8B 上一旦加上多轮历史、长系统提示或边角用户输入，就会不稳定。
 
-## Solution shape
+## 解法形态
 
-1. **Freeze a contract** (tags + JSON Schema) shared by data labeling, training targets, eval, and serving.
-2. **SFT** so the model emits the contract by default (LoRA/QLoRA is enough for format + style).
-3. **Validate everything** — reject bad training rows; score generations with the same parser.
-4. **Compress memory** with `<abstract>` so multi-turn context stays short without losing continuity.
+1. **冻结契约**（标签 + JSON Schema），数据标注、训练目标、评测与服务共用。
+2. **SFT**，让模型默认按契约输出（LoRA/QLoRA 通常足够覆盖格式与风格）。
+3. **全面校验** — 拒绝坏训练行；用同一解析器给生成打分。
+4. 用 `<abstract>` **压缩记忆**，多轮上下文保持短，同时不丢连续性。
 
-## Why multi-block instead of “JSON only”?
+## 为何用多块，而不是「只要 JSON」？
 
-- TTS and debug/training signals should not live inside the spoken string.
-- `<think>` / `<state>` can be stripped before playback while still supervising the model.
-- `<abstract>` is a deliberate, model-authored summary — better than truncating raw history.
+- TTS 与调试/训练信号不应塞进口播字符串。
+- `<think>` / `<state>` 可在播放前剥掉，同时仍能监督模型。
+- `<abstract>` 是模型主动写出的摘要，比粗暴截断原始历史更合适。
 
-## Portability
+## 可移植性
 
-Replace Echo’s JSON Schema and system prompt to reuse the same pipeline for tool-calling agents, game masters, or IoT “say + act” controllers. The invariant is: **small model + fixed contract + SFT + shared validator**.
+替换 Echo 的 JSON Schema 与系统提示，即可把同一流水线用于工具调用智能体、游戏主持人，或物联网「边说边控」控制器。不变式是：**小模型 + 固定契约 + SFT + 共用校验器**。

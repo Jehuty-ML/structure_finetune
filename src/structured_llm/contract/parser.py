@@ -26,18 +26,18 @@ class ParsedTurn:
 
 def parse_turn(text: str) -> ParsedTurn:
     """
-    Parse a multi-block Echo-style turn.
+    解析 Echo 风格的多块回合。
 
-    Raises ValueError if the outer structure cannot be recovered.
+    外层结构无法恢复时抛出 ValueError。
     """
     if not isinstance(text, str) or not text.strip():
-        raise ValueError("empty turn")
+        raise ValueError("回合内容为空")
 
     normalized = text.strip().replace("\r\n", "\n")
     match = _BLOCK_RE.match(normalized)
     if not match:
         raise ValueError(
-            "turn does not match required order: "
+            "回合不符合约定顺序："
             "<think> -> <state> -> JSON -> <abstract>"
         )
 
@@ -45,10 +45,10 @@ def parse_turn(text: str) -> ParsedTurn:
     try:
         payload = json.loads(raw_json)
     except json.JSONDecodeError as exc:
-        raise ValueError(f"JSON block is not valid JSON: {exc}") from exc
+        raise ValueError(f"JSON 块不是合法 JSON：{exc}") from exc
 
     if not isinstance(payload, dict):
-        raise ValueError("JSON block must be an object")
+        raise ValueError("JSON 块必须是对象")
 
     return ParsedTurn(
         think=match.group("think").strip(),

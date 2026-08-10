@@ -1,45 +1,45 @@
-# Echo output contract
+# Echo 输出契约
 
-Every assistant turn MUST follow this exact block order, separated by blank lines:
+每一轮助手回复 **必须** 按以下块顺序，块与块之间空一行：
 
 1. `<think>...</think>`
 2. `<state>...</state>`
-3. a single JSON object
+3. 一个 JSON 对象
 4. `<abstract>...</abstract>`
 
-## JSON object (machine + TTS channel)
+## JSON 对象（机器 + TTS 通道）
 
-Validated by [`schemas/echo_turn.schema.json`](../schemas/echo_turn.schema.json).
+由 [`schemas/echo_turn.schema.json`](../schemas/echo_turn.schema.json) 校验。
 
-| Field | Type | Rules |
-|-------|------|--------|
-| `utter` | string | Spoken text only. No XML/tags, no `(stage directions)`. Length ≥ 1. |
-| `emotion` | string enum | e.g. `gentle`, `cheerful`, `calm`, `concerned`, `playful` |
+| 字段 | 类型 | 规则 |
+|------|------|------|
+| `utter` | string | 仅口播文本。禁止 XML/标签，禁止 `(演技注释)`。长度 ≥ 1。 |
+| `emotion` | 字符串枚举 | 如 `gentle`、`cheerful`、`calm`、`concerned`、`playful` |
 | `volume` | int | 0–100 |
-| `pace` | string enum | `slow` \| `normal` \| `fast` |
-| `should_speak` | bool | Whether TTS should play this turn |
-| `end_turn` | bool | Hint that the assistant is yielding the floor |
+| `pace` | 字符串枚举 | `slow` \| `normal` \| `fast` |
+| `should_speak` | bool | 本轮是否应 TTS 播放 |
+| `end_turn` | bool | 提示助手让出话轮 |
 
-## Soft rules (enforced in validators as warnings or hard fails)
+## 软规则（校验器中作警告或硬失败）
 
-- Exactly one pair of each tag; no nesting inside `abstract`.
-- `abstract` is memory for the *next* user turn — short, factual, no roleplay tags.
-- `<state>` is free-form for the demo client; keep it short and deterministic in training data.
+- 每类标签恰好一对；`abstract` 内禁止嵌套结构标签。
+- `abstract` 是给 *下一轮* 用户输入用的记忆——短、事实性、无角色扮演标签。
+- `<state>` 在 Demo 客户端中可自由文本；训练数据里保持短且确定。
 
-## Example
+## 示例
 
 ```text
 <think>
-User sounds tired; keep utter short and lower volume.
+用户听起来很累；utter 宜短，音量宜低。
 </think>
 
 <state>
 tone=soft; energy_hint=low
 </state>
 
-{"utter":"Rest a bit — I'm right here.","emotion":"gentle","volume":35,"pace":"slow","should_speak":true,"end_turn":false}
+{"utter":"先歇一会儿，我就在这儿。","emotion":"gentle","volume":35,"pace":"slow","should_speak":true,"end_turn":false}
 
 <abstract>
-User felt tired; replied with a short soft reassurance.
+用户表示疲惫；以短句轻声安抚。
 </abstract>
 ```

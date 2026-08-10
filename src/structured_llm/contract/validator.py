@@ -44,8 +44,8 @@ def _validate_against_schema(
     payload: dict[str, Any], schema: dict[str, Any]
 ) -> list[str]:
     """
-    Minimal JSON Schema checks for the Echo turn object.
-    Prefer jsonschema if installed; otherwise enforce required Echo rules.
+    对 Echo 回合 JSON 对象做最小 JSON Schema 检查。
+    若已安装 jsonschema 则优先使用；否则按 Echo 必填规则校验。
     """
     try:
         import jsonschema
@@ -57,26 +57,26 @@ def _validate_against_schema(
         required = schema.get("required", [])
         for key in required:
             if key not in payload:
-                errors.append(f"missing required property: {key}")
+                errors.append(f"缺少必填字段：{key}")
 
         props = schema.get("properties", {})
         if "utter" in payload and not isinstance(payload["utter"], str):
-            errors.append("utter must be a string")
+            errors.append("utter 必须是字符串")
         if "volume" in payload:
             vol = payload["volume"]
             if not isinstance(vol, int) or isinstance(vol, bool) or not (0 <= vol <= 100):
-                errors.append("volume must be an integer in [0, 100]")
+                errors.append("volume 必须是 [0, 100] 的整数")
         if "emotion" in payload and "emotion" in props:
             enum = props["emotion"].get("enum")
             if enum and payload["emotion"] not in enum:
-                errors.append(f"emotion must be one of {enum}")
+                errors.append(f"emotion 必须是以下之一：{enum}")
         if "pace" in payload and "pace" in props:
             enum = props["pace"].get("enum")
             if enum and payload["pace"] not in enum:
-                errors.append(f"pace must be one of {enum}")
+                errors.append(f"pace 必须是以下之一：{enum}")
         for bool_key in ("should_speak", "end_turn"):
             if bool_key in payload and not isinstance(payload[bool_key], bool):
-                errors.append(f"{bool_key} must be a boolean")
+                errors.append(f"{bool_key} 必须是布尔值")
         return errors
 
 
@@ -102,20 +102,18 @@ def validate_turn(
     utter = parsed.payload.get("utter", "")
     if isinstance(utter, str):
         if _TAG_IN_UTTER.search(utter):
-            errors.append("utter must not contain structural tags")
+            errors.append("utter 不得包含结构标签")
         if strict_tts and _STAGE_DIR.search(utter):
-            errors.append(
-                "utter contains parenthetical stage directions (unsafe for TTS)"
-            )
+            errors.append("utter 含括号演技注释（对 TTS 不安全）")
 
     if not parsed.abstract:
-        errors.append("abstract is empty")
+        errors.append("abstract 为空")
     if re.search(r"</?(?:think|state|abstract)\b", parsed.abstract, re.I):
-        errors.append("abstract must not nest structural tags")
+        errors.append("abstract 不得嵌套结构标签")
     if not parsed.think:
-        warnings.append("think is empty")
+        warnings.append("think 为空")
     if not parsed.state:
-        warnings.append("state is empty")
+        warnings.append("state 为空")
 
     return ValidationResult(
         ok=len(errors) == 0,

@@ -16,7 +16,7 @@
     "utter": {
       "type": "string",
       "minLength": 1,
-      "description": "TTS-safe spoken text only"
+      "description": "仅 TTS 安全的口播文本"
     },
     "emotion": {
       "type": "string",

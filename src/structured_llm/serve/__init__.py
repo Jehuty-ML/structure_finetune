@@ -1,4 +1,4 @@
-"""Optional FastAPI serving helpers — return parsed VoiceTurn objects."""
+"""可选的 FastAPI 服务辅助：返回解析后的 VoiceTurn 对象。"""
 
 from __future__ import annotations
 

@@ -1,5 +1,5 @@
-# Echo SFT (LoRA) — fill in model paths before training
-model_name_or_path: "Qwen/Qwen2.5-1.5B-Instruct"  # or local path to 1.7B/3B/8B
+# Echo SFT（LoRA）— 训练前请填写模型路径
+model_name_or_path: "Qwen/Qwen2.5-1.5B-Instruct"  # 或本地 1.7B/3B/8B 路径
 data_path: "examples/echo/sample_data/train_sample.json"
 system_prompt_path: "examples/echo/prompts/system_prompt.txt"
 output_dir: "outputs/echo_lora"
@@ -19,6 +19,6 @@ warmup_steps: 20
 logging_steps: 5
 seed: 3407
 
-# dry_run=true: contract-check only (no GPU).
-# Set false after wiring Unsloth/PEFT in src/structured_llm/train.
+# dry_run=true：仅做契约检查（无需 GPU）。
+# 在 src/structured_llm/train 接入 Unsloth/PEFT 后改为 false。
 dry_run: true

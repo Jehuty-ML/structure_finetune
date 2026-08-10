@@ -1,91 +1,93 @@
 # structured-llm-pipeline
 
-**Fine-tune small LLMs so structured output is reliable — not a prompt lottery.**
+**把小模型的结构化输出训稳——而不是靠 Prompt 碰运气。**
 
-When you ship a **1.7B / 3B / 8B** model on-device or on a cheap GPU, you often need more than “good chat.” You need a **fixed contract**: every turn must be machine-parseable for TTS, UI state, tools, or a game engine. Prompting a frontier model can fake this in demos; **small models need the format welded in via SFT**, then proven with validators and eval suites.
+当你要在端侧或低成本 GPU 上部署 **1.7B / 3B / 8B** 模型时，往往不只是「会聊天」。你需要一份 **固定契约**：每一轮输出都能被 TTS、UI 状态机、工具或游戏引擎稳定解析。大模型 API + Prompt 可以在演示里凑合；**小模型要把格式通过 SFT 焊进权重**，再用校验与评测证明它靠谱。
 
-This repo is a reusable pipeline for that job, with a concrete demo: **Echo** — a voice-ready character assistant.
+本仓库是一套可复用流水线，Demo 场景为 **Echo**：面向语音播报的角色助手。
 
 ---
 
-## Why this exists (the core thesis)
+## 为什么做这个（核心论点）
 
-| Approach | What you get | Where it breaks |
-|----------|--------------|-----------------|
-| Prompt a large API model | Flexible prose, occasional JSON | Cost, latency, privacy; format still drifts |
-| Prompt a small local model | Cheap & private | **Format compliance collapses** under length, multi-turn, edge cases |
-| **SFT a small model on a strict contract** | Cheap + private + **~deterministic structure** | Needs data discipline + eval (this repo) |
+| 做法 | 你得到什么 | 哪里会崩 |
+|------|------------|----------|
+| Prompt 调大模型 API | 文案灵活，偶尔能出 JSON | 成本、延迟、隐私；格式仍会漂移 |
+| Prompt 调本地小模型 | 便宜、可私有化 | **一加长上下文 / 多轮 / 边角输入，格式合规率就垮** |
+| **按严格契约对小模型做 SFT** | 便宜 + 私有 + **结构近似确定** | 需要数据纪律与评测（本仓库） |
 
-**Product reality:** downstream systems do not consume “vibes.” They consume fields.
+**产品现实：** 下游系统不消费「感觉」，只消费字段。
 
 ```text
-one generation
-    ├── <think>     → optional debug / training signal
-    ├── <state>     → client / session state machine
-    ├── { json }    → TTS + UI + actions (schema-validated)
-    └── <abstract>  → compressed memory for the next turn
+一次生成
+    ├── <think>     → 可选：调试 / 训练信号
+    ├── <state>     → 客户端 / 会话状态机
+    ├── { json }    → TTS + UI + 动作（Schema 校验）
+    └── <abstract>  → 压缩记忆，供下一轮使用
 ```
 
-If `utter` contains raw tags, or `volume` is missing, **TTS and the client break**. That is why “almost 100% schema-valid” is a feature, not a nicety — and why SFT + validation beats hoping the base model cooperates.
+若 `utter` 里夹了标签，或缺少 `volume`，**TTS 与客户端会直接坏掉**。所以「接近 100% Schema 合法」是功能要求，不是锦上添花——SFT + 校验远胜于指望基座模型自觉配合。
 
-This pattern is **domain-agnostic**: voice agents, tool routers, RPG engines, IoT command+reply, form fillers — anywhere a small model must speak to both humans and machines in one shot.
-
----
-
-## Demo: Echo (voice character assistant)
-
-Echo is a fictional on-device companion. Each turn must drive **three channels at once**:
-
-| Channel | Consumer | Contract field(s) |
-|---------|----------|-------------------|
-| Spoken text | TTS | `utter` (clean, no tags) |
-| Prosody / affect | TTS + avatar | `emotion`, `volume`, `pace` |
-| Machine control | App | `should_speak`, `end_turn`, `<state>`, `<abstract>` |
-
-See [`docs/schema.md`](docs/schema.md) and [`schemas/echo_turn.schema.json`](schemas/echo_turn.schema.json).
+该模式与具体业务无关：语音助手、工具路由、RPG 引擎、IoT「边说边控」、表单填充——凡是小模型要在一次生成里同时服务人和机器，都可以用。
 
 ---
 
-## Pipeline overview
+## Demo：Echo（语音角色助手）
+
+Echo 是虚构的端侧伙伴。每一轮必须同时驱动 **三条通道**：
+
+| 通道 | 消费者 | 契约字段 |
+|------|--------|----------|
+| 口播文本 | TTS | `utter`（干净、无标签） |
+| 韵律 / 情绪 | TTS + 形象 | `emotion`、`volume`、`pace` |
+| 机器控制 | App | `should_speak`、`end_turn`、`<state>`、`<abstract>` |
+
+详见 [`docs/schema.md`](docs/schema.md) 与 [`schemas/echo_turn.schema.json`](schemas/echo_turn.schema.json)。
+
+项目计划 / 里程碑：[`docs/roadmap.md`](docs/roadmap.md)。
+
+---
+
+## 流水线概览
 
 ```text
-sample / synthetic data
+样例 / 合成数据
         │
         ▼
-  validate (format + JSON Schema)     ← catch bad labels early
+  校验（格式 + JSON Schema）      ← 尽早拦住坏标签
         │
         ▼
-  SFT (LoRA / QLoRA, e.g. Unsloth)    ← weld the contract into the weights
+  SFT（LoRA / QLoRA，如 Unsloth） ← 把契约焊进权重
         │
         ▼
-  eval suite                          ← format · schema · multi-turn abstract
+  评测套件                        ← 格式 · Schema · 多轮 abstract
         │
         ▼
-  serve (optional FastAPI)            ← return parsed VoiceTurn, not raw text
+  服务（可选 FastAPI）            ← 返回解析后的 VoiceTurn，而非裸文本
 ```
 
 ---
 
-## Quickstart
+## 快速开始
 
-See [`docs/env.md`](docs/env.md) for venv/conda and CUDA notes.
+环境与 CUDA 说明见 [`docs/env.md`](docs/env.md)。
 
 ```bash
 pip install -r requirements.txt
 
-# Validate sample data against the Echo contract
+# 按 Echo 契约校验样例数据
 python scripts/validate_data.py --data examples/echo/sample_data/train_sample.json
 
-# Run contract checks on model outputs (offline / fixture mode)
+# 对模型输出做契约检查（离线 / fixture 模式）
 python scripts/evaluate.py --cases examples/echo/eval_cases.json --mode fixture
 
-# Train (needs GPU + base model; see docs/train.md)
+# 训练（需要 GPU + 基座模型；见 docs/train.md）
 python scripts/train.py --config examples/echo/configs/sft_lora.yaml
 ```
 
 ---
 
-## Repository layout
+## 仓库结构
 
 ```text
 structured-llm-pipeline/
@@ -93,18 +95,19 @@ structured-llm-pipeline/
 ├── requirements.txt
 ├── environment.yml
 ├── docs/
-│   ├── schema.md              # human-readable output contract
-│   ├── design.md              # why multi-block + abstract memory
-│   ├── env.md                 # install / CUDA notes
-│   └── train.md               # SFT notes for small models
+│   ├── schema.md              # 可读的输出契约说明
+│   ├── design.md              # 为何多块输出 + abstract 记忆
+│   ├── env.md                 # 安装 / CUDA 说明
+│   ├── train.md               # 小模型 SFT 说明
+│   └── roadmap.md             # 项目计划与里程碑
 ├── schemas/
-│   └── echo_turn.schema.json  # JSON Schema for the JSON block
+│   └── echo_turn.schema.json  # JSON 块的 JSON Schema
 ├── src/structured_llm/
-│   ├── contract/              # parse + validate multi-block turns
-│   ├── data/                  # dataset helpers
-│   ├── train/                 # SFT entry (Unsloth/PEFT-oriented)
-│   ├── eval/                  # format / schema / multi-turn metrics
-│   └── serve/                 # optional API returning parsed objects
+│   ├── contract/              # 多块回合的解析与校验
+│   ├── data/                  # 数据集辅助
+│   ├── train/                 # SFT 入口（面向 Unsloth/PEFT）
+│   ├── eval/                  # 格式 / Schema / 多轮指标
+│   └── serve/                 # 可选：返回解析对象的 API 辅助
 ├── examples/echo/
 │   ├── prompts/
 │   ├── sample_data/
@@ -119,32 +122,32 @@ structured-llm-pipeline/
 
 ---
 
-## What “good” looks like (metrics to report)
+## 什么叫「做好了」（建议汇报的指标）
 
-For a portfolio or internal report, compare **base small model + prompt** vs **SFT adapter** on the same eval set:
+作品集或内部报告中，在同一评测集上对比 **小模型 + 纯 Prompt** vs **SFT adapter**：
 
-- **Format valid rate** — correct block order & tags (`think` → `state` → JSON → `abstract`)
-- **Schema valid rate** — JSON parses and passes JSON Schema (required fields, ranges)
-- **TTS-safe `utter` rate** — no nested tags / stage directions that would be spoken aloud
-- **Multi-turn abstract usefulness** — next turn still coherent when only abstracts are kept
+- **格式合法率** — 块顺序与标签正确（`think` → `state` → JSON → `abstract`）
+- **Schema 合法率** — JSON 可解析且通过 Schema（必填字段、取值范围）
+- **TTS 安全 `utter` 率** — 无嵌套标签、无会被朗读出来的括号演技注释
+- **多轮 abstract 可用性** — 只保留 abstract 时下一轮仍连贯
 
-The headline claim you want to support empirically:
+你要用实验支撑的标题结论：
 
-> On a 1.7B–8B model, SFT lifts structured compliance from “prompt lottery” to **near-contract-perfect**, at a fraction of large-API cost.
+> 在 1.7B～8B 模型上，SFT 把结构化合规从「Prompt 抽奖」提升到 **接近契约满分**，成本远低于大模型 API。
 
-(Plug in your real numbers after you run eval.)
-
----
-
-## Design principles
-
-1. **Contract first** — schema and validators exist before training.
-2. **Train/serve parity** — the same parser runs on labels and on generations.
-3. **Small model by default** — optimize for local / edge deployment assumptions.
-4. **Demo ≠ framework** — Echo shows the pattern; swap the schema for your domain.
+（跑完评测后填入真实数字。）
 
 ---
 
-## License
+## 设计原则
 
-MIT (or your choice). Demo persona and sample dialogues are fictional; do not include proprietary datasets.
+1. **契约优先** — 先有 Schema 与校验器，再训练。
+2. **训推一致** — 标签与生成共用同一套解析器。
+3. **默认小模型** — 按本地 / 端侧部署假设优化。
+4. **Demo ≠ 框架** — Echo 只示范模式；换 Schema 即可迁到你的领域。
+
+---
+
+## 许可证
+
+MIT（或自选）。Demo 人设与样例对话均为虚构；请勿纳入专有数据集。

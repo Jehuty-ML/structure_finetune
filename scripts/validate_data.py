@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate SFT rows against the Echo multi-block contract."""
+"""按 Echo 多块契约校验 SFT 数据行。"""
 
 from __future__ import annotations
 
@@ -17,13 +17,13 @@ from structured_llm.data import iter_sft_rows
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data", required=True, help="JSON array of {id,input,output}")
+    parser.add_argument("--data", required=True, help="JSON 数组，元素含 {id,input,output}")
     parser.add_argument(
         "--schema",
         default=str(ROOT / "schemas" / "echo_turn.schema.json"),
-        help="JSON Schema for the JSON block",
+        help="JSON 块对应的 JSON Schema",
     )
-    parser.add_argument("--json-out", default="", help="Optional report path")
+    parser.add_argument("--json-out", default="", help="可选：报告输出路径")
     args = parser.parse_args()
 
     rows = list(iter_sft_rows(args.data))
@@ -42,10 +42,10 @@ def main() -> None:
         if vr.ok:
             ok_n += 1
         else:
-            print(f"FAIL {row.get('id')}: {vr.errors}")
+            print(f"失败 {row.get('id')}: {vr.errors}")
 
     rate = ok_n / len(rows) if rows else 0.0
-    print(f"schema/format valid: {ok_n}/{len(rows)} ({rate:.1%})")
+    print(f"格式/Schema 合法：{ok_n}/{len(rows)} ({rate:.1%})")
 
     if args.json_out:
         Path(args.json_out).write_text(

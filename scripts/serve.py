@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Minimal API sketch: validate a raw generation into a VoiceTurn payload."""
+"""最小服务草稿：将原始生成文本校验并解析为 VoiceTurn。"""
 
 from __future__ import annotations
 
@@ -18,11 +18,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--text-file",
-        help="Path to a raw model generation; if omitted, read stdin",
+        help="原始模型生成文本路径；省略则从标准输入读取",
     )
     parser.add_argument(
         "--schema",
         default=str(ROOT / "schemas" / "echo_turn.schema.json"),
+        help="JSON Schema 路径",
     )
     args = parser.parse_args()
 

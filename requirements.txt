@@ -1,11 +1,11 @@
-# --- Core deep learning (install CUDA-matched torch first if needed) ---
-# RTX 50 / CUDA 12.8 example:
+# --- 核心深度学习框架（建议先安装与 CUDA 匹配的 torch）---
+# RTX 50 / CUDA 12.8 示例：
 #   pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
 torch==2.11.0.dev20251224+cu128
 torchvision==0.25.0.dev20251224+cu128
 torchaudio==2.10.0.dev20251224+cu128
 
-# --- Training acceleration & fine-tuning ---
+# --- 训练加速与微调 ---
 unsloth==2025.12.9
 unsloth_zoo==2025.12.7
 xformers==0.0.33.post2
@@ -14,7 +14,7 @@ peft
 trl
 accelerate
 
-# --- Models & data ---
+# --- 模型与数据 ---
 transformers
 datasets
 modelscope
@@ -24,7 +24,7 @@ huggingface-hub
 hf_transfer
 safetensors
 
-# --- Scientific / general ---
+# --- 科学计算 / 通用 ---
 numpy
 pandas
 scipy
@@ -37,11 +37,11 @@ regex
 PyYAML
 jsonschema
 
-# --- Logging / UI ---
+# --- 日志 / 界面 ---
 tensorboard
 rich
 
-# --- Serving (optional but included) ---
+# --- 服务（可选，默认一并列出）---
 fastapi
 pydantic
 uvicorn

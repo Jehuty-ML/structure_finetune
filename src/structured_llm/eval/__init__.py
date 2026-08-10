@@ -26,15 +26,15 @@ def _check_expectations(payload: dict[str, Any], expect: dict[str, Any]) -> list
     if "volume_max" in expect:
         vol = payload.get("volume")
         if not isinstance(vol, int) or vol > expect["volume_max"]:
-            problems.append(f"volume {vol} exceeds max {expect['volume_max']}")
+            problems.append(f"volume {vol} 超过上限 {expect['volume_max']}")
     if "emotions_any" in expect:
         if payload.get("emotion") not in expect["emotions_any"]:
             problems.append(
-                f"emotion {payload.get('emotion')} not in {expect['emotions_any']}"
+                f"emotion {payload.get('emotion')} 不在 {expect['emotions_any']} 中"
             )
     if "pace_any" in expect:
         if payload.get("pace") not in expect["pace_any"]:
-            problems.append(f"pace {payload.get('pace')} not in {expect['pace_any']}")
+            problems.append(f"pace {payload.get('pace')} 不在 {expect['pace_any']} 中")
     return problems
 
 
@@ -45,8 +45,8 @@ def evaluate_suite(
     generate_fn=None,
 ) -> dict[str, Any]:
     """
-    mode=fixture: use fixture_output in the case file (CI / no GPU).
-    mode=generate: call generate_fn(system_prompt, user_message) -> str.
+    mode=fixture：使用用例文件中的 fixture_output（CI / 无 GPU）。
+    mode=generate：调用 generate_fn(system_prompt, user_message) -> str。
     """
     suite = load_json(cases_path)
     schema = load_json(schema_path)
@@ -82,7 +82,7 @@ def evaluate_suite(
         if vr.ok and case.get("expect") and vr.parsed:
             expect_problems = _check_expectations(vr.parsed.payload, case["expect"])
         passed = vr.ok and not expect_problems
-        detail = "; ".join(vr.errors + expect_problems) if not passed else "ok"
+        detail = "; ".join(vr.errors + expect_problems) if not passed else "通过"
         results.append(
             CaseResult(
                 case_id=case.get("id", ""),
@@ -115,10 +115,10 @@ def _resolve_output(
     if mode == "fixture":
         if "fixture_output" in case:
             return case["fixture_output"]
-        # multi-turn rounds carry fixture_output on the round itself
-        raise ValueError(f"case {case.get('id')} missing fixture_output")
+        # 多轮时 fixture_output 在各 round 上
+        raise ValueError(f"用例 {case.get('id')} 缺少 fixture_output")
     if generate_fn is None:
-        raise ValueError("generate_fn is required when mode=generate")
+        raise ValueError("mode=generate 时必须提供 generate_fn")
     user_message = format_user_message(input_obj, abstracts)
     return generate_fn(system_prompt, user_message)
 
@@ -141,7 +141,7 @@ def _eval_multi_turn(
         assert output is not None
         vr = validate_turn(output, schema=schema)
         if not vr.ok:
-            problems.append(f"round {i}: " + "; ".join(vr.errors))
+            problems.append(f"第 {i} 轮：" + "; ".join(vr.errors))
             break
         assert vr.parsed is not None
         mentions = round_data.get("expect_abstract_mentions_any")
@@ -149,7 +149,7 @@ def _eval_multi_turn(
             abs_l = vr.parsed.abstract.lower()
             if not any(m.lower() in abs_l for m in mentions):
                 problems.append(
-                    f"round {i}: abstract missing any of {mentions}: {vr.parsed.abstract!r}"
+                    f"第 {i} 轮：abstract 未包含任一关键词 {mentions}：{vr.parsed.abstract!r}"
                 )
         abstracts.append(vr.parsed.abstract)
 
@@ -158,5 +158,5 @@ def _eval_multi_turn(
         case_id=case.get("id", ""),
         name=case.get("name", ""),
         passed=passed,
-        detail="ok" if passed else "; ".join(problems),
+        detail="通过" if passed else "; ".join(problems),
     )

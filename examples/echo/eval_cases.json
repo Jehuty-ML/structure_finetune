@@ -4,7 +4,7 @@
   "cases": [
     {
       "id": "format_tired",
-      "name": "Tired user — soft prosody",
+      "name": "疲惫用户 — 轻柔韵律",
       "check_type": "contract",
       "input": {
         "user_text": "Long day. Don't make me think.",
@@ -22,7 +22,7 @@
     },
     {
       "id": "schema_mute",
-      "name": "Mute device — should_speak false",
+      "name": "设备静音 — should_speak 为 false",
       "check_type": "contract",
       "input": {
         "user_text": "Library mode.",
@@ -37,7 +37,7 @@
     },
     {
       "id": "multi_turn_memory",
-      "name": "Multi-turn with abstract memory",
+      "name": "多轮对话与 abstract 记忆",
       "check_type": "multi_turn",
       "rounds": [
         {

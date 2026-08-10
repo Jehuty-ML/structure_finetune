@@ -1,21 +1,21 @@
-# Environment setup
+# 环境搭建
 
-Python **3.10+** recommended.
+建议使用 Python **3.10+**。
 
 ```bash
 python -m venv .venv
 # Windows: .venv\Scripts\activate
 # Linux/macOS: source .venv/bin/activate
 
-# Optional: install CUDA-matched PyTorch first (see comments in requirements.txt)
+# 可选：先安装与 CUDA 匹配的 PyTorch（见 requirements.txt 注释）
 pip install -r requirements.txt
 ```
 
-Or with conda:
+或使用 conda：
 
 ```bash
 conda env create -f environment.yml
 conda activate structured-llm
 ```
 
-Contract validation and `--mode fixture` eval only need the lighter packages (`PyYAML`, `jsonschema`) and can run without a GPU. Full SFT needs CUDA + the Unsloth stack from `requirements.txt`.
+契约校验与 `--mode fixture` 评测只需较轻依赖（`PyYAML`、`jsonschema`），无 GPU 也可跑。完整 SFT 需要 CUDA，以及 `requirements.txt` 中的 Unsloth 相关栈。
