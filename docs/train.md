@@ -30,6 +30,7 @@ python scripts/validate_data.py --data examples/echo/sample_data/val.json
 - **目标：** ChatML 下完整 assistant = 多块契约字符串
 - **Packing：** 默认关闭
 - **产出：** LoRA adapter + `run_config.json`（目录名含模型/r/lr/时间戳）
+- **验证集：** 默认 `eval_strategy: epoch`；训完还会再跑一次 `evaluate()`（短训不会因为 `eval_steps` 太大而跳过）
 
 ## 跑训练
 

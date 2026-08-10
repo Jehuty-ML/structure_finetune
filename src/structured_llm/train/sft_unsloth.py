@@ -238,6 +238,15 @@ def run_unsloth_sft(config: dict[str, Any], project_root: Path) -> Path:
             remove_columns=raw["validation"].column_names,
         )
 
+    # 短训（如 1 epoch / 几十 step）时 steps 评估容易一次都不触发；
+    # 默认按 epoch；也可用配置覆盖。结束后若有 val 再强制 evaluate 一次。
+    eval_strategy = str(config.get("eval_strategy", "epoch" if eval_ds is not None else "no"))
+    eval_steps = config.get("eval_steps")
+    if eval_steps is None and eval_strategy == "steps":
+        eval_steps = max(5, int(config.get("logging_steps", 5)) * 2)
+    else:
+        eval_steps = int(eval_steps) if eval_steps is not None else None
+
     training_args = TrainingArguments(
         output_dir=str(actual_output_dir),
         per_device_train_batch_size=int(config.get("per_device_train_batch_size", 1)),
@@ -253,10 +262,10 @@ def run_unsloth_sft(config: dict[str, Any], project_root: Path) -> Path:
         weight_decay=0.01,
         lr_scheduler_type="cosine",
         seed=seed,
-        eval_strategy="steps" if eval_ds is not None else "no",
-        eval_steps=int(config.get("logging_steps", 5)) * 10 if eval_ds is not None else None,
-        save_strategy="steps",
-        save_steps=int(config.get("logging_steps", 5)) * 10,
+        eval_strategy=eval_strategy if eval_ds is not None else "no",
+        eval_steps=eval_steps if eval_ds is not None and eval_strategy == "steps" else None,
+        save_strategy="epoch" if eval_strategy == "epoch" else "steps",
+        save_steps=int(eval_steps or 50),
         save_total_limit=2,
         report_to="none",
         gradient_checkpointing=True,
@@ -278,6 +287,14 @@ def run_unsloth_sft(config: dict[str, Any], project_root: Path) -> Path:
     trainer = SFTTrainer(**trainer_kwargs)
     print(f"开始训练 -> {actual_output_dir}")
     trainer.train()
+
+    if eval_ds is not None:
+        print("训练结束，跑 validation …")
+        metrics = trainer.evaluate()
+        print(f"eval metrics: {metrics}")
+        (actual_output_dir / "eval_metrics.json").write_text(
+            json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
 
     print("保存 LoRA adapter ...")
     model.save_pretrained(str(actual_output_dir))

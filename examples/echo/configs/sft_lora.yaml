@@ -29,9 +29,11 @@ use_dora: false
 learning_rate: 2.0e-4
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 8
-num_train_epochs: 3
+num_train_epochs: 1
 warmup_steps: 20
 logging_steps: 5
+# epoch=每个 epoch 末评估；短训不会再被 eval_steps 跳过
+eval_strategy: epoch
 seed: 3407
 packing: false
 # Windows 下保持 1，避免 Unsloth tokenize 多进程崩溃
