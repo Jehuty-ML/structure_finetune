@@ -11,7 +11,7 @@ jobs:
         with:
           python-version: "3.10"
       - name: 安装轻量依赖
-        run: pip install pyyaml jsonschema
+        run: pip install -r requirements-min.txt
       - name: 校验 train
         run: python scripts/validate_data.py --data examples/echo/sample_data/train.json
       - name: 校验 val

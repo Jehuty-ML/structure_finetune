@@ -1,0 +1,7 @@
+# 最小可复现依赖（阶段 0～1 + 服务演示，无需 GPU / Unsloth）
+jsonschema>=4.0
+PyYAML>=6.0
+fastapi>=0.110
+uvicorn>=0.27
+pydantic>=2.0
+httpx>=0.27

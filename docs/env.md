@@ -11,6 +11,13 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+**无 GPU 最小路径**（校验 / fixture 评测 / FastAPI 演示）：
+
+```bash
+# 若使用已有 conda 环境（如 llm_dev），也请先装一遍：
+pip install -r requirements-min.txt
+```
+
 或使用 conda：
 
 ```bash
@@ -18,7 +25,7 @@ conda env create -f environment.yml
 conda activate structured-llm
 ```
 
-契约校验与 `--mode fixture` 评测只需较轻依赖（`PyYAML`、`jsonschema`），无 GPU 也可跑。完整 SFT 需要 CUDA，以及 `requirements.txt` 中的 Unsloth 相关栈。
+契约校验与 `--mode fixture` 评测只需 `requirements-min.txt`，无 GPU 也可跑。完整 SFT 需要 CUDA，以及 `requirements.txt` 中的 Unsloth 相关栈。服务演示见 [`serve.md`](serve.md)。
 
 ## 模型下载（默认 ModelScope）
 
