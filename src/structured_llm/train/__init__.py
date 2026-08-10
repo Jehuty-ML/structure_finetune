@@ -18,26 +18,31 @@ def load_yaml(path: str | Path) -> dict[str, Any]:
 
 def _gate_contract(config: dict[str, Any]) -> int:
     """无合格数据不开真训：训练前强制契约门禁。"""
-    from structured_llm.contract import validate_turn
+    from structured_llm.contract import validate_quest_turn, validate_turn
     from structured_llm.data import iter_sft_rows
 
     data_path = Path(config["data_path"])
+    contract = str(config.get("contract", "echo")).lower()
     schema_path = Path(config.get("schema_path", "schemas/echo_turn.schema.json"))
     bad = 0
     n = 0
     for row in iter_sft_rows(data_path):
         n += 1
-        result = validate_turn(
-            row["output"],
-            schema_path=schema_path,
-            input_obj=row["input"] if isinstance(row.get("input"), dict) else None,
-        )
+        inp = row["input"] if isinstance(row.get("input"), dict) else None
+        if contract == "quest":
+            result = validate_quest_turn(row["output"], input_obj=inp)
+        else:
+            result = validate_turn(
+                row["output"],
+                schema_path=schema_path,
+                input_obj=inp,
+            )
         if not result.ok:
             bad += 1
             print(f"[无效] {row.get('id')}: {result.errors}")
     if bad:
         raise SystemExit(f"{bad}/{n} 条训练数据未通过契约校验，已中止训练")
-    print(f"契约门禁通过，共 {n} 条。")
+    print(f"契约门禁通过（contract={contract}），共 {n} 条。")
     return n
 
 
@@ -49,7 +54,12 @@ def run_sft(config: dict[str, Any], project_root: Path | None = None) -> Path:
     2) dry_run=true 时到此结束
     3) dry_run=false 时走 Unsloth 真训（阶段 2）
     """
-    output_dir = Path(config.get("output_dir", "outputs/echo_lora"))
+    default_out = (
+        "outputs/quest_lora"
+        if str(config.get("contract", "echo")).lower() == "quest"
+        else "outputs/echo_lora"
+    )
+    output_dir = Path(config.get("output_dir", default_out))
     output_dir.mkdir(parents=True, exist_ok=True)
     _gate_contract(config)
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""按 Echo 多块契约校验 SFT 数据行。"""
+"""按契约校验 SFT 数据行（echo | quest）。"""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from structured_llm.contract import validate_turn
+from structured_llm.contract import validate_quest_turn, validate_turn
 from structured_llm.data import iter_sft_rows
 
 
@@ -19,9 +19,15 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", required=True, help="JSON 数组，元素含 {id,input,output}")
     parser.add_argument(
+        "--contract",
+        choices=("echo", "quest"),
+        default="echo",
+        help="契约类型",
+    )
+    parser.add_argument(
         "--schema",
         default=str(ROOT / "schemas" / "echo_turn.schema.json"),
-        help="JSON 块对应的 JSON Schema",
+        help="Echo JSON Schema（仅 --contract echo）",
     )
     parser.add_argument("--json-out", default="", help="可选：报告输出路径")
     args = parser.parse_args()
@@ -32,7 +38,10 @@ def main() -> None:
     warn_n = 0
     for row in rows:
         inp = row["input"] if isinstance(row.get("input"), dict) else None
-        vr = validate_turn(row["output"], schema_path=args.schema, input_obj=inp)
+        if args.contract == "quest":
+            vr = validate_quest_turn(row["output"], input_obj=inp)
+        else:
+            vr = validate_turn(row["output"], schema_path=args.schema, input_obj=inp)
         report.append(
             {
                 "id": row.get("id"),
@@ -49,7 +58,7 @@ def main() -> None:
             print(f"失败 {row.get('id')}: {vr.errors}")
 
     rate = ok_n / len(rows) if rows else 0.0
-    print(f"格式/Schema 合法：{ok_n}/{len(rows)} ({rate:.1%})；含警告行：{warn_n}")
+    print(f"格式合法：{ok_n}/{len(rows)} ({rate:.1%})；含警告行：{warn_n}")
 
     if args.json_out:
         Path(args.json_out).write_text(

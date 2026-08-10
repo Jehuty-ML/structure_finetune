@@ -18,7 +18,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--config",
-        default=str(ROOT / "examples" / "echo" / "configs" / "sft_lora.yaml"),
+        default=str(ROOT / "examples" / "quest" / "configs" / "sft_lora.yaml"),
         help="训练配置 YAML 路径",
     )
     args = parser.parse_args()
