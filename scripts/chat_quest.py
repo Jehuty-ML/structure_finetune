@@ -22,7 +22,7 @@ sys.path.insert(0, str(ROOT / "src"))
 ACCEPT_SCENARIOS: list[dict[str, Any]] = [
     {
         "name": "explore_fork",
-        "lines": ["我往前走。"],
+        "lines": ["把地图摊开对照路口。"],
         "fsm": {"phase": "explore", "node": "forest_fork"},
         "stats": {
             "hp": "80",
@@ -32,12 +32,12 @@ ACCEPT_SCENARIOS: list[dict[str, Any]] = [
         },
         "expect": {
             "phase": "explore",
-            "action_any": ["prompt_choice", "move"],
+            "action": "prompt_choice",
         },
     },
     {
         "name": "combat_start",
-        "lines": ["有怪物！"],
+        "lines": ["洞口遭遇灰狼。"],
         "fsm": {"phase": "explore", "node": "cave_mouth"},
         "stats": {
             "hp": "76",
@@ -47,12 +47,27 @@ ACCEPT_SCENARIOS: list[dict[str, Any]] = [
         },
         "expect": {
             "phase": "combat",
-            "action_any": ["prompt_choice", "attack"],
+            "action": "prompt_choice",
+        },
+    },
+    {
+        "name": "attack",
+        "lines": ["给我普通攻击。"],
+        "fsm": {"phase": "combat", "node": "round_player"},
+        "stats": {
+            "hp": "76",
+            "mp": "18",
+            "loc": "洞穴入口",
+            "quest": "找药草",
+        },
+        "expect": {
+            "phase": "combat",
+            "action": "attack",
         },
     },
     {
         "name": "flee",
-        "lines": ["我跑！"],
+        "lines": ["立刻撤退离开战场。"],
         "fsm": {"phase": "combat", "node": "round_player"},
         "stats": {
             "hp": "70",
@@ -152,7 +167,7 @@ def main() -> None:
     system_prompt = Path(args.system_prompt).read_text(encoding="utf-8").strip()
     temp = args.temperature
     if temp is None:
-        temp = 0.2 if args.accept else 0.3
+        temp = 0.0 if args.accept else 0.3
     print("加载模型（首次较慢）…")
     generate_fn = make_generate_fn(
         project_root=ROOT,
@@ -163,7 +178,7 @@ def main() -> None:
     )
 
     if args.accept:
-        print("验收模式：探索路口 / 遇敌 / 逃跑\n")
+        print("验收模式：探索路口 / 遇敌 / 攻击 / 逃跑\n")
         all_problems: list[str] = []
         for sc in ACCEPT_SCENARIOS:
             history: list[tuple[str, str]] = []

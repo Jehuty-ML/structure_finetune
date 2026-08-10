@@ -71,17 +71,25 @@ def make_generate_fn(
         )
         inputs = tokenizer([prompt], return_tensors="pt").to(model.device)
         with torch.no_grad():
-            outputs = model.generate(
-                **inputs,
-                max_new_tokens=max_new_tokens,
-                temperature=temperature,
-                top_p=0.9,
-                top_k=20,
-                do_sample=temperature > 0,
-                pad_token_id=tokenizer.eos_token_id,
-                eos_token_id=tokenizer.eos_token_id,
-                use_cache=True,
-            )
+            gen_kwargs: dict[str, Any] = {
+                "max_new_tokens": max_new_tokens,
+                "pad_token_id": tokenizer.eos_token_id,
+                "eos_token_id": tokenizer.eos_token_id,
+                "use_cache": True,
+                "repetition_penalty": 1.15,
+            }
+            if temperature and temperature > 0:
+                gen_kwargs.update(
+                    {
+                        "do_sample": True,
+                        "temperature": temperature,
+                        "top_p": 0.9,
+                        "top_k": 20,
+                    }
+                )
+            else:
+                gen_kwargs["do_sample"] = False
+            outputs = model.generate(**inputs, **gen_kwargs)
         full = tokenizer.decode(outputs[0], skip_special_tokens=False)
         if "<|im_start|>assistant\n" in full:
             text = full.split("<|im_start|>assistant\n")[-1]

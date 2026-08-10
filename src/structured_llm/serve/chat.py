@@ -115,6 +115,86 @@ def build_quest_input(
     }
 
 
+_ENCOUNTER_KEYS = (
+    "狼",
+    "怪物",
+    "遇敌",
+    "开战",
+    "战斗开始",
+    "伏击",
+    "敌袭",
+    "敌对",
+    "野兽",
+    "扑过来",
+    "挡住",
+    "咬我",
+)
+_FLEE_KEYS = ("跑", "逃", "撤退", "撤离", "溜了", "不打了")
+_ATTACK_KEYS = ("攻击", "砍", "打", "挥剑", "刺", "平A", "普攻", "斩")
+
+
+def repair_quest_fields(
+    *,
+    user_text: str,
+    fsm_in: dict[str, str],
+    state: dict[str, Any],
+    cmd: dict[str, Any],
+) -> list[str]:
+    """
+    引擎侧轻量修补：小模型偶发写错 phase 时，用意图关键词 + 输入 fsm 纠正。
+    返回应用过的修补说明（写入 warnings）。
+    """
+    notes: list[str] = []
+    phase_in = str(fsm_in.get("phase", ""))
+    action = str(cmd.get("action") or "")
+    t = user_text or ""
+
+    # 遇敌：explore + 敌情用语 → 必须进入 combat
+    if phase_in == "explore" and any(k in t for k in _ENCOUNTER_KEYS):
+        if state.get("phase") != "combat":
+            state["phase"] = "combat"
+            notes.append("repair: phase→combat（遇敌）")
+        state["node"] = "round_player"
+        state["allowed"] = "attack,skill,item,flee"
+        if action not in {"prompt_choice", "attack", "skill", "item", "flee"}:
+            cmd["action"] = "prompt_choice"
+            cmd["target"] = cmd.get("target") or "combat_menu"
+            cmd["end_turn"] = "0"
+            notes.append("repair: action→prompt_choice")
+
+    # 逃跑：combat + 逃用语 → explore + flee
+    if phase_in == "combat" and any(k in t for k in _FLEE_KEYS):
+        if state.get("phase") != "explore":
+            state["phase"] = "explore"
+            notes.append("repair: phase→explore（逃跑）")
+        state["node"] = state.get("node") if state.get("node") not in {
+            "round_player",
+            "round_enemy",
+        } else "cave_mouth"
+        if state.get("node") in {"round_player", "round_enemy", None, ""}:
+            state["node"] = "cave_mouth"
+        state["allowed"] = "move,talk,open_inventory"
+        cmd["action"] = "flee"
+        cmd["target"] = "none"
+        cmd["end_turn"] = "1"
+
+    # 攻击：combat + 攻击用语 → 保持 combat + attack
+    if phase_in == "combat" and any(k in t for k in _ATTACK_KEYS) and not any(
+        k in t for k in _FLEE_KEYS
+    ):
+        state["phase"] = "combat"
+        if action != "attack":
+            cmd["action"] = "attack"
+            cmd["target"] = cmd.get("target") or "wolf"
+            cmd["end_turn"] = "0"
+            notes.append("repair: action→attack")
+        if state.get("node") == "round_player":
+            state["node"] = "round_enemy"
+        state["allowed"] = "attack,skill,item,flee"
+
+    return notes
+
+
 def run_quest_turn(
     *,
     user_text: str,
@@ -151,12 +231,20 @@ def run_quest_turn(
         "abstract": resp.get("abstract"),
         "engine": None,
         "errors": resp.get("errors") or [],
-        "warnings": resp.get("warnings") or [],
+        "warnings": list(resp.get("warnings") or []),
         "history": list(history),
         "fsm": dict(fsm),
         "session_stats": dict(stats),
     }
     if out["ok"] and out["state"] and out["cmd"] and out["stats"] is not None:
+        notes = repair_quest_fields(
+            user_text=user_text,
+            fsm_in=fsm,
+            state=out["state"],
+            cmd=out["cmd"],
+        )
+        if notes:
+            out["warnings"].extend(notes)
         out["engine"] = fake_engine_consume(
             state=out["state"],
             say=str(out["say"] or ""),

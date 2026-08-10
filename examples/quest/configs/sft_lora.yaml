@@ -1,6 +1,6 @@
 # Quest SFT（LoRA）
-# 流程：契约门禁 (contract=quest) -> ModelScope 解析基座 -> Unsloth 真训
-# 无合格数据不会进入 GPU 训练。
+# 数据：规则卡 + 改写库组装（见 examples/quest/rules|rewrites）
+# 防过拟合：1 epoch、较低 lr；勿把 loss 训到贴地板。
 
 contract: quest
 model_source: modelscope
@@ -10,7 +10,6 @@ model_cache_dir: "models/base"
 data_path: "examples/quest/sample_data/train.json"
 val_data_path: "examples/quest/sample_data/val.json"
 system_prompt_path: "examples/quest/prompts/system_prompt.txt"
-# Quest 无 Echo JSON Schema；门禁走 validate_quest_turn
 schema_path: ""
 output_dir: "outputs/quest_lora"
 
@@ -27,13 +26,12 @@ use_dora: false
 learning_rate: 2.0e-4
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 8
-num_train_epochs: 1
-warmup_steps: 20
+num_train_epochs: 3
+warmup_steps: 10
 logging_steps: 5
 eval_strategy: epoch
 seed: 3407
 packing: false
 dataset_num_proc: 1
 
-# true=只跑契约门禁；false=门禁通过后启动 Unsloth 真训
 dry_run: false

@@ -107,7 +107,8 @@ def validate_quest_turn(
         )
     if allowed and not allowed.issubset(ACTIONS):
         bad = sorted(allowed - ACTIONS)
-        errors.append(f"state.allowed 含未知项：{bad}")
+        # 菜单项偶发幻觉不阻断整回合；phase/action 才是硬门禁
+        warnings.append(f"state.allowed 含未知项：{bad}")
 
     if "hp" in parsed.stats:
         _int_field("stats.hp", parsed.stats["hp"], errors)
