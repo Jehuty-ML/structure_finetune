@@ -3,52 +3,66 @@
 目标：证明训好的小模型能接到产品链路——
 
 ```text
-你输入 → LoRA 真实生成 → validate_turn → voice / 假 TTS 字段
+你输入 → LoRA 真实生成 → 契约解析 → 下游只吃字段
 ```
 
 不是起一个只吃假 `raw` 的 HTTP。
 
 ---
 
-## 主入口
+## Echo（语音）
 
 ```bash
 # 交互聊天
 python scripts/chat_echo.py `
   --adapter outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043
 
-# 固定四句验收（疲惫 / 静音 / 搬家→离开朋友）
+# 固定验收（疲惫 / 静音 / 搬家→离开朋友）
 python scripts/chat_echo.py `
   --adapter outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043 `
   --accept
 ```
 
-需要 GPU，以及已装 Unsloth 的环境（如 `llm_dev`）。
+交互命令：`mute` 切换静音，`quit` 退出。  
+每轮打印：`raw` / `voice` / 假 TTS。
 
-交互命令：`mute` 切换静音开关，`quit` 退出。  
-含「图书馆 / 静音」等关键词的句子会自动 `can_speak=false`。
+实现：`serve/chat.py` → `run_echo_turn` + `validate_turn`。
 
-每轮打印：
+---
 
-| 块 | 含义 |
-|----|------|
-| raw | 模型原始多块文本 |
-| voice | 给 App 的完整契约对象 |
-| 假 TTS | 只取 utter / emotion / volume / pace / should_speak |
+## Quest（RPG）
 
-实现：`src/structured_llm/serve/chat.py`（回合）+ `response.py`（解析 / 假 TTS）。
+```bash
+# 先训（examples/quest/configs/sft_lora.yaml 中 dry_run: false）
+python scripts/train.py --config examples/quest/configs/sft_lora.yaml
+
+# 交互
+python scripts/chat_quest.py --adapter outputs/quest_lora/<run_dir>
+
+# 验收：探索路口 / 遇敌 / 逃跑
+python scripts/chat_quest.py --adapter outputs/quest_lora/<run_dir> --accept
+```
+
+交互命令：`status` 看 fsm/stats，`reset` 重置，`quit` 退出。  
+每轮打印：`raw` / state·cmd·stats / say / abstract / 假引擎。
+
+实现：`run_quest_turn` + `validate_quest_turn`；会话会用输出更新下一拍的 `fsm`/`stats`。
+
+评测（无 GPU fixture）：
+
+```bash
+python scripts/evaluate.py --contract quest --mode fixture
+```
 
 ---
 
 ## 与阶段 3 的区别
 
-| | 阶段 3 `evaluate --mode generate` | 阶段 4 `chat_echo` |
+| | 阶段 3 `evaluate --mode generate` | 阶段 4 `chat_*` |
 |--|--|--|
 | 目的 | 固定评测集打分 | 真聊 / 验收演示 |
-| 输入 | `eval_cases.json` | 终端或 `--accept` 脚本 |
+| 输入 | `eval_cases.json` | 终端或 `--accept` |
 | 对比基座 | 支持 `--compare` | 通常只挂 LoRA |
-
-解析器相同：都是 `validate_turn`。
 
 ---
 
@@ -60,4 +74,4 @@ python scripts/serve_api.py --port 8000
 python scripts/smoke_serve.py
 ```
 
-仅验证解析 API，**不能**替代 `--accept` 真机验收。
+仅验证 Echo 解析 API，**不能**替代 `--accept` 真机验收。

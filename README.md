@@ -2,7 +2,7 @@
 
 **把小模型的结构化输出训稳——而不是靠 Prompt 碰运气。**
 
-> **English:** A reproducible pipeline to **SFT small LLMs (1.7B–8B) into a fixed output contract** (parseable by TTS / UI / tools)—not prompt lottery. Demo: **Echo**, a fictional on-device voice companion. Contract v3: `<think>` + `[json]{…}[/json]`. Validate → train (optional GPU) → eval → FastAPI returning structured `VoiceTurn`.
+> **English:** SFT small LLMs (1.7B–8B) into a **fixed output contract**—not prompt lottery. Cuts per-turn tokens (often 10k+ vs stuffing a full game bible) and **speeds up inference** for real-time use (digital humans, interactive AI games). Demos: **Echo** (voice), **Quest** (RPG). Same pattern fits tool-routing, IoT, support, forms, tutoring (not built yet).
 
 当你要在端侧或低成本 GPU 上部署 **1.7B / 3B / 8B** 模型时，往往不只是「会聊天」。你需要一份 **固定契约**：每一轮输出都能被 TTS、UI 状态机、工具或游戏引擎稳定解析。大模型 API + Prompt 可以在演示里凑合；**小模型要把格式通过 SFT 焊进权重**，再用校验与评测证明它靠谱。
 
@@ -12,11 +12,14 @@
 
 ## 为什么做这个（核心论点）
 
-| 做法 | 你得到什么 | 哪里会崩 |
-|------|------------|----------|
-| Prompt 调大模型 API | 文案灵活，偶尔能出 JSON | 成本、延迟、隐私；格式仍会漂移 |
-| Prompt 调本地小模型 | 便宜、可私有化 | **一加长上下文 / 多轮 / 边角输入，格式合规率就垮** |
-| **按严格契约对小模型做 SFT** | 便宜 + 私有 + **结构近似确定** | 需要数据纪律与评测（本仓库） |
+| 做法 | 你得到什么 | 哪里会崩 / 多贵 |
+|------|------------|-----------------|
+| Prompt 调大模型 API | 文案灵活，偶尔能出 JSON | **每轮塞世界观 / 规则 / 历史 → token 账单与延迟爆炸**；格式仍会漂移 |
+| Prompt 调本地小模型 | 便宜、可私有化 | 上下文一长格式就垮；长 Prompt **推理更慢**，省不下多少钱 |
+| **按严格契约对小模型做 SFT** | 便宜 + 私有 + **结构近似确定** + **短上下文 → 推理更快** | 需要数据纪律与评测（本仓库） |
+
+**省 token / 更快推理（实时交互刚需）：**  
+规则、人设、状态机、面板字段靠 **契约 + 会话状态（如 Quest 的 `fsm` / `stats` / `abstract`）** 推进，而不是每轮把整本设定书贴进 Prompt。有完整世界观的产品，大模型路线往往一轮就要吞上万 token；小模型 + 固定契约后，输入可以压到「当前状态 + 本轮玩家一句」——**每轮常能少 10000+ token**。上下文短、模型小，**首 token / 整轮延迟都更低**，才更扛得住 **数字人对话、互动 AI 游戏** 这类必须「秒回」的实时场景：口播/旁白出得晚，形象和玩法都会立刻露馅。
 
 **产品现实：** 下游系统不消费「感觉」，只消费字段。
 
@@ -28,7 +31,7 @@
 
 若 `utter` 里夹了标签，或缺少 `volume`，**TTS 与客户端会直接坏掉**。所以「接近 100% Schema 合法」是功能要求，不是锦上添花——SFT + 校验远胜于指望基座模型自觉配合。
 
-该模式与具体业务无关：语音助手、工具路由、RPG 引擎、IoT「边说边控」、表单填充——凡是小模型要在一次生成里同时服务人和机器，都可以用。
+该模式与具体业务无关：凡是小模型要在一次生成里同时服务人和机器，都可以用。本仓库已落地 Echo / Quest；更多可适配场景见下文「还可适配」。
 
 ---
 
@@ -117,6 +120,67 @@ else:
 ```bash
 python scripts/validate_data.py --data examples/echo/sample_data/train.json
 ```
+
+---
+
+## Demo：Quest / Ember（文字 RPG 回合）
+
+第二例：**无整包 JSON**，分块 + `key=value`。`<state>` 只写 FSM（`phase` / `node` / `allowed`），血蓝等在 `<stats>`。契约见 [`docs/quest_schema.md`](docs/quest_schema.md)。
+
+```text
+<think>
+探索阶段，路口可前进；保持 explore。
+</think>
+
+<state>
+phase=explore; node=forest_fork; allowed=move,talk,open_inventory
+</state>
+
+<say>
+这条路通向山洞。要进去吗？
+</say>
+
+<cmd>
+action=prompt_choice; target=cave_entrance; end_turn=0
+</cmd>
+
+<stats>
+hp=80; mp=20; loc=森林路口; quest=找药草; flags=has_map
+</stats>
+
+<abstract>
+探索中停在森林路口；任务找药草；已有地图；未进洞。
+</abstract>
+```
+
+```bash
+python scripts/generate_quest_data.py --count 200
+python scripts/validate_data.py --contract quest --data examples/quest/sample_data/train.json
+# 门禁-only：把 configs 里 dry_run 临时设 true
+python scripts/train.py --config examples/quest/configs/sft_lora.yaml
+python scripts/evaluate.py --contract quest --mode fixture
+# 真聊（需已训 adapter）
+python scripts/chat_quest.py --adapter outputs/quest_lora/<run_dir> --accept
+```
+
+数据与配置：`examples/quest/`。
+
+---
+
+## 还可适配的场景（当前未实现）
+
+同一套流水线——**定契约 → 合成/标注数据 → 校验门禁 → SFT → 评测 / 真聊**——也能迁到下面这些领域。仓库里**还没有**对应 Schema / 样例 / chat，列出来方便对照选型：
+
+| 场景 | 人看到什么 | 机器吃什么（契约方向） |
+|------|------------|------------------------|
+| 工具 / Agent 路由 | 一句确认或追问 | `intent`、`tool`、参数字典、`need_clarify` |
+| IoT / 座舱「边说边控」 | 口播反馈 | 设备指令（灯/空调/导航）、`speak` 开关、安全等级 |
+| 客服分流 | 回复话术 | 工单字段、情绪标签、`escalate`、知识库 id |
+| 表单 / 单据抽取 | 可选摘要句 | 固定字段 JSON（金额、日期、主体），缺项标 `null` |
+| 教育陪练 | 讲解 / 鼓励 | 掌握度、下一题 id、`hint_level`、是否结束回合 |
+| 直播 / 赛事解说辅助 | 旁白文案 | 事件类型、高光标记、字幕安全（无标签） |
+
+换契约时通常只需：新 Schema（或分块 + `key=value`）→ 新合成器 / 校验器 → 改 `examples/<name>/` 与 `contract:`。训练与评测入口可复用。
 
 ---
 
@@ -221,11 +285,12 @@ structured-llm-pipeline/
 │   ├── data_quality.md        # 硬失败 / 警告规则
 │   ├── results.md             # 评测对比数字
 │   ├── serve.md               # 阶段4：真聊为主，HTTP 解析为辅
+│   ├── quest_schema.md        # Quest RPG 分块契约
 │   └── roadmap.md             # 项目计划
 ├── schemas/
 │   └── echo_turn.schema.json  # [json] 内对象的 JSON Schema
 ├── src/structured_llm/
-│   ├── contract/              # 多块回合的解析与校验
+│   ├── contract/              # Echo + Quest 解析与校验
 │   ├── data/                  # 数据集辅助
 │   ├── train/                 # SFT 入口（面向 Unsloth/PEFT）
 │   ├── eval/                  # 格式 / Schema / TTS / 多轮指标
@@ -235,13 +300,20 @@ structured-llm-pipeline/
 │   ├── sample_data/
 │   ├── eval_cases.json
 │   └── configs/
+├── examples/quest/            # RPG 分块契约（无 JSON 包）
+│   ├── prompts/
+│   ├── sample_data/
+│   ├── eval_cases.json
+│   └── configs/
 ├── LICENSE
 ├── requirements-min.txt       # 无 GPU 最小依赖
 └── scripts/
-    ├── validate_data.py
+    ├── validate_data.py       # --contract echo|quest
+    ├── generate_quest_data.py
     ├── train.py
     ├── evaluate.py
-    ├── chat_echo.py           # 真机对话（LoRA 生成 + 契约解析）
+    ├── chat_echo.py           # Echo 真机对话
+    ├── chat_quest.py          # Quest 真机对话
     ├── serve.py               # CLI：解析单段生成文本
     ├── serve_api.py           # 可选：FastAPI 只做解析
     ├── demo_request.py        # 可选：假 raw 打 API
@@ -277,7 +349,7 @@ Adapter：`outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043`
 1. **契约优先** — 先有 Schema 与校验器，再训练。
 2. **训推一致** — 标签与生成共用同一套解析器。
 3. **默认小模型** — 按本地 / 端侧部署假设优化。
-4. **Demo ≠ 框架** — Echo 只示范模式；换 Schema 即可迁到你的领域。
+4. **Demo ≠ 框架** — Echo / Quest 示范模式；换契约即可迁到上表场景（尚未实现）。
 
 ---
 
