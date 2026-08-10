@@ -154,7 +154,7 @@ hp=80; mp=20; loc=森林路口; quest=找药草; flags=has_map
 ```
 
 ```bash
-python scripts/generate_quest_data.py --count 200
+python scripts/generate_quest_data.py
 python scripts/validate_data.py --contract quest --data examples/quest/sample_data/train.json
 # 门禁-only：把 configs 里 dry_run 临时设 true
 python scripts/train.py --config examples/quest/configs/sft_lora.yaml
