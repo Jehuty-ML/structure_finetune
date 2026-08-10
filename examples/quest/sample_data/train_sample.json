@@ -1,0 +1,107 @@
+[
+  {
+    "id": "quest_syn_0228_combat_attack",
+    "input": {
+      "user_text": "我攻击。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "77",
+        "mp": "19",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n玩家攻击；保持 combat；node→round_enemy；action=attack；不是 flee。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n一击命中要害，敌人怒视着你。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=77; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗中已攻击；进入敌方回合；仍在洞穴入口。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest_v1"
+    }
+  },
+  {
+    "id": "quest_syn_0097_dialogue_npc",
+    "input": {
+      "user_text": "和老人谈谈。",
+      "fsm": {
+        "phase": "explore",
+        "node": "village_square"
+      },
+      "stats": {
+        "hp": "91",
+        "mp": "26",
+        "loc": "村子广场",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n进入 dialogue；action=talk；不是 combat/flee。\n</think>\n\n<state>\nphase=dialogue; node=herbalist_hello; allowed=talk,open_inventory\n</state>\n\n<say>\n草药师推了推眼镜：药草在北谷，小心狼群。\n</say>\n\n<cmd>\naction=talk; target=herbalist; end_turn=0\n</cmd>\n\n<stats>\nhp=91; mp=26; loc=村子广场; quest=找药草; flags=has_map,met_herbalist\n</stats>\n\n<abstract>\n对话中见过草药师；得知药草在北谷；人在村子广场。\n</abstract>",
+    "meta": {
+      "scenario": "dialogue_npc",
+      "contract": "quest_v1"
+    }
+  },
+  {
+    "id": "quest_syn_0268_combat_flee",
+    "input": {
+      "user_text": "我选择逃跑。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "68",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n战斗中的 flee 转场：输出 phase=explore，绝不是 combat，也绝不是 advance。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你转身狂奔，灰狼的吼声被甩在身后。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=68; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已逃离战斗回到洞穴入口；任务未完成。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v1"
+    }
+  },
+  {
+    "id": "quest_syn_0216_dialogue_npc",
+    "input": {
+      "user_text": "我想问问路。",
+      "fsm": {
+        "phase": "explore",
+        "node": "village_square"
+      },
+      "stats": {
+        "hp": "89",
+        "mp": "25",
+        "loc": "村子广场",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n进入 dialogue；action=talk；不是 combat/flee。\n</think>\n\n<state>\nphase=dialogue; node=herbalist_hello; allowed=talk,open_inventory\n</state>\n\n<say>\n草药师推了推眼镜：药草在北谷，小心狼群。\n</say>\n\n<cmd>\naction=talk; target=herbalist; end_turn=0\n</cmd>\n\n<stats>\nhp=89; mp=25; loc=村子广场; quest=找药草; flags=has_map,met_herbalist\n</stats>\n\n<abstract>\n对话中见过草药师；得知药草在北谷；人在村子广场。\n</abstract>",
+    "meta": {
+      "scenario": "dialogue_npc",
+      "contract": "quest_v1"
+    }
+  },
+  {
+    "id": "quest_syn_0160_combat_flee",
+    "input": {
+      "user_text": "溜了溜了。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "71",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n逃跑成功；切回 explore/cave_mouth；cmd 必须是 flee 且 end_turn=1。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n逃出来了。战斗结束，你回到洞口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=71; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已逃离战斗回到洞穴入口；任务未完成。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v1"
+    }
+  }
+]

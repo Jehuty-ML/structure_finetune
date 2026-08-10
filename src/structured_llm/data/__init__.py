@@ -29,13 +29,19 @@ def iter_sft_rows(path: str | Path) -> Iterator[dict[str, Any]]:
 
 
 def format_user_message(
-    input_obj: Any, prior_utters: list[str] | None = None
+    input_obj: Any,
+    prior_utters: list[str] | None = None,
+    *,
+    prior_label: str = "Prior",
 ) -> str:
-    """构造用户侧内容：可选前几轮口播 + JSON 输入。"""
+    """构造用户侧内容：可选前几轮摘要/口播 + JSON 输入。
+
+    prior_label：Echo 用 Prior（口播），Quest 用 Abstract（剧情压缩）。
+    """
     parts: list[str] = []
     if prior_utters:
         for i, utter in enumerate(prior_utters, start=1):
-            parts.append(f"Prior {i}: {utter}")
+            parts.append(f"{prior_label} {i}: {utter}")
     if isinstance(input_obj, str):
         payload = input_obj
     else:
@@ -45,6 +51,10 @@ def format_user_message(
 
 
 from .generate_echo import generate_dataset, split_train_val  # noqa: E402
+from . import generate_quest as _quest  # noqa: E402
+
+generate_quest_dataset = _quest.generate_dataset
+split_quest_train_val = _quest.split_train_val
 
 __all__ = [
     "load_json",
@@ -53,4 +63,6 @@ __all__ = [
     "format_user_message",
     "generate_dataset",
     "split_train_val",
+    "generate_quest_dataset",
+    "split_quest_train_val",
 ]

@@ -1,0 +1,53 @@
+{
+  "name": "quest_contract_eval_v1",
+  "contract": "quest",
+  "system_prompt_path": "examples/quest/prompts/system_prompt.txt",
+  "cases": [
+    {
+      "id": "explore_fork",
+      "name": "探索路口 — state 为 explore",
+      "check_type": "contract",
+      "input": {
+        "user_text": "我往前走。",
+        "fsm": {"phase": "explore", "node": "forest_fork"},
+        "stats": {"hp": "80", "mp": "20", "loc": "森林路口", "quest": "找药草"}
+      },
+      "expect": {
+        "phase": "explore",
+        "action_any": ["prompt_choice", "move"]
+      },
+      "fixture_output": "<think>\n探索阶段，路口可前进；保持 explore。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n这条路通向山洞。要进去吗？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=20; loc=森林路口; quest=找药草; flags=has_map\n</stats>\n\n<abstract>\n探索中停在森林路口；任务找药草；已有地图；未进洞。\n</abstract>"
+    },
+    {
+      "id": "combat_switch",
+      "name": "遇敌 — phase 切到 combat",
+      "check_type": "contract",
+      "input": {
+        "user_text": "有怪物！",
+        "fsm": {"phase": "explore", "node": "cave_mouth"},
+        "stats": {"hp": "76", "mp": "18", "loc": "洞穴入口", "quest": "找药草"}
+      },
+      "expect": {
+        "phase": "combat",
+        "action_any": ["prompt_choice", "attack"]
+      },
+      "fixture_output": "<think>\n遭遇战；切换 phase=combat，轮到玩家。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n灰狼低吼着挡住去路。轮到你行动。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗开始，玩家回合；地点洞穴入口；任务找药草。\n</abstract>"
+    },
+    {
+      "id": "flee_back_explore",
+      "name": "逃跑 — 回到 explore 且 end_turn=1",
+      "check_type": "contract",
+      "input": {
+        "user_text": "我跑！",
+        "fsm": {"phase": "combat", "node": "round_player"},
+        "stats": {"hp": "70", "mp": "15", "loc": "洞穴入口", "quest": "找药草"}
+      },
+      "expect": {
+        "phase": "explore",
+        "action": "flee",
+        "end_turn": "1"
+      },
+      "fixture_output": "<think>\n逃跑成功；切回 explore。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你狼狈地退出战斗，回到洞口喘息。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已逃离战斗回到洞穴入口；任务未完成。\n</abstract>"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+# Quest SFT（LoRA）
+# 流程：契约门禁 (contract=quest) -> ModelScope 解析基座 -> Unsloth 真训
+# 无合格数据不会进入 GPU 训练。
+
+contract: quest
+model_source: modelscope
+model_name_or_path: "Qwen/Qwen3-1.7B"
+model_cache_dir: "models/base"
+
+data_path: "examples/quest/sample_data/train.json"
+val_data_path: "examples/quest/sample_data/val.json"
+system_prompt_path: "examples/quest/prompts/system_prompt.txt"
+# Quest 无 Echo JSON Schema；门禁走 validate_quest_turn
+schema_path: ""
+output_dir: "outputs/quest_lora"
+
+max_seq_length: 2048
+load_in_4bit: true
+local_files_only: false
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+use_rslora: false
+use_dora: false
+
+learning_rate: 2.0e-4
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+num_train_epochs: 1
+warmup_steps: 20
+logging_steps: 5
+eval_strategy: epoch
+seed: 3407
+packing: false
+dataset_num_proc: 1
+
+# true=只跑契约门禁；false=门禁通过后启动 Unsloth 真训
+dry_run: false
