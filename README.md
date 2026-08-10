@@ -20,10 +20,8 @@
 
 ```text
 一次生成
-    ├── <think>     → 可选：调试 / 训练信号
-    ├── <state>     → 客户端 / 会话状态机
-    ├── { json }    → TTS + UI + 动作（Schema 校验）
-    └── <abstract>  → 压缩记忆，供下一轮使用
+    ├── <think>          → 可选：调试 / 训练信号（可剥离）
+    └── [json]{…}[/json] → TTS + App 控制（Schema 校验：口播 + intent/ui_mode）
 ```
 
 若 `utter` 里夹了标签，或缺少 `volume`，**TTS 与客户端会直接坏掉**。所以「接近 100% Schema 合法」是功能要求，不是锦上添花——SFT + 校验远胜于指望基座模型自觉配合。
@@ -40,11 +38,85 @@ Echo 是虚构的端侧伙伴。每一轮必须同时驱动 **三条通道**：
 |------|--------|----------|
 | 口播文本 | TTS | `utter`（干净、无标签） |
 | 韵律 / 情绪 | TTS + 形象 | `emotion`、`volume`、`pace` |
-| 机器控制 | App | `should_speak`、`end_turn`、`<state>`、`<abstract>` |
+| 机器控制 | App | `intent`、`ui_mode`、`should_speak`、`end_turn` |
 
 详见 [`docs/schema.md`](docs/schema.md) 与 [`schemas/echo_turn.schema.json`](schemas/echo_turn.schema.json)。
 
 项目计划 / 里程碑：[`docs/roadmap.md`](docs/roadmap.md)。
+
+### 输出格式示例
+
+每一轮助手回复固定两块（块间空一行）：
+
+```text
+<think>
+用户疲惫；短句、低音量；意图安抚。
+</think>
+
+[json]
+{"utter":"没事，我在这儿。你先歇着。","emotion":"gentle","volume":30,"pace":"slow","should_speak":true,"intent":"comfort","ui_mode":"speak","end_turn":false}
+[/json]
+```
+
+| 块 | 给谁用 | 说明 |
+|----|--------|------|
+| `<think>` | 训练 / 日志 | 可剥离，**不下发 TTS** |
+| `[json]…[/json]` | TTS + App | **唯一机器契约**，内层对象必须过 Schema |
+
+### JSON 字段含义与使用情景
+
+**口播 / TTS**
+
+| 字段 | 含义 | 使用情景 |
+|------|------|----------|
+| `utter` | 要念/显示的话 | 送给 TTS；静音时也可当屏幕字幕 |
+| `emotion` | 情绪风格 | 驱动音色/表情（`gentle` / `cheerful` / `calm` / `concerned` / `playful` / `neutral`） |
+| `volume` | 音量 0–100 | 疲惫→低，庆祝→高，静音→0 |
+| `pace` | 语速 | 安抚 `slow`，打断确认 `fast`，一般 `normal` |
+| `should_speak` | 本轮是否出声 | `false` 时 TTS 不播（图书馆、开会） |
+
+**App / 状态机**
+
+| 字段 | 含义 | 使用情景 |
+|------|------|----------|
+| `intent` | 本轮意图标签 | UI 路由：安抚、祝贺、追问、闲聊、玩笑、收束、确认打断 |
+| `ui_mode` | 界面模式 | `speak` 播报 / `text_only` 只出字 / `listen` 聆听态 |
+| `end_turn` | 是否结束本段 | `true` 时停麦、关会话（用户说「先这样」） |
+
+`intent` 枚举：`comfort` · `celebrate` · `clarify` · `chat` · `joke` · `close` · `interrupt_ack`。
+
+硬约束一例：`device.can_speak=false` ⇒ `should_speak=false` 且 `ui_mode=text_only`。
+
+### 解析示例
+
+训练数据、评测、服务共用同一套解析器：
+
+```python
+from structured_llm.contract import validate_turn
+
+raw = """<think>
+用户疲惫；短句、低音量；意图安抚。
+</think>
+
+[json]
+{"utter":"没事，我在这儿。你先歇着。","emotion":"gentle","volume":30,"pace":"slow","should_speak":true,"intent":"comfort","ui_mode":"speak","end_turn":false}
+[/json]"""
+
+result = validate_turn(raw, schema_path="schemas/echo_turn.schema.json")
+if result.ok:
+    p = result.parsed
+    print(p.think)             # 调试文本
+    print(p.payload["utter"])  # → TTS
+    print(p.payload["intent"]) # → App 路由
+else:
+    print(result.errors)       # 格式/Schema 错误列表
+```
+
+批量校验样例数据：
+
+```bash
+python scripts/validate_data.py --data examples/echo/sample_data/train.json
+```
 
 ---
 
@@ -60,7 +132,7 @@ Echo 是虚构的端侧伙伴。每一轮必须同时驱动 **三条通道**：
   SFT（LoRA / QLoRA，如 Unsloth） ← 把契约焊进权重
         │
         ▼
-  评测套件                        ← 格式 · Schema · 多轮 abstract
+  评测套件                        ← 格式 · Schema · TTS 安全 · 多轮承接
         │
         ▼
   服务（可选 FastAPI）            ← 返回解析后的 VoiceTurn，而非裸文本
@@ -75,14 +147,24 @@ Echo 是虚构的端侧伙伴。每一轮必须同时驱动 **三条通道**：
 ```bash
 pip install -r requirements.txt
 
-# 按 Echo 契约校验样例数据
-python scripts/validate_data.py --data examples/echo/sample_data/train_sample.json
+# 合成并划分 train/val（或直接使用已提交的数据）
+python scripts/generate_echo_data.py --count 300 --seed 3407
+
+# 按 Echo 契约校验
+python scripts/validate_data.py --data examples/echo/sample_data/train.json
+python scripts/validate_data.py --data examples/echo/sample_data/val.json
 
 # 对模型输出做契约检查（离线 / fixture 模式）
 python scripts/evaluate.py --cases examples/echo/eval_cases.json --mode fixture
 
-# 训练（需要 GPU + 基座模型；见 docs/train.md）
+# 训练（先契约门禁；基座默认 ModelScope，见 docs/train.md）
 python scripts/train.py --config examples/echo/configs/sft_lora.yaml
+
+# 真机对比：Prompt-only 基座 vs LoRA（需 GPU / llm_dev）
+python scripts/evaluate.py --mode generate --compare `
+  --base-model Qwen/Qwen3-1.7B `
+  --adapter outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043 `
+  --json-out outputs/eval_compare_v3.json
 ```
 
 ---
@@ -96,17 +178,18 @@ structured-llm-pipeline/
 ├── environment.yml
 ├── docs/
 │   ├── schema.md              # 可读的输出契约说明
-│   ├── design.md              # 为何多块输出 + abstract 记忆
+│   ├── design.md              # 为何 think + [json] 契约
 │   ├── env.md                 # 安装 / CUDA 说明
 │   ├── train.md               # 小模型 SFT 说明
+│   ├── data_quality.md        # 硬失败 / 警告规则
 │   └── roadmap.md             # 项目计划与里程碑
 ├── schemas/
-│   └── echo_turn.schema.json  # JSON 块的 JSON Schema
+│   └── echo_turn.schema.json  # [json] 内对象的 JSON Schema
 ├── src/structured_llm/
 │   ├── contract/              # 多块回合的解析与校验
 │   ├── data/                  # 数据集辅助
 │   ├── train/                 # SFT 入口（面向 Unsloth/PEFT）
-│   ├── eval/                  # 格式 / Schema / 多轮指标
+│   ├── eval/                  # 格式 / Schema / TTS / 多轮指标
 │   └── serve/                 # 可选：返回解析对象的 API 辅助
 ├── examples/echo/
 │   ├── prompts/
@@ -126,16 +209,21 @@ structured-llm-pipeline/
 
 作品集或内部报告中，在同一评测集上对比 **小模型 + 纯 Prompt** vs **SFT adapter**：
 
-- **格式合法率** — 块顺序与标签正确（`think` → `state` → JSON → `abstract`）
-- **Schema 合法率** — JSON 可解析且通过 Schema（必填字段、取值范围）
+- **格式合法率** — 块顺序与标签正确（`think` → `[json]…[/json]`）
+- **Schema 合法率** — `[json]` 内可解析且通过 Schema（必填字段、取值范围）
 - **TTS 安全 `utter` 率** — 无嵌套标签、无会被朗读出来的括号演技注释
-- **多轮 abstract 可用性** — 只保留 abstract 时下一轮仍连贯
+- **多轮承接** — 带 Prior 上下文时仍遵守契约并承接话题
 
-你要用实验支撑的标题结论：
+实测（契约 v3，Qwen3-1.7B，Echo 3 条评测集，详见 [`docs/results.md`](docs/results.md)）：
 
-> 在 1.7B～8B 模型上，SFT 把结构化合规从「Prompt 抽奖」提升到 **接近契约满分**，成本远低于大模型 API。
+| 设置 | 通过率 | 格式合法率 | TTS 安全率 |
+|------|--------|------------|------------|
+| 基座 + Prompt | 33.3% | 33.3% | 66.7% |
+| 基座 + LoRA SFT | **100%** | **100%** | **100%** |
 
-（跑完评测后填入真实数字。）
+Adapter：`outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043`
+
+> 小模型靠 Prompt「抽奖」焊不住契约；短 SFT 即可把格式合规从近 0 拉到可用，并稳住多轮承接。
 
 ---
 

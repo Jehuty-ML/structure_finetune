@@ -17,8 +17,7 @@ def parse_generation_to_response(
     return {
         "ok": True,
         "think": p.think,
-        "state": p.state,
         "voice": p.payload,
-        "abstract": p.abstract,
         "warnings": result.warnings,
     }
+

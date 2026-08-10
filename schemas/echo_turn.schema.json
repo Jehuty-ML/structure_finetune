@@ -10,6 +10,8 @@
     "volume",
     "pace",
     "should_speak",
+    "intent",
+    "ui_mode",
     "end_turn"
   ],
   "properties": {
@@ -33,6 +35,24 @@
     },
     "should_speak": {
       "type": "boolean"
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "comfort",
+        "celebrate",
+        "clarify",
+        "chat",
+        "joke",
+        "close",
+        "interrupt_ack"
+      ],
+      "description": "客户端路由/UI 意图"
+    },
+    "ui_mode": {
+      "type": "string",
+      "enum": ["speak", "text_only", "listen"],
+      "description": "界面模式：语音播报 / 仅文字 / 聆听"
     },
     "end_turn": {
       "type": "boolean"

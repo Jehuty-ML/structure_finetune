@@ -1,0 +1,5678 @@
+[
+  {
+    "id": "echo_syn_0205_playful",
+    "input": {
+      "user_text": "今天糟透了，整点轻松的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 78,
+        "bond": 4,
+        "turn": 14
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":64,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0016_happy",
+    "input": {
+      "user_text": "我升职了！",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 53,
+        "bond": 3,
+        "turn": 12
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"太棒了，你值得！最开心的点是什么？\",\"emotion\":\"cheerful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0084_anxious",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 76,
+        "bond": 5,
+        "turn": 25
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我们可以只抓一件事。先说最担心的。\",\"emotion\":\"concerned\",\"volume\":46,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0004_move_friends_r2var",
+    "input": {
+      "user_text": "离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 43,
+        "bond": 4,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户怕离开朋友；安抚并提联系。\n</think>\n\n[json]\n{\"utter\":\"舍不得朋友很正常。我们可以一起想怎么保持联系。\",\"emotion\":\"gentle\",\"volume\":40,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "这是大事。眼下最沉的是哪一块？"
+    ],
+    "meta": {
+      "scenario": "move_friends",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2,
+      "variant": true
+    }
+  },
+  {
+    "id": "echo_mt_0014_move_friends_v3_r2var",
+    "input": {
+      "user_text": "离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 47,
+        "bond": 4,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户怕离开朋友；安抚并提联系。\n</think>\n\n[json]\n{\"utter\":\"舍不得朋友很正常。我们可以一起想怎么保持联系。\",\"emotion\":\"gentle\",\"volume\":41,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "这事不小。眼下最沉的是哪一块？"
+    ],
+    "meta": {
+      "scenario": "move_friends_v3",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2,
+      "variant": true
+    }
+  },
+  {
+    "id": "echo_syn_0107_end_turn",
+    "input": {
+      "user_text": "够了，回头再说。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 72,
+        "bond": 2,
+        "turn": 16
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好，你去忙。需要时叫我。\",\"emotion\":\"calm\",\"volume\":42,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0267_neutral",
+    "input": {
+      "user_text": "提醒我喝水。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 50,
+        "bond": 7,
+        "turn": 27
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"我在。说一句你现在需要什么。\",\"emotion\":\"calm\",\"volume\":55,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0039_playful",
+    "input": {
+      "user_text": "哄我笑一下。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 45,
+        "bond": 8,
+        "turn": 31
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":67,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0032_interruptible",
+    "input": {
+      "user_text": "停一下，换个问题。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 85,
+        "bond": 1,
+        "turn": 24
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"行，换题。你先说。\",\"emotion\":\"neutral\",\"volume\":59,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0191_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 49,
+        "bond": 6,
+        "turn": 34
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"我在。说一句你现在需要什么。\",\"emotion\":\"calm\",\"volume\":54,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0172_anxious",
+    "input": {
+      "user_text": "我是不是想太多了？",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 39,
+        "bond": 6,
+        "turn": 4
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":51,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0260_neutral",
+    "input": {
+      "user_text": "提醒我喝水。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 80,
+        "bond": 6,
+        "turn": 35
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":48,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0227_mute",
+    "input": {
+      "user_text": "静音一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 75,
+        "bond": 1,
+        "turn": 6
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0149_tired",
+    "input": {
+      "user_text": "先别追问，我就想静一下。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 69,
+        "bond": 7,
+        "turn": 14
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"听到了。你休息，我陪着。\",\"emotion\":\"gentle\",\"volume\":28,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0201_anxious",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 66,
+        "bond": 3,
+        "turn": 37
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"别急着结论。你现在最在意什么？\",\"emotion\":\"concerned\",\"volume\":43,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0236_anxious",
+    "input": {
+      "user_text": "明天汇报好紧张。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 70,
+        "bond": 3,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我们可以只抓一件事。先说最担心的。\",\"emotion\":\"concerned\",\"volume\":55,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0162_neutral",
+    "input": {
+      "user_text": "提醒我喝水。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 33,
+        "bond": 8,
+        "turn": 26
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"可以。你更想听建议还是随便聊？\",\"emotion\":\"calm\",\"volume\":51,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0272_mute",
+    "input": {
+      "user_text": "图书馆模式。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 28,
+        "bond": 4,
+        "turn": 26
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"明白，语音关闭，文本继续。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0144_interruptible",
+    "input": {
+      "user_text": "停一下，换个问题。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 79,
+        "bond": 3,
+        "turn": 25
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"收到打断。直接说重点就行。\",\"emotion\":\"neutral\",\"volume\":54,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0087_tired",
+    "input": {
+      "user_text": "好累，别让我想太多。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 78,
+        "bond": 5,
+        "turn": 21
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"先喘口气，我不催你。\",\"emotion\":\"gentle\",\"volume\":27,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0011_playful",
+    "input": {
+      "user_text": "给我一句不严肃的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 39,
+        "bond": 6,
+        "turn": 37
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"备用方案：零食，或者离谱舞步。你选哪个？\",\"emotion\":\"playful\",\"volume\":58,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0005_move_friends_r2var",
+    "input": {
+      "user_text": "离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 43,
+        "bond": 4,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n点明朋友；给可行动点。\n</think>\n\n[json]\n{\"utter\":\"朋友这块最沉。先一起定一个保持联系的小办法？\",\"emotion\":\"gentle\",\"volume\":47,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "这是大事。眼下最沉的是哪一块？"
+    ],
+    "meta": {
+      "scenario": "move_friends",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2,
+      "variant": true
+    }
+  },
+  {
+    "id": "echo_syn_0178_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 17,
+        "bond": 3,
+        "turn": 19
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"好，我记一下：记得喝水。\",\"emotion\":\"calm\",\"volume\":48,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0159_tired",
+    "input": {
+      "user_text": "好累，别让我想太多。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 77,
+        "bond": 2,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"先喘口气，我不催你。\",\"emotion\":\"gentle\",\"volume\":36,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0198_tired",
+    "input": {
+      "user_text": "好累，别让我想太多。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 29,
+        "bond": 7,
+        "turn": 35
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"没事，我在这儿。你先歇着。\",\"emotion\":\"gentle\",\"volume\":29,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0054_mute",
+    "input": {
+      "user_text": "先别出声，我打字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 68,
+        "bond": 2,
+        "turn": 7
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0006_mute",
+    "input": {
+      "user_text": "先别出声，我打字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 19,
+        "bond": 5,
+        "turn": 39
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"明白，语音关闭，文本继续。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0089_playful",
+    "input": {
+      "user_text": "给我一句不严肃的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 33,
+        "bond": 3,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"好。要温和玩笑还是离谱一点的？\",\"emotion\":\"playful\",\"volume\":67,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0044_tired",
+    "input": {
+      "user_text": "我快睡着了，轻声点。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 49,
+        "bond": 1,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":29,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0141_playful",
+    "input": {
+      "user_text": "给我一句不严肃的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 26,
+        "bond": 8,
+        "turn": 28
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"好。要温和玩笑还是离谱一点的？\",\"emotion\":\"playful\",\"volume\":65,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0025_interruptible",
+    "input": {
+      "user_text": "说到一半，我想改话题。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 49,
+        "bond": 7,
+        "turn": 20
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"明白，我收短。你的新问题是？\",\"emotion\":\"neutral\",\"volume\":58,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0273_interruptible",
+    "input": {
+      "user_text": "先停，我插一句。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 74,
+        "bond": 6,
+        "turn": 16
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"好，我停。你现在最想问什么？\",\"emotion\":\"neutral\",\"volume\":59,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0230_mute",
+    "input": {
+      "user_text": "旁边有人，别播。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 62,
+        "bond": 5,
+        "turn": 12
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"安静模式开着，我打字回复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0012_move_friends_v3_r2",
+    "input": {
+      "user_text": "离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 47,
+        "bond": 4,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承接 Prior；comfort + 联系。\n</think>\n\n[json]\n{\"utter\":\"想朋友没问题。要不要先定一个保持联系的节奏？\",\"emotion\":\"gentle\",\"volume\":44,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "这事不小。眼下最沉的是哪一块？"
+    ],
+    "meta": {
+      "scenario": "move_friends_v3",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2
+    }
+  },
+  {
+    "id": "echo_syn_0148_interruptible",
+    "input": {
+      "user_text": "先停，我插一句。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 79,
+        "bond": 8,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"行，换题。你先说。\",\"emotion\":\"neutral\",\"volume\":49,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0076_end_turn",
+    "input": {
+      "user_text": "先这样吧，我去忙了。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 66,
+        "bond": 3,
+        "turn": 17
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好，你去忙。需要时叫我。\",\"emotion\":\"calm\",\"volume\":49,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0266_happy",
+    "input": {
+      "user_text": "周末要去旅行，好开心。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 45,
+        "bond": 1,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0086_mute",
+    "input": {
+      "user_text": "图书馆模式。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 80,
+        "bond": 8,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0232_tired",
+    "input": {
+      "user_text": "先别追问，我就想静一下。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 17,
+        "bond": 7,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":31,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0005_playful",
+    "input": {
+      "user_text": "哄我笑一下。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 52,
+        "bond": 4,
+        "turn": 22
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"收到。先给你选择题：茶还是走走？\",\"emotion\":\"playful\",\"volume\":55,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0019_anxious",
+    "input": {
+      "user_text": "这封邮件让我不安。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 30,
+        "bond": 7,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":51,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0200_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 61,
+        "bond": 4,
+        "turn": 26
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"好，我记一下：记得喝水。\",\"emotion\":\"calm\",\"volume\":57,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0169_neutral",
+    "input": {
+      "user_text": "现在几点合适休息？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 72,
+        "bond": 5,
+        "turn": 33
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"我在。说一句你现在需要什么。\",\"emotion\":\"calm\",\"volume\":57,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0091_anxious",
+    "input": {
+      "user_text": "我是不是想太多了？",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 38,
+        "bond": 3,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":52,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0108_playful",
+    "input": {
+      "user_text": "给我一句不严肃的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 42,
+        "bond": 1,
+        "turn": 33
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":63,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0053_neutral",
+    "input": {
+      "user_text": "今天天气怎么样？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 41,
+        "bond": 6,
+        "turn": 27
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"好，我记一下：记得喝水。\",\"emotion\":\"calm\",\"volume\":55,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0130_tired",
+    "input": {
+      "user_text": "好累，别让我想太多。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 54,
+        "bond": 4,
+        "turn": 6
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":24,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0036_mute",
+    "input": {
+      "user_text": "图书馆模式。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 68,
+        "bond": 4,
+        "turn": 39
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"明白，语音关闭，文本继续。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0223_playful",
+    "input": {
+      "user_text": "心情差，来点无厘头。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 34,
+        "bond": 3,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"好。要温和玩笑还是离谱一点的？\",\"emotion\":\"playful\",\"volume\":64,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0187_end_turn",
+    "input": {
+      "user_text": "我先走一步。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 87,
+        "bond": 1,
+        "turn": 34
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":48,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0037_neutral",
+    "input": {
+      "user_text": "今天天气怎么样？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 29,
+        "bond": 7,
+        "turn": 19
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"我在。说一句你现在需要什么。\",\"emotion\":\"calm\",\"volume\":53,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0095_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 83,
+        "bond": 8,
+        "turn": 22
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":54,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0048_playful",
+    "input": {
+      "user_text": "心情差，来点无厘头。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 69,
+        "bond": 6,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"备用方案：零食，或者离谱舞步。你选哪个？\",\"emotion\":\"playful\",\"volume\":61,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0003_anxious",
+    "input": {
+      "user_text": "这封邮件让我不安。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 21,
+        "bond": 6,
+        "turn": 25
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我在听。把最重的那一点说出来就好。\",\"emotion\":\"concerned\",\"volume\":41,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0082_happy",
+    "input": {
+      "user_text": "周末要去旅行，好开心。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 49,
+        "bond": 3,
+        "turn": 38
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":71,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0135_neutral",
+    "input": {
+      "user_text": "提醒我喝水。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 48,
+        "bond": 4,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":54,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0204_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 85,
+        "bond": 5,
+        "turn": 21
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我在听。把最重的那一点说出来就好。\",\"emotion\":\"concerned\",\"volume\":51,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0042_mute",
+    "input": {
+      "user_text": "先别出声，我打字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 17,
+        "bond": 8,
+        "turn": 19
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0123_playful",
+    "input": {
+      "user_text": "给我一句不严肃的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 75,
+        "bond": 5,
+        "turn": 15
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0276_happy",
+    "input": {
+      "user_text": "终于把项目交付了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 81,
+        "bond": 7,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"太棒了，你值得！最开心的点是什么？\",\"emotion\":\"cheerful\",\"volume\":76,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0010_mute",
+    "input": {
+      "user_text": "开会中，只回文字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 80,
+        "bond": 7,
+        "turn": 17
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"收到，不出声，文字答复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0051_anxious",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 21,
+        "bond": 7,
+        "turn": 14
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"别急着结论。你现在最在意什么？\",\"emotion\":\"concerned\",\"volume\":45,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0175_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 24,
+        "bond": 7,
+        "turn": 12
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"可以。你更想听建议还是随便聊？\",\"emotion\":\"calm\",\"volume\":58,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0271_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 19,
+        "bond": 4,
+        "turn": 14
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我们可以只抓一件事。先说最担心的。\",\"emotion\":\"concerned\",\"volume\":44,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0278_interruptible",
+    "input": {
+      "user_text": "先停，我插一句。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 61,
+        "bond": 4,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"好，我停。你现在最想问什么？\",\"emotion\":\"neutral\",\"volume\":60,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0224_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 40,
+        "bond": 3,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"好，我记一下：记得喝水。\",\"emotion\":\"calm\",\"volume\":51,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0033_playful",
+    "input": {
+      "user_text": "给我一句不严肃的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 34,
+        "bond": 7,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"收到。先给你选择题：茶还是走走？\",\"emotion\":\"playful\",\"volume\":56,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0177_anxious",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 69,
+        "bond": 1,
+        "turn": 27
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我在听。把最重的那一点说出来就好。\",\"emotion\":\"concerned\",\"volume\":52,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0265_happy",
+    "input": {
+      "user_text": "周末要去旅行，好开心。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 53,
+        "bond": 4,
+        "turn": 22
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":75,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0218_interruptible",
+    "input": {
+      "user_text": "先停，我插一句。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 79,
+        "bond": 1,
+        "turn": 29
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"明白，我收短。你的新问题是？\",\"emotion\":\"neutral\",\"volume\":53,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0035_interruptible",
+    "input": {
+      "user_text": "等等，打断一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 27,
+        "bond": 4,
+        "turn": 9
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"行，换题。你先说。\",\"emotion\":\"neutral\",\"volume\":61,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0139_tired",
+    "input": {
+      "user_text": "能量见底了，说点短的。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 18,
+        "bond": 7,
+        "turn": 36
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":32,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0242_interruptible",
+    "input": {
+      "user_text": "停一下，换个问题。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 33,
+        "bond": 1,
+        "turn": 24
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"行，换题。你先说。\",\"emotion\":\"neutral\",\"volume\":59,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0040_playful",
+    "input": {
+      "user_text": "哄我笑一下。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 25,
+        "bond": 4,
+        "turn": 24
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"备用方案：零食，或者离谱舞步。你选哪个？\",\"emotion\":\"playful\",\"volume\":63,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0246_neutral",
+    "input": {
+      "user_text": "今天天气怎么样？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 57,
+        "bond": 2,
+        "turn": 26
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"我在。说一句你现在需要什么。\",\"emotion\":\"calm\",\"volume\":46,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0261_end_turn",
+    "input": {
+      "user_text": "我先走一步。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 67,
+        "bond": 8,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":42,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0195_neutral",
+    "input": {
+      "user_text": "今天天气怎么样？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 80,
+        "bond": 3,
+        "turn": 39
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"我在。说一句你现在需要什么。\",\"emotion\":\"calm\",\"volume\":59,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0090_happy",
+    "input": {
+      "user_text": "刚收到好消息。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 33,
+        "bond": 5,
+        "turn": 13
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":72,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0104_tired",
+    "input": {
+      "user_text": "好累，别让我想太多。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 43,
+        "bond": 3,
+        "turn": 38
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"听到了。你休息，我陪着。\",\"emotion\":\"gentle\",\"volume\":23,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0235_end_turn",
+    "input": {
+      "user_text": "够了，回头再说。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 67,
+        "bond": 2,
+        "turn": 16
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好，你去忙。需要时叫我。\",\"emotion\":\"calm\",\"volume\":45,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0219_mute",
+    "input": {
+      "user_text": "先别出声，我打字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 79,
+        "bond": 3,
+        "turn": 38
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0279_anxious",
+    "input": {
+      "user_text": "明天汇报好紧张。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 24,
+        "bond": 6,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":51,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0034_end_turn",
+    "input": {
+      "user_text": "够了，回头再说。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 19,
+        "bond": 6,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好，你去忙。需要时叫我。\",\"emotion\":\"calm\",\"volume\":44,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0179_mute",
+    "input": {
+      "user_text": "开会中，只回文字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 65,
+        "bond": 6,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"明白，语音关闭，文本继续。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0216_tired",
+    "input": {
+      "user_text": "今天太长了，陪我待一会儿。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 35,
+        "bond": 5,
+        "turn": 9
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":37,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0153_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 63,
+        "bond": 6,
+        "turn": 23
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"可以。你更想听建议还是随便聊？\",\"emotion\":\"calm\",\"volume\":49,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0161_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 38,
+        "bond": 1,
+        "turn": 29
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"好，我记一下：记得喝水。\",\"emotion\":\"calm\",\"volume\":53,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0116_anxious",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 26,
+        "bond": 5,
+        "turn": 33
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我在听。把最重的那一点说出来就好。\",\"emotion\":\"concerned\",\"volume\":51,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0127_mute",
+    "input": {
+      "user_text": "静音一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 28,
+        "bond": 4,
+        "turn": 39
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"安静模式开着，我打字回复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0071_tired",
+    "input": {
+      "user_text": "先别追问，我就想静一下。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 55,
+        "bond": 5,
+        "turn": 12
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"先喘口气，我不催你。\",\"emotion\":\"gentle\",\"volume\":22,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0009_move_friends_v2_r2var",
+    "input": {
+      "user_text": "怕离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 80,
+        "bond": 7,
+        "turn": 20
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户怕离开朋友；安抚并提联系。\n</think>\n\n[json]\n{\"utter\":\"舍不得朋友很正常。我们可以一起想怎么保持联系。\",\"emotion\":\"gentle\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "听起来压力不小。最让你沉的是哪一点？"
+    ],
+    "meta": {
+      "scenario": "move_friends_v2",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2,
+      "variant": true
+    }
+  },
+  {
+    "id": "echo_syn_0059_playful",
+    "input": {
+      "user_text": "逗我一下，别太重。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 73,
+        "bond": 2,
+        "turn": 4
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"备用方案：零食，或者离谱舞步。你选哪个？\",\"emotion\":\"playful\",\"volume\":63,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0093_neutral",
+    "input": {
+      "user_text": "提醒我喝水。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 33,
+        "bond": 2,
+        "turn": 36
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"我在。说一句你现在需要什么。\",\"emotion\":\"calm\",\"volume\":52,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0166_tired",
+    "input": {
+      "user_text": "好累，别让我想太多。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 51,
+        "bond": 8,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"先喘口气，我不催你。\",\"emotion\":\"gentle\",\"volume\":23,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0142_mute",
+    "input": {
+      "user_text": "旁边有人，别播。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 31,
+        "bond": 2,
+        "turn": 8
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"明白，语音关闭，文本继续。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0225_happy",
+    "input": {
+      "user_text": "今天面试过了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 66,
+        "bond": 7,
+        "turn": 21
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"太棒了，你值得！最开心的点是什么？\",\"emotion\":\"cheerful\",\"volume\":71,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0064_end_turn",
+    "input": {
+      "user_text": "到这儿就好。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 53,
+        "bond": 7,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":51,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0078_end_turn",
+    "input": {
+      "user_text": "先这样吧，我去忙了。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 54,
+        "bond": 3,
+        "turn": 25
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":43,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0015_move_friends_v3_r2var",
+    "input": {
+      "user_text": "离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 47,
+        "bond": 4,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n点明朋友；给可行动点。\n</think>\n\n[json]\n{\"utter\":\"朋友这块最沉。先一起定一个保持联系的小办法？\",\"emotion\":\"gentle\",\"volume\":44,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "这事不小。眼下最沉的是哪一块？"
+    ],
+    "meta": {
+      "scenario": "move_friends_v3",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2,
+      "variant": true
+    }
+  },
+  {
+    "id": "echo_syn_0023_mute",
+    "input": {
+      "user_text": "开会中，只回文字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 30,
+        "bond": 8,
+        "turn": 25
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"收到，不出声，文字答复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0202_happy",
+    "input": {
+      "user_text": "我升职了！",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 52,
+        "bond": 8,
+        "turn": 24
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":68,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0136_tired",
+    "input": {
+      "user_text": "今天太长了，陪我待一会儿。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 41,
+        "bond": 7,
+        "turn": 37
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"听到了。你休息，我陪着。\",\"emotion\":\"gentle\",\"volume\":22,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0165_mute",
+    "input": {
+      "user_text": "开会中，只回文字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 55,
+        "bond": 5,
+        "turn": 35
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"明白，语音关闭，文本继续。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0147_mute",
+    "input": {
+      "user_text": "先别出声，我打字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 19,
+        "bond": 1,
+        "turn": 23
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"安静模式开着，我打字回复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0011_move_friends_v3_r1",
+    "input": {
+      "user_text": "工作调动，可能要去别的城市。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 41,
+        "bond": 5,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n澄清最重的一块。\n</think>\n\n[json]\n{\"utter\":\"这事不小。眼下最沉的是哪一块？\",\"emotion\":\"concerned\",\"volume\":52,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "move_friends_v3",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 1
+    }
+  },
+  {
+    "id": "echo_syn_0074_mute",
+    "input": {
+      "user_text": "开会中，只回文字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 71,
+        "bond": 1,
+        "turn": 26
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"安静模式开着，我打字回复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0120_happy",
+    "input": {
+      "user_text": "终于把项目交付了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 62,
+        "bond": 5,
+        "turn": 28
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"恭喜！说一句你现在的心情就好。\",\"emotion\":\"cheerful\",\"volume\":73,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0164_mute",
+    "input": {
+      "user_text": "图书馆模式。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 45,
+        "bond": 8,
+        "turn": 35
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"明白，语音关闭，文本继续。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0017_tired_shorter_r2",
+    "input": {
+      "user_text": "再说短一点。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 80,
+        "bond": 6,
+        "turn": 4
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承接疲惫；更短。\n</think>\n\n[json]\n{\"utter\":\"好。我陪着，你休息。\",\"emotion\":\"gentle\",\"volume\":28,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "没事，我在这儿。你先歇着。"
+    ],
+    "meta": {
+      "scenario": "tired_shorter",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2
+    }
+  },
+  {
+    "id": "echo_mt_0021_anxious_one_thing_r2",
+    "input": {
+      "user_text": "明天汇报。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 72,
+        "bond": 4,
+        "turn": 19
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承接汇报焦虑；再收窄。\n</think>\n\n[json]\n{\"utter\":\"汇报最卡你的是开场，还是提问环节？\",\"emotion\":\"concerned\",\"volume\":46,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "我们可以只抓一件事。先说最担心的。"
+    ],
+    "meta": {
+      "scenario": "anxious_one_thing",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2
+    }
+  },
+  {
+    "id": "echo_syn_0137_end_turn",
+    "input": {
+      "user_text": "到这儿就好。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 85,
+        "bond": 7,
+        "turn": 18
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好，你去忙。需要时叫我。\",\"emotion\":\"calm\",\"volume\":54,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0073_end_turn",
+    "input": {
+      "user_text": "先这样吧，我去忙了。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 40,
+        "bond": 2,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好的，我在这儿等你回来。\",\"emotion\":\"calm\",\"volume\":41,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0010_move_friends_v2_r2var",
+    "input": {
+      "user_text": "怕离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 80,
+        "bond": 7,
+        "turn": 20
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n点明朋友；给可行动点。\n</think>\n\n[json]\n{\"utter\":\"朋友这块最沉。先一起定一个保持联系的小办法？\",\"emotion\":\"gentle\",\"volume\":43,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "听起来压力不小。最让你沉的是哪一点？"
+    ],
+    "meta": {
+      "scenario": "move_friends_v2",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2,
+      "variant": true
+    }
+  },
+  {
+    "id": "echo_syn_0252_anxious",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 55,
+        "bond": 5,
+        "turn": 20
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":53,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0245_end_turn",
+    "input": {
+      "user_text": "够了，回头再说。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 18,
+        "bond": 7,
+        "turn": 12
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好的，我在这儿等你回来。\",\"emotion\":\"calm\",\"volume\":51,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0212_happy",
+    "input": {
+      "user_text": "刚收到好消息。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 55,
+        "bond": 2,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":66,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0268_anxious",
+    "input": {
+      "user_text": "我是不是想太多了？",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 48,
+        "bond": 8,
+        "turn": 26
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":49,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0247_playful",
+    "input": {
+      "user_text": "今天糟透了，整点轻松的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 26,
+        "bond": 6,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"备用方案：零食，或者离谱舞步。你选哪个？\",\"emotion\":\"playful\",\"volume\":59,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0117_mute",
+    "input": {
+      "user_text": "图书馆模式。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 42,
+        "bond": 6,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"安静模式开着，我打字回复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0132_anxious",
+    "input": {
+      "user_text": "明天汇报好紧张。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 89,
+        "bond": 5,
+        "turn": 28
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0133_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 87,
+        "bond": 6,
+        "turn": 7
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"可以。你更想听建议还是随便聊？\",\"emotion\":\"calm\",\"volume\":47,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0155_interruptible",
+    "input": {
+      "user_text": "说到一半，我想改话题。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 38,
+        "bond": 7,
+        "turn": 30
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"明白，我收短。你的新问题是？\",\"emotion\":\"neutral\",\"volume\":53,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0180_interruptible",
+    "input": {
+      "user_text": "等等，打断一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 33,
+        "bond": 3,
+        "turn": 28
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"行，换题。你先说。\",\"emotion\":\"neutral\",\"volume\":56,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0118_mute",
+    "input": {
+      "user_text": "开会中，只回文字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 75,
+        "bond": 6,
+        "turn": 40
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0067_interruptible",
+    "input": {
+      "user_text": "等等，打断一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 59,
+        "bond": 4,
+        "turn": 13
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"收到打断。直接说重点就行。\",\"emotion\":\"neutral\",\"volume\":54,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0063_happy",
+    "input": {
+      "user_text": "今天面试过了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 62,
+        "bond": 5,
+        "turn": 29
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"恭喜！说一句你现在的心情就好。\",\"emotion\":\"cheerful\",\"volume\":61,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0211_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 32,
+        "bond": 4,
+        "turn": 36
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":54,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0080_mute",
+    "input": {
+      "user_text": "旁边有人，别播。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 89,
+        "bond": 5,
+        "turn": 22
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0277_tired",
+    "input": {
+      "user_text": "先别追问，我就想静一下。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 64,
+        "bond": 3,
+        "turn": 38
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"先喘口气，我不催你。\",\"emotion\":\"gentle\",\"volume\":37,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0186_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 16,
+        "bond": 6,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我在听。把最重的那一点说出来就好。\",\"emotion\":\"concerned\",\"volume\":45,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0020_anxious_one_thing_r1",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 58,
+        "bond": 6,
+        "turn": 13
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n引导说一个具体点。\n</think>\n\n[json]\n{\"utter\":\"我们可以只抓一件事。先说最担心的。\",\"emotion\":\"concerned\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious_one_thing",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 1
+    }
+  },
+  {
+    "id": "echo_syn_0100_happy",
+    "input": {
+      "user_text": "周末要去旅行，好开心。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 68,
+        "bond": 2,
+        "turn": 33
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":61,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0128_happy",
+    "input": {
+      "user_text": "刚收到好消息。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 25,
+        "bond": 2,
+        "turn": 9
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":68,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0257_neutral",
+    "input": {
+      "user_text": "现在几点合适休息？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 86,
+        "bond": 2,
+        "turn": 9
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":46,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0248_happy",
+    "input": {
+      "user_text": "今天面试过了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 82,
+        "bond": 7,
+        "turn": 13
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"恭喜！说一句你现在的心情就好。\",\"emotion\":\"cheerful\",\"volume\":66,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0049_interruptible",
+    "input": {
+      "user_text": "别展开了，直接说重点。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 51,
+        "bond": 5,
+        "turn": 26
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"好，我停。你现在最想问什么？\",\"emotion\":\"neutral\",\"volume\":49,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0085_interruptible",
+    "input": {
+      "user_text": "别展开了，直接说重点。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 34,
+        "bond": 7,
+        "turn": 13
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"行，换题。你先说。\",\"emotion\":\"neutral\",\"volume\":59,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0254_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 28,
+        "bond": 6,
+        "turn": 13
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"好，我记一下：记得喝水。\",\"emotion\":\"calm\",\"volume\":49,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0096_anxious",
+    "input": {
+      "user_text": "这封邮件让我不安。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 89,
+        "bond": 1,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"别急着结论。你现在最在意什么？\",\"emotion\":\"concerned\",\"volume\":43,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0206_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 57,
+        "bond": 7,
+        "turn": 13
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"我在。说一句你现在需要什么。\",\"emotion\":\"calm\",\"volume\":53,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0008_move_friends_v2_r2var",
+    "input": {
+      "user_text": "怕离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 80,
+        "bond": 7,
+        "turn": 20
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承接 Prior 的搬家/朋友；comfort。\n</think>\n\n[json]\n{\"utter\":\"想朋友很正常。要不要一起想一个保持联系的法子？\",\"emotion\":\"gentle\",\"volume\":41,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "听起来压力不小。最让你沉的是哪一点？"
+    ],
+    "meta": {
+      "scenario": "move_friends_v2",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2,
+      "variant": true
+    }
+  },
+  {
+    "id": "echo_syn_0014_playful",
+    "input": {
+      "user_text": "今天糟透了，整点轻松的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 78,
+        "bond": 8,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"好。要温和玩笑还是离谱一点的？\",\"emotion\":\"playful\",\"volume\":63,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0185_happy",
+    "input": {
+      "user_text": "今天面试过了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 26,
+        "bond": 8,
+        "turn": 29
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":73,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0047_tired",
+    "input": {
+      "user_text": "好累，别让我想太多。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 38,
+        "bond": 5,
+        "turn": 23
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":39,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0258_happy",
+    "input": {
+      "user_text": "周末要去旅行，好开心。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 45,
+        "bond": 4,
+        "turn": 25
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":74,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0017_neutral",
+    "input": {
+      "user_text": "今天天气怎么样？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 87,
+        "bond": 1,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":53,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0182_tired",
+    "input": {
+      "user_text": "能量见底了，说点短的。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 23,
+        "bond": 2,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"听到了。你休息，我陪着。\",\"emotion\":\"gentle\",\"volume\":36,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0081_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 16,
+        "bond": 3,
+        "turn": 6
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":57,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0060_playful",
+    "input": {
+      "user_text": "心情差，来点无厘头。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 82,
+        "bond": 1,
+        "turn": 12
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":59,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0193_tired",
+    "input": {
+      "user_text": "我快睡着了，轻声点。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 72,
+        "bond": 2,
+        "turn": 37
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"听到了。你休息，我陪着。\",\"emotion\":\"gentle\",\"volume\":39,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0098_interruptible",
+    "input": {
+      "user_text": "等等，打断一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 54,
+        "bond": 3,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"行，换题。你先说。\",\"emotion\":\"neutral\",\"volume\":53,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0119_anxious",
+    "input": {
+      "user_text": "这封邮件让我不安。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 56,
+        "bond": 4,
+        "turn": 33
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"别急着结论。你现在最在意什么？\",\"emotion\":\"concerned\",\"volume\":44,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0167_happy",
+    "input": {
+      "user_text": "周末要去旅行，好开心。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 57,
+        "bond": 7,
+        "turn": 23
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":70,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0189_end_turn",
+    "input": {
+      "user_text": "我先走一步。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 25,
+        "bond": 6,
+        "turn": 4
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好的，我在这儿等你回来。\",\"emotion\":\"calm\",\"volume\":43,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0174_anxious",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 51,
+        "bond": 6,
+        "turn": 16
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":46,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0256_tired",
+    "input": {
+      "user_text": "我快睡着了，轻声点。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 28,
+        "bond": 6,
+        "turn": 37
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"先喘口气，我不催你。\",\"emotion\":\"gentle\",\"volume\":31,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0075_end_turn",
+    "input": {
+      "user_text": "到这儿就好。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 18,
+        "bond": 6,
+        "turn": 28
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"收到，先这样。保重。\",\"emotion\":\"calm\",\"volume\":55,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0016_tired_shorter_r1",
+    "input": {
+      "user_text": "好累，别让我想太多。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 69,
+        "bond": 7,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n短句安抚。\n</think>\n\n[json]\n{\"utter\":\"没事，我在这儿。你先歇着。\",\"emotion\":\"gentle\",\"volume\":30,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired_shorter",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 1
+    }
+  },
+  {
+    "id": "echo_syn_0057_tired",
+    "input": {
+      "user_text": "我快睡着了，轻声点。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 43,
+        "bond": 1,
+        "turn": 15
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"听到了。你休息，我陪着。\",\"emotion\":\"gentle\",\"volume\":29,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0221_neutral",
+    "input": {
+      "user_text": "提醒我喝水。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 16,
+        "bond": 1,
+        "turn": 27
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"可以。你更想听建议还是随便聊？\",\"emotion\":\"calm\",\"volume\":53,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0102_interruptible",
+    "input": {
+      "user_text": "停一下，换个问题。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 74,
+        "bond": 4,
+        "turn": 21
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"好，我停。你现在最想问什么？\",\"emotion\":\"neutral\",\"volume\":52,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0028_playful",
+    "input": {
+      "user_text": "给我一句不严肃的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 46,
+        "bond": 6,
+        "turn": 15
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"好。要温和玩笑还是离谱一点的？\",\"emotion\":\"playful\",\"volume\":59,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0231_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 21,
+        "bond": 4,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":48,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0018_happy",
+    "input": {
+      "user_text": "今天面试过了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 58,
+        "bond": 7,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"恭喜！说一句你现在的心情就好。\",\"emotion\":\"cheerful\",\"volume\":75,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0013_move_friends_v3_r2var",
+    "input": {
+      "user_text": "离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 47,
+        "bond": 4,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承接 Prior 的搬家/朋友；comfort。\n</think>\n\n[json]\n{\"utter\":\"想朋友很正常。要不要一起想一个保持联系的法子？\",\"emotion\":\"gentle\",\"volume\":43,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "这事不小。眼下最沉的是哪一块？"
+    ],
+    "meta": {
+      "scenario": "move_friends_v3",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2,
+      "variant": true
+    }
+  },
+  {
+    "id": "echo_syn_0208_tired",
+    "input": {
+      "user_text": "先别追问，我就想静一下。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 30,
+        "bond": 7,
+        "turn": 7
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"没事，我在这儿。你先歇着。\",\"emotion\":\"gentle\",\"volume\":36,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0101_end_turn",
+    "input": {
+      "user_text": "我先走一步。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 50,
+        "bond": 3,
+        "turn": 8
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":45,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0031_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 78,
+        "bond": 7,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"别急着结论。你现在最在意什么？\",\"emotion\":\"concerned\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0029_playful",
+    "input": {
+      "user_text": "心情差，来点无厘头。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 85,
+        "bond": 8,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":62,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0188_playful",
+    "input": {
+      "user_text": "给我一句不严肃的。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 88,
+        "bond": 2,
+        "turn": 21
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"收到。先给你选择题：茶还是走走？\",\"emotion\":\"playful\",\"volume\":61,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0229_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 66,
+        "bond": 4,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":53,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0092_tired",
+    "input": {
+      "user_text": "先别追问，我就想静一下。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 79,
+        "bond": 7,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"听到了。你休息，我陪着。\",\"emotion\":\"gentle\",\"volume\":31,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0192_tired",
+    "input": {
+      "user_text": "能量见底了，说点短的。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 68,
+        "bond": 3,
+        "turn": 21
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"先喘口气，我不催你。\",\"emotion\":\"gentle\",\"volume\":32,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0046_happy",
+    "input": {
+      "user_text": "终于把项目交付了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 49,
+        "bond": 5,
+        "turn": 40
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"恭喜！说一句你现在的心情就好。\",\"emotion\":\"cheerful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0269_tired",
+    "input": {
+      "user_text": "能量见底了，说点短的。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 76,
+        "bond": 2,
+        "turn": 25
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":26,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0210_playful",
+    "input": {
+      "user_text": "逗我一下，别太重。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 31,
+        "bond": 6,
+        "turn": 24
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":68,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0154_happy",
+    "input": {
+      "user_text": "终于把项目交付了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 15,
+        "bond": 5,
+        "turn": 30
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":65,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0038_interruptible",
+    "input": {
+      "user_text": "停一下，换个问题。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 15,
+        "bond": 5,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"明白，我收短。你的新问题是？\",\"emotion\":\"neutral\",\"volume\":54,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0105_neutral",
+    "input": {
+      "user_text": "今天天气怎么样？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 34,
+        "bond": 4,
+        "turn": 18
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":46,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0088_end_turn",
+    "input": {
+      "user_text": "够了，回头再说。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 75,
+        "bond": 5,
+        "turn": 24
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":51,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0052_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 34,
+        "bond": 8,
+        "turn": 8
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我们可以只抓一件事。先说最担心的。\",\"emotion\":\"concerned\",\"volume\":41,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0259_happy",
+    "input": {
+      "user_text": "刚收到好消息。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 48,
+        "bond": 6,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":66,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0121_mute",
+    "input": {
+      "user_text": "静音一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 39,
+        "bond": 3,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0020_happy",
+    "input": {
+      "user_text": "周末要去旅行，好开心。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 77,
+        "bond": 4,
+        "turn": 7
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"太棒了，你值得！最开心的点是什么？\",\"emotion\":\"cheerful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0250_happy",
+    "input": {
+      "user_text": "周末要去旅行，好开心。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 59,
+        "bond": 4,
+        "turn": 7
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":63,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0001_tired",
+    "input": {
+      "user_text": "今天太长了，陪我待一会儿。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 57,
+        "bond": 4,
+        "turn": 26
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"听到了。你休息，我陪着。\",\"emotion\":\"gentle\",\"volume\":23,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0196_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 66,
+        "bond": 2,
+        "turn": 31
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"我在。说一句你现在需要什么。\",\"emotion\":\"calm\",\"volume\":56,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0146_anxious",
+    "input": {
+      "user_text": "我是不是想太多了？",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 75,
+        "bond": 4,
+        "turn": 37
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":55,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0026_happy",
+    "input": {
+      "user_text": "刚收到好消息。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 29,
+        "bond": 7,
+        "turn": 30
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":62,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0233_happy",
+    "input": {
+      "user_text": "刚收到好消息。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 79,
+        "bond": 5,
+        "turn": 34
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":75,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0234_happy",
+    "input": {
+      "user_text": "我升职了！",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 50,
+        "bond": 1,
+        "turn": 18
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"恭喜！说一句你现在的心情就好。\",\"emotion\":\"cheerful\",\"volume\":71,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0007_end_turn",
+    "input": {
+      "user_text": "到这儿就好。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 50,
+        "bond": 5,
+        "turn": 12
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":48,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0131_interruptible",
+    "input": {
+      "user_text": "别展开了，直接说重点。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 65,
+        "bond": 5,
+        "turn": 38
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"明白，我收短。你的新问题是？\",\"emotion\":\"neutral\",\"volume\":48,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0069_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 18,
+        "bond": 8,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"可以。你更想听建议还是随便聊？\",\"emotion\":\"calm\",\"volume\":48,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0263_interruptible",
+    "input": {
+      "user_text": "停一下，换个问题。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 62,
+        "bond": 3,
+        "turn": 7
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"收到打断。直接说重点就行。\",\"emotion\":\"neutral\",\"volume\":48,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0001_move_friends_r1",
+    "input": {
+      "user_text": "可能要为工作搬去别的城市。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 38,
+        "bond": 3,
+        "turn": 16
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认压力，意图澄清最重的一点。\n</think>\n\n[json]\n{\"utter\":\"这是大事。眼下最沉的是哪一块？\",\"emotion\":\"concerned\",\"volume\":50,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "move_friends",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 1
+    }
+  },
+  {
+    "id": "echo_syn_0158_tired",
+    "input": {
+      "user_text": "能量见底了，说点短的。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 87,
+        "bond": 5,
+        "turn": 33
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"没事，我在这儿。你先歇着。\",\"emotion\":\"gentle\",\"volume\":26,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0045_neutral",
+    "input": {
+      "user_text": "现在几点合适休息？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 70,
+        "bond": 7,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"好，我记一下：记得喝水。\",\"emotion\":\"calm\",\"volume\":52,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0041_neutral",
+    "input": {
+      "user_text": "提醒我喝水。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 86,
+        "bond": 6,
+        "turn": 28
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":53,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0077_tired",
+    "input": {
+      "user_text": "能量见底了，说点短的。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 45,
+        "bond": 8,
+        "turn": 37
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":23,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0009_tired",
+    "input": {
+      "user_text": "我快睡着了，轻声点。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 42,
+        "bond": 7,
+        "turn": 20
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":35,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0018_happy_detail_r1",
+    "input": {
+      "user_text": "我升职了！",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 50,
+        "bond": 4,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n祝贺并邀请一句感受。\n</think>\n\n[json]\n{\"utter\":\"太棒了，你值得！最开心的点是什么？\",\"emotion\":\"cheerful\",\"volume\":70,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy_detail",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 1
+    }
+  },
+  {
+    "id": "echo_syn_0228_tired",
+    "input": {
+      "user_text": "先别追问，我就想静一下。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 29,
+        "bond": 3,
+        "turn": 15
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"听到了。你休息，我陪着。\",\"emotion\":\"gentle\",\"volume\":22,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0022_interruptible",
+    "input": {
+      "user_text": "别展开了，直接说重点。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 65,
+        "bond": 6,
+        "turn": 16
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"好，我停。你现在最想问什么？\",\"emotion\":\"neutral\",\"volume\":50,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0002_happy",
+    "input": {
+      "user_text": "周末要去旅行，好开心。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 44,
+        "bond": 4,
+        "turn": 20
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":66,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0238_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 31,
+        "bond": 5,
+        "turn": 21
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我们可以只抓一件事。先说最担心的。\",\"emotion\":\"concerned\",\"volume\":51,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0214_end_turn",
+    "input": {
+      "user_text": "先挂了，谢谢。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 66,
+        "bond": 3,
+        "turn": 15
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好的，我在这儿等你回来。\",\"emotion\":\"calm\",\"volume\":42,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0222_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 82,
+        "bond": 6,
+        "turn": 8
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":52,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0241_interruptible",
+    "input": {
+      "user_text": "别展开了，直接说重点。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 21,
+        "bond": 3,
+        "turn": 35
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"收到打断。直接说重点就行。\",\"emotion\":\"neutral\",\"volume\":54,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0253_mute",
+    "input": {
+      "user_text": "图书馆模式。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 83,
+        "bond": 1,
+        "turn": 38
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"安静模式开着，我打字回复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0062_happy",
+    "input": {
+      "user_text": "刚收到好消息。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 74,
+        "bond": 4,
+        "turn": 4
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"恭喜！说一句你现在的心情就好。\",\"emotion\":\"cheerful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0213_tired",
+    "input": {
+      "user_text": "我快睡着了，轻声点。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 57,
+        "bond": 8,
+        "turn": 33
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":26,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0125_playful",
+    "input": {
+      "user_text": "逗我一下，别太重。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 82,
+        "bond": 5,
+        "turn": 37
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"收到。先给你选择题：茶还是走走？\",\"emotion\":\"playful\",\"volume\":57,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0043_playful",
+    "input": {
+      "user_text": "哄我笑一下。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 65,
+        "bond": 2,
+        "turn": 16
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"好。要温和玩笑还是离谱一点的？\",\"emotion\":\"playful\",\"volume\":68,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0173_neutral",
+    "input": {
+      "user_text": "今天天气怎么样？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 84,
+        "bond": 3,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":46,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0129_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 55,
+        "bond": 3,
+        "turn": 29
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":45,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0243_end_turn",
+    "input": {
+      "user_text": "够了，回头再说。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 52,
+        "bond": 7,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":43,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0197_end_turn",
+    "input": {
+      "user_text": "到这儿就好。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 32,
+        "bond": 3,
+        "turn": 10
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好，你去忙。需要时叫我。\",\"emotion\":\"calm\",\"volume\":42,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0008_interruptible",
+    "input": {
+      "user_text": "等等，打断一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 61,
+        "bond": 7,
+        "turn": 40
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"明白，我收短。你的新问题是？\",\"emotion\":\"neutral\",\"volume\":55,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0239_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 85,
+        "bond": 7,
+        "turn": 29
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"可以。你更想听建议还是随便聊？\",\"emotion\":\"calm\",\"volume\":57,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0255_end_turn",
+    "input": {
+      "user_text": "够了，回头再说。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 35,
+        "bond": 6,
+        "turn": 22
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":51,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0110_anxious",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 88,
+        "bond": 8,
+        "turn": 35
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":50,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0070_interruptible",
+    "input": {
+      "user_text": "等等，打断一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 63,
+        "bond": 3,
+        "turn": 25
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"好，我停。你现在最想问什么？\",\"emotion\":\"neutral\",\"volume\":48,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0151_playful",
+    "input": {
+      "user_text": "逗我一下，别太重。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 89,
+        "bond": 8,
+        "turn": 19
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":59,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0251_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 33,
+        "bond": 2,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":55,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0122_happy",
+    "input": {
+      "user_text": "终于把项目交付了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 28,
+        "bond": 3,
+        "turn": 7
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"恭喜！说一句你现在的心情就好。\",\"emotion\":\"cheerful\",\"volume\":77,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0083_end_turn",
+    "input": {
+      "user_text": "到这儿就好。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 35,
+        "bond": 5,
+        "turn": 34
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"好，你去忙。需要时叫我。\",\"emotion\":\"calm\",\"volume\":45,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0013_tired",
+    "input": {
+      "user_text": "先别追问，我就想静一下。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 45,
+        "bond": 8,
+        "turn": 36
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"好，我们说短一点。慢慢来。\",\"emotion\":\"gentle\",\"volume\":22,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0021_playful",
+    "input": {
+      "user_text": "心情差，来点无厘头。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 44,
+        "bond": 6,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":58,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0143_anxious",
+    "input": {
+      "user_text": "心里一直悬着。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 7
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"别急着结论。你现在最在意什么？\",\"emotion\":\"concerned\",\"volume\":49,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_mt_0002_move_friends_r2",
+    "input": {
+      "user_text": "离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 43,
+        "bond": 4,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承接搬家话题；安抚并给一个可行动点。\n</think>\n\n[json]\n{\"utter\":\"想朋友很正常。要不要一起想一个保持联系的法子？\",\"emotion\":\"gentle\",\"volume\":45,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "这是大事。眼下最沉的是哪一块？"
+    ],
+    "meta": {
+      "scenario": "move_friends",
+      "contract": "v3",
+      "multi_turn": true,
+      "round": 2
+    }
+  },
+  {
+    "id": "echo_syn_0015_end_turn",
+    "input": {
+      "user_text": "先挂了，谢谢。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 25,
+        "bond": 4,
+        "turn": 27
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"收到，先这样。保重。\",\"emotion\":\"calm\",\"volume\":55,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0171_playful",
+    "input": {
+      "user_text": "心情差，来点无厘头。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 78,
+        "bond": 3,
+        "turn": 32
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"行。坏日子配小玩笑：今天允许摆烂两分钟。\",\"emotion\":\"playful\",\"volume\":65,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0114_playful",
+    "input": {
+      "user_text": "心情差，来点无厘头。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 50,
+        "bond": 5,
+        "turn": 25
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"备用方案：零食，或者离谱舞步。你选哪个？\",\"emotion\":\"playful\",\"volume\":61,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0061_neutral",
+    "input": {
+      "user_text": "你在吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 76,
+        "bond": 5,
+        "turn": 34
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"可以。你更想听建议还是随便聊？\",\"emotion\":\"calm\",\"volume\":53,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0058_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 16,
+        "bond": 5,
+        "turn": 13
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0163_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 16,
+        "bond": 3,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"可以。你更想听建议还是随便聊？\",\"emotion\":\"calm\",\"volume\":56,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0099_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 60,
+        "bond": 2,
+        "turn": 21
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":51,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0156_mute",
+    "input": {
+      "user_text": "静音一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 73,
+        "bond": 2,
+        "turn": 34
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0056_happy",
+    "input": {
+      "user_text": "刚收到好消息。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 74,
+        "bond": 7,
+        "turn": 28
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":75,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0115_anxious",
+    "input": {
+      "user_text": "明天汇报好紧张。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 33,
+        "bond": 3,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我在听。把最重的那一点说出来就好。\",\"emotion\":\"concerned\",\"volume\":46,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0140_tired",
+    "input": {
+      "user_text": "先别追问，我就想静一下。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 21,
+        "bond": 4,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"没事，我在这儿。你先歇着。\",\"emotion\":\"gentle\",\"volume\":40,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0134_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 50,
+        "bond": 5,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我在听。把最重的那一点说出来就好。\",\"emotion\":\"concerned\",\"volume\":47,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0209_mute",
+    "input": {
+      "user_text": "开会中，只回文字。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 84,
+        "bond": 5,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"收到，不出声，文字答复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0264_happy",
+    "input": {
+      "user_text": "终于把项目交付了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 68,
+        "bond": 7,
+        "turn": 35
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":69,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0244_mute",
+    "input": {
+      "user_text": "静音一下。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 15,
+        "bond": 2,
+        "turn": 29
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"安静模式开着，我打字回复。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "mute",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0126_playful",
+    "input": {
+      "user_text": "逗我一下，别太重。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 41,
+        "bond": 1,
+        "turn": 23
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"备用方案：零食，或者离谱舞步。你选哪个？\",\"emotion\":\"playful\",\"volume\":65,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0183_end_turn",
+    "input": {
+      "user_text": "先这样吧，我去忙了。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 74,
+        "bond": 7,
+        "turn": 11
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n用户收束；intent=close，end_turn=true。\n</think>\n\n[json]\n{\"utter\":\"行，回头再聊。\",\"emotion\":\"calm\",\"volume\":43,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0157_anxious",
+    "input": {
+      "user_text": "总觉得漏了什么。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 66,
+        "bond": 8,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"我在听。把最重的那一点说出来就好。\",\"emotion\":\"concerned\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0207_neutral",
+    "input": {
+      "user_text": "随便聊聊也行。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 85,
+        "bond": 3,
+        "turn": 23
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n平静闲聊；正常音量；意图 chat。\n</think>\n\n[json]\n{\"utter\":\"在的。你想聊哪一块？\",\"emotion\":\"calm\",\"volume\":56,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "neutral",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0111_interruptible",
+    "input": {
+      "user_text": "停一下，换个问题。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 58,
+        "bond": 7,
+        "turn": 37
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n确认打断并缩短；intent=interrupt_ack。\n</think>\n\n[json]\n{\"utter\":\"收到打断。直接说重点就行。\",\"emotion\":\"neutral\",\"volume\":56,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "interruptible",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0170_playful",
+    "input": {
+      "user_text": "心情差，来点无厘头。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 78,
+        "bond": 1,
+        "turn": 34
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"好。要温和玩笑还是离谱一点的？\",\"emotion\":\"playful\",\"volume\":58,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0068_playful",
+    "input": {
+      "user_text": "哄我笑一下。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 49,
+        "bond": 5,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"收到。先给你选择题：茶还是走走？\",\"emotion\":\"playful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "playful",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0215_happy",
+    "input": {
+      "user_text": "今天面试过了。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 24,
+        "bond": 6,
+        "turn": 22
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"厉害。哪一步最有成就感？\",\"emotion\":\"cheerful\",\"volume\":63,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  },
+  {
+    "id": "echo_syn_0030_happy",
+    "input": {
+      "user_text": "刚收到好消息。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 45,
+        "bond": 2,
+        "turn": 20
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"好消息！想先庆祝一下吗？\",\"emotion\":\"cheerful\",\"volume\":64,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "happy",
+      "contract": "v3"
+    }
+  }
+]

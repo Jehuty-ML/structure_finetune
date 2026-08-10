@@ -1,15 +1,30 @@
-# Echo SFT（LoRA）— 训练前请填写模型路径
-model_name_or_path: "Qwen/Qwen2.5-1.5B-Instruct"  # 或本地 1.7B/3B/8B 路径
-data_path: "examples/echo/sample_data/train_sample.json"
+# Echo SFT（LoRA）
+# 流程：契约门禁 -> ModelScope 解析基座 -> Unsloth 真训
+# 无合格数据不会进入 GPU 训练。默认不访问 HuggingFace。
+
+model_source: modelscope   # modelscope | local | huggingface（不推荐）
+model_name_or_path: "Qwen/Qwen3-1.7B"
+# model_name_or_path: "Qwen/Qwen3-4B"
+# model_name_or_path: "Qwen/Qwen3-8B"
+# 已下载的本地目录也可直接写绝对路径，并设 model_source: local
+model_cache_dir: "models/base"
+
+data_path: "examples/echo/sample_data/train.json"
+val_data_path: "examples/echo/sample_data/val.json"
 system_prompt_path: "examples/echo/prompts/system_prompt.txt"
+schema_path: "schemas/echo_turn.schema.json"
 output_dir: "outputs/echo_lora"
 
 max_seq_length: 2048
 load_in_4bit: true
+# ModelScope 拉完后会强制本地加载；仅当完全离线且已缓存时设 true
+local_files_only: false
 
 lora_r: 16
 lora_alpha: 32
 lora_dropout: 0.05
+use_rslora: false
+use_dora: false
 
 learning_rate: 2.0e-4
 per_device_train_batch_size: 1
@@ -18,7 +33,9 @@ num_train_epochs: 3
 warmup_steps: 20
 logging_steps: 5
 seed: 3407
+packing: false
+# Windows 下保持 1，避免 Unsloth tokenize 多进程崩溃
+dataset_num_proc: 1
 
-# dry_run=true：仅做契约检查（无需 GPU）。
-# 在 src/structured_llm/train 接入 Unsloth/PEFT 后改为 false。
-dry_run: true
+# true=只跑契约门禁；false=门禁通过后启动 Unsloth 真训
+dry_run: false

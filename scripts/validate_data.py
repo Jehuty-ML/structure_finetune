@@ -29,8 +29,10 @@ def main() -> None:
     rows = list(iter_sft_rows(args.data))
     report = []
     ok_n = 0
+    warn_n = 0
     for row in rows:
-        vr = validate_turn(row["output"], schema_path=args.schema)
+        inp = row["input"] if isinstance(row.get("input"), dict) else None
+        vr = validate_turn(row["output"], schema_path=args.schema, input_obj=inp)
         report.append(
             {
                 "id": row.get("id"),
@@ -39,13 +41,15 @@ def main() -> None:
                 "warnings": vr.warnings,
             }
         )
+        if vr.warnings:
+            warn_n += 1
         if vr.ok:
             ok_n += 1
         else:
             print(f"失败 {row.get('id')}: {vr.errors}")
 
     rate = ok_n / len(rows) if rows else 0.0
-    print(f"格式/Schema 合法：{ok_n}/{len(rows)} ({rate:.1%})")
+    print(f"格式/Schema 合法：{ok_n}/{len(rows)} ({rate:.1%})；含警告行：{warn_n}")
 
     if args.json_out:
         Path(args.json_out).write_text(

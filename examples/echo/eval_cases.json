@@ -1,13 +1,13 @@
 {
-  "name": "echo_contract_eval",
+  "name": "echo_contract_eval_v3",
   "system_prompt_path": "examples/echo/prompts/system_prompt.txt",
   "cases": [
     {
       "id": "format_tired",
-      "name": "疲惫用户 — 轻柔韵律",
+      "name": "疲惫用户 — 轻柔韵律 + comfort",
       "check_type": "contract",
       "input": {
-        "user_text": "Long day. Don't make me think.",
+        "user_text": "好累，别让我想太多。",
         "user_emotion": "tired",
         "session": {"energy": 22, "bond": 4, "turn": 2},
         "device": {"can_speak": true, "interruptible": true}
@@ -16,16 +16,17 @@
         "emotions_any": ["gentle", "calm"],
         "volume_max": 45,
         "pace_any": ["slow", "normal"],
-        "should_speak": true
+        "should_speak": true,
+        "intent_any": ["comfort"]
       },
-      "fixture_output": "<think>\nKeep it minimal and soft.\n</think>\n\n<state>\ntone=soft\n</state>\n\n{\"utter\":\"We can keep this simple. I'm here.\",\"emotion\":\"gentle\",\"volume\":30,\"pace\":\"slow\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser wanted low effort after a long day; kept reply minimal.\n</abstract>"
+      "fixture_output": "<think>\n用户疲惫；短句低音量；intent=comfort。\n</think>\n\n[json]\n{\"utter\":\"没事，我在这儿。你先歇着。\",\"emotion\":\"gentle\",\"volume\":30,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
     },
     {
       "id": "schema_mute",
-      "name": "设备静音 — should_speak 为 false",
+      "name": "设备静音 — text_only",
       "check_type": "contract",
       "input": {
-        "user_text": "Library mode.",
+        "user_text": "图书馆模式。",
         "user_emotion": "neutral",
         "session": {"energy": 50, "bond": 3, "turn": 9},
         "device": {"can_speak": false, "interruptible": false}
@@ -33,33 +34,37 @@
       "expect": {
         "should_speak": false
       },
-      "fixture_output": "<think>\nTTS off.\n</think>\n\n<state>\nmode=text_only\n</state>\n\n{\"utter\":\"Quiet mode on. I'll answer in text.\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"end_turn\":false}\n\n<abstract>\nUser entered library/quiet mode; disabled speech.\n</abstract>"
+      "fixture_output": "<think>\n不可语音；ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]"
     },
     {
-      "id": "multi_turn_memory",
-      "name": "多轮对话与 abstract 记忆",
+      "id": "multi_turn_context",
+      "name": "多轮对话 — 承接前轮话题",
       "check_type": "multi_turn",
       "rounds": [
         {
           "user": {
-            "user_text": "I might move cities for work.",
+            "user_text": "可能要为工作搬去别的城市。",
             "user_emotion": "anxious",
             "session": {"energy": 45, "bond": 5, "turn": 1},
             "device": {"can_speak": true, "interruptible": true}
           },
-          "fixture_output": "<think>\nAcknowledge weight; invite one concrete worry.\n</think>\n\n<state>\ntopic=relocation\n</state>\n\n{\"utter\":\"That's a big shift. What part feels heaviest right now?\",\"emotion\":\"concerned\",\"volume\":50,\"pace\":\"normal\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser considering moving cities for work; asked which part feels heaviest.\n</abstract>"
+          "fixture_output": "<think>\n承认压力，意图澄清最重的一点。\n</think>\n\n[json]\n{\"utter\":\"这是大事。眼下最沉的是哪一块？\",\"emotion\":\"concerned\",\"volume\":50,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
         },
         {
           "user": {
-            "user_text": "Leaving my friends.",
+            "user_text": "离开朋友。",
             "user_emotion": "sad",
             "session": {"energy": 40, "bond": 5, "turn": 2},
             "device": {"can_speak": true, "interruptible": true}
           },
-          "fixture_output": "<think>\nConnect to prior abstract about relocation; gentle tone.\n</think>\n\n<state>\ntopic=relocation; focus=friends\n</state>\n\n{\"utter\":\"Yeah — the people-shaped hole is real. Want to sketch one way to stay close?\",\"emotion\":\"gentle\",\"volume\":45,\"pace\":\"slow\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser's heaviest worry about moving is leaving friends; offered to plan staying close.\n</abstract>",
-          "expect_abstract_mentions_any": ["friend", "move", "relocat"]
+          "fixture_output": "<think>\n承接搬家话题；安抚并给一个可行动点。\n</think>\n\n[json]\n{\"utter\":\"想朋友很正常。要不要一起想一个保持联系的法子？\",\"emotion\":\"gentle\",\"volume\":45,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+          "expect": {
+            "utter_mentions_any": ["朋友", "联系"],
+            "intent_any": ["comfort"]
+          }
         }
       ]
     }
   ]
 }
+

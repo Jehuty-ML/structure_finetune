@@ -10,6 +10,14 @@ def load_json(path: str | Path) -> Any:
         return json.load(f)
 
 
+def save_json(path: str | Path, obj: Any) -> None:
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+
 def iter_sft_rows(path: str | Path) -> Iterator[dict[str, Any]]:
     data = load_json(path)
     if not isinstance(data, list):
@@ -20,15 +28,29 @@ def iter_sft_rows(path: str | Path) -> Iterator[dict[str, Any]]:
         yield row
 
 
-def format_user_message(input_obj: Any, abstracts: list[str] | None = None) -> str:
-    """构造用户侧内容：可选 abstract 记忆 + JSON 输入。"""
+def format_user_message(
+    input_obj: Any, prior_utters: list[str] | None = None
+) -> str:
+    """构造用户侧内容：可选前几轮口播 + JSON 输入。"""
     parts: list[str] = []
-    if abstracts:
-        for i, abstract in enumerate(abstracts, start=1):
-            parts.append(f"Abstract {i}: {abstract}")
+    if prior_utters:
+        for i, utter in enumerate(prior_utters, start=1):
+            parts.append(f"Prior {i}: {utter}")
     if isinstance(input_obj, str):
         payload = input_obj
     else:
         payload = json.dumps(input_obj, ensure_ascii=False)
     parts.append(f"User: {payload}")
     return "\n".join(parts)
+
+
+from .generate_echo import generate_dataset, split_train_val  # noqa: E402
+
+__all__ = [
+    "load_json",
+    "save_json",
+    "iter_sft_rows",
+    "format_user_message",
+    "generate_dataset",
+    "split_train_val",
+]

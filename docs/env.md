@@ -19,3 +19,20 @@ conda activate structured-llm
 ```
 
 契约校验与 `--mode fixture` 评测只需较轻依赖（`PyYAML`、`jsonschema`），无 GPU 也可跑。完整 SFT 需要 CUDA，以及 `requirements.txt` 中的 Unsloth 相关栈。
+
+## 模型下载（默认 ModelScope）
+
+本仓库 **默认不走 HuggingFace**（国内常超时）。训练前可用：
+
+```bash
+python scripts/download_model.py --model Qwen/Qwen3-1.7B
+```
+
+权重落到 `models/base/`。`sft_lora.yaml` 中：
+
+```yaml
+model_source: modelscope
+model_name_or_path: "Qwen/Qwen3-1.7B"
+```
+
+若已有本地目录，可写绝对路径并设 `model_source: local`。

@@ -6,11 +6,10 @@ from dataclasses import dataclass
 from typing import Any, Optional
 
 
+# v3：think → [json]{...}[/json]（已移除 state / abstract）
 _BLOCK_RE = re.compile(
     r"<think>\s*(?P<think>.*?)\s*</think>\s*"
-    r"<state>\s*(?P<state>.*?)\s*</state>\s*"
-    r"(?P<json>\{.*?\})\s*"
-    r"<abstract>\s*(?P<abstract>.*?)\s*</abstract>\s*\Z",
+    r"\[json\]\s*(?P<json>\{.*?\})\s*\[/json\]\s*\Z",
     re.DOTALL,
 )
 
@@ -18,15 +17,13 @@ _BLOCK_RE = re.compile(
 @dataclass
 class ParsedTurn:
     think: str
-    state: str
     payload: dict[str, Any]
-    abstract: str
     raw_json: str
 
 
 def parse_turn(text: str) -> ParsedTurn:
     """
-    解析 Echo 风格的多块回合。
+    解析 Echo v3 多块回合：think → [json]…[/json]。
 
     外层结构无法恢复时抛出 ValueError。
     """
@@ -37,8 +34,7 @@ def parse_turn(text: str) -> ParsedTurn:
     match = _BLOCK_RE.match(normalized)
     if not match:
         raise ValueError(
-            "回合不符合约定顺序："
-            "<think> -> <state> -> JSON -> <abstract>"
+            "回合不符合约定顺序：<think> -> [json]{...}[/json]"
         )
 
     raw_json = match.group("json").strip()
@@ -52,9 +48,7 @@ def parse_turn(text: str) -> ParsedTurn:
 
     return ParsedTurn(
         think=match.group("think").strip(),
-        state=match.group("state").strip(),
         payload=payload,
-        abstract=match.group("abstract").strip(),
         raw_json=raw_json,
     )
 
@@ -64,3 +58,4 @@ def try_parse_turn(text: str) -> tuple[Optional[ParsedTurn], Optional[str]]:
         return parse_turn(text), None
     except ValueError as exc:
         return None, str(exc)
+

@@ -25,7 +25,7 @@ def main() -> None:
 
     os.chdir(ROOT)
     config = load_yaml(args.config)
-    out = run_sft(config)
+    out = run_sft(config, project_root=ROOT)
     print(f"输出目录={out}")
 
 

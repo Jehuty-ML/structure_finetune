@@ -2,51 +2,51 @@
   {
     "id": "echo_001",
     "input": {
-      "user_text": "I'm exhausted. Just stay with me a minute.",
+      "user_text": "好累，别让我想太多。",
       "user_emotion": "tired",
       "session": {"energy": 28, "bond": 4, "turn": 3},
       "device": {"can_speak": true, "interruptible": true}
     },
-    "output": "<think>\nUser is tired; keep utter short, volume low, pace slow.\n</think>\n\n<state>\ntone=soft; energy_hint=low\n</state>\n\n{\"utter\":\"I'm here. No rush — breathe for a bit.\",\"emotion\":\"gentle\",\"volume\":32,\"pace\":\"slow\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser felt exhausted; offered quiet presence with a short soft line.\n</abstract>"
+    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"没事，我在这儿。你先歇着。\",\"emotion\":\"gentle\",\"volume\":32,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
   },
   {
     "id": "echo_002",
     "input": {
-      "user_text": "I just got a promotion!",
+      "user_text": "我升职了！",
       "user_emotion": "happy",
       "session": {"energy": 80, "bond": 5, "turn": 8},
       "device": {"can_speak": true, "interruptible": true}
     },
-    "output": "<think>\nCelebrate briefly; cheerful emotion, higher volume but not shouting.\n</think>\n\n<state>\ntone=upbeat; topic=celebration\n</state>\n\n{\"utter\":\"That's awesome — you earned this. Tell me the best part!\",\"emotion\":\"cheerful\",\"volume\":72,\"pace\":\"normal\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser shared a promotion; celebrated and invited one highlight.\n</abstract>"
+    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"太棒了，你值得！最开心的点是什么？\",\"emotion\":\"cheerful\",\"volume\":72,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
   },
   {
     "id": "echo_003",
     "input": {
-      "user_text": "Can you mute for now? I'll type.",
+      "user_text": "图书馆模式。",
       "user_emotion": "neutral",
-      "session": {"energy": 55, "bond": 3, "turn": 15},
+      "session": {"energy": 50, "bond": 3, "turn": 9},
       "device": {"can_speak": false, "interruptible": false}
     },
-    "output": "<think>\nDevice cannot speak; should_speak=false; keep utter usable as on-screen text.\n</think>\n\n<state>\nmode=text_only; tts=off\n</state>\n\n{\"utter\":\"Got it — I'll stay quiet and reply in text.\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"end_turn\":false}\n\n<abstract>\nUser requested mute; switched to text-only replies.\n</abstract>"
+    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]"
   },
   {
     "id": "echo_004",
     "input": {
-      "user_text": "Something feels off about this email. Am I overthinking?",
+      "user_text": "这封邮件让我不安。",
       "user_emotion": "anxious",
-      "session": {"energy": 40, "bond": 6, "turn": 21},
+      "session": {"energy": 42, "bond": 4, "turn": 5},
       "device": {"can_speak": true, "interruptible": true}
     },
-    "output": "<think>\nValidate concern without amplifying anxiety; calm tone, moderate volume.\n</think>\n\n<state>\ntone=steady; topic=email_doubt\n</state>\n\n{\"utter\":\"You're not silly for pausing. What's the one line that feels wrong?\",\"emotion\":\"concerned\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser doubted an email; asked for the single suspicious line.\n</abstract>"
+    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
   },
   {
     "id": "echo_005",
     "input": {
-      "user_text": "Make me laugh. Bad day.",
+      "user_text": "今天糟透了，整点轻松的。",
       "user_emotion": "sad",
-      "session": {"energy": 35, "bond": 7, "turn": 30},
+      "session": {"energy": 35, "bond": 5, "turn": 12},
       "device": {"can_speak": true, "interruptible": true}
     },
-    "output": "<think>\nLight playful joke; avoid mean humor; slightly brighter volume.\n</think>\n\n<state>\ntone=playful; intent=mood_lift\n</state>\n\n{\"utter\":\"Okay. My backup plan for bad days is snacks and questionable dancing. Want the snack list or the dance?\",\"emotion\":\"playful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"end_turn\":false}\n\n<abstract>\nUser wanted a laugh after a bad day; offered a light silly choice.\n</abstract>"
+    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"备用方案：零食，或者离谱舞步。你选哪个？\",\"emotion\":\"playful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
   }
 ]

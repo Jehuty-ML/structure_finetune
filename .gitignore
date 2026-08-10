@@ -7,6 +7,8 @@ __pycache__/
 .ruff_cache/
 outputs/
 models/
+!models/**/.gitkeep
+cache/
 data/raw/
 data/processed/
 *.safetensors
