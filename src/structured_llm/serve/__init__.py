@@ -1,23 +1,23 @@
-"""可选的 FastAPI 服务辅助：返回解析后的 VoiceTurn 对象。"""
+"""Echo 服务层：解析、假 TTS、真机对话回合。"""
 
 from __future__ import annotations
 
-from typing import Any
+from structured_llm.serve.chat import (
+    build_user_input,
+    guess_emotion,
+    run_echo_turn,
+    should_force_mute,
+)
+from structured_llm.serve.response import (
+    fake_tts_consume,
+    parse_generation_to_response,
+)
 
-from structured_llm.contract import validate_turn
-
-
-def parse_generation_to_response(
-    text: str, schema_path: str = "schemas/echo_turn.schema.json"
-) -> dict[str, Any]:
-    result = validate_turn(text, schema_path=schema_path)
-    if not result.ok or result.parsed is None:
-        return {"ok": False, "errors": result.errors, "raw": text}
-    p = result.parsed
-    return {
-        "ok": True,
-        "think": p.think,
-        "voice": p.payload,
-        "warnings": result.warnings,
-    }
-
+__all__ = [
+    "parse_generation_to_response",
+    "fake_tts_consume",
+    "run_echo_turn",
+    "build_user_input",
+    "guess_emotion",
+    "should_force_mute",
+]
