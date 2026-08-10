@@ -2,9 +2,11 @@
 
 **把小模型的结构化输出训稳——而不是靠 Prompt 碰运气。**
 
+> **English:** A reproducible pipeline to **SFT small LLMs (1.7B–8B) into a fixed output contract** (parseable by TTS / UI / tools)—not prompt lottery. Demo: **Echo**, a fictional on-device voice companion. Contract v3: `<think>` + `[json]{…}[/json]`. Validate → train (optional GPU) → eval → FastAPI returning structured `VoiceTurn`.
+
 当你要在端侧或低成本 GPU 上部署 **1.7B / 3B / 8B** 模型时，往往不只是「会聊天」。你需要一份 **固定契约**：每一轮输出都能被 TTS、UI 状态机、工具或游戏引擎稳定解析。大模型 API + Prompt 可以在演示里凑合；**小模型要把格式通过 SFT 焊进权重**，再用校验与评测证明它靠谱。
 
-本仓库是一套可复用流水线，Demo 场景为 **Echo**：面向语音播报的角色助手。
+本仓库是一套可复用流水线，Demo 场景为 **Echo**：面向语音播报的角色助手。许可证：[MIT](LICENSE)。
 
 ---
 
@@ -41,8 +43,6 @@ Echo 是虚构的端侧伙伴。每一轮必须同时驱动 **三条通道**：
 | 机器控制 | App | `intent`、`ui_mode`、`should_speak`、`end_turn` |
 
 详见 [`docs/schema.md`](docs/schema.md) 与 [`schemas/echo_turn.schema.json`](schemas/echo_turn.schema.json)。
-
-项目计划 / 里程碑：[`docs/roadmap.md`](docs/roadmap.md)。
 
 ### 输出格式示例
 
@@ -135,17 +135,20 @@ python scripts/validate_data.py --data examples/echo/sample_data/train.json
   评测套件                        ← 格式 · Schema · TTS 安全 · 多轮承接
         │
         ▼
-  服务（可选 FastAPI）            ← 返回解析后的 VoiceTurn，而非裸文本
+  真机对话 / 可选 API           ← chat_echo：生成+解析；HTTP 仅附录测解析
 ```
 
 ---
 
 ## 快速开始
 
-环境与 CUDA 说明见 [`docs/env.md`](docs/env.md)。
+### 最小路径（无 GPU）
+
+环境与 CUDA 说明见 [`docs/env.md`](docs/env.md)。轻量依赖见 `requirements-min.txt`。
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-min.txt
+# 已有 llm_dev 等训练环境也请执行上一行（补齐 fastapi/uvicorn）
 
 # 合成并划分 train/val（或直接使用已提交的数据）
 python scripts/generate_echo_data.py --count 300 --seed 3407
@@ -157,14 +160,48 @@ python scripts/validate_data.py --data examples/echo/sample_data/val.json
 # 对模型输出做契约检查（离线 / fixture 模式）
 python scripts/evaluate.py --cases examples/echo/eval_cases.json --mode fixture
 
-# 训练（先契约门禁；基座默认 ModelScope，见 docs/train.md）
+# 可选：契约门禁 dry-run（不占 GPU）
+# 将 examples/echo/configs/sft_lora.yaml 中 dry_run 设为 true 后：
+# python scripts/train.py --config examples/echo/configs/sft_lora.yaml
+```
+
+### 训练与对比评测（需 GPU）
+
+完整依赖见 `requirements.txt`（建议 conda 环境）。详见 [`docs/train.md`](docs/train.md)。
+
+```bash
+# 训练（先契约门禁；基座默认 ModelScope）
 python scripts/train.py --config examples/echo/configs/sft_lora.yaml
 
-# 真机对比：Prompt-only 基座 vs LoRA（需 GPU / llm_dev）
+# 真机对比：Prompt-only 基座 vs LoRA
 python scripts/evaluate.py --mode generate --compare `
   --base-model Qwen/Qwen3-1.7B `
   --adapter outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043 `
   --json-out outputs/eval_compare_v3.json
+```
+
+### 服务 / 真机对话演示
+
+详见 [`docs/serve.md`](docs/serve.md)、[`docs/roadmap.md`](docs/roadmap.md) 阶段 4。
+
+**主路径（需 GPU + LoRA）：**
+
+```bash
+# 固定场景验收
+python scripts/chat_echo.py `
+  --adapter outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043 `
+  --accept
+
+# 交互真聊
+python scripts/chat_echo.py `
+  --adapter outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043
+```
+
+**附录（无 GPU，只测解析器）：**
+
+```bash
+python scripts/serve_api.py --host 127.0.0.1 --port 8000
+python scripts/smoke_serve.py
 ```
 
 ---
@@ -182,7 +219,9 @@ structured-llm-pipeline/
 │   ├── env.md                 # 安装 / CUDA 说明
 │   ├── train.md               # 小模型 SFT 说明
 │   ├── data_quality.md        # 硬失败 / 警告规则
-│   └── roadmap.md             # 项目计划与里程碑
+│   ├── results.md             # 评测对比数字
+│   ├── serve.md               # 阶段4：真聊为主，HTTP 解析为辅
+│   └── roadmap.md             # 项目计划
 ├── schemas/
 │   └── echo_turn.schema.json  # [json] 内对象的 JSON Schema
 ├── src/structured_llm/
@@ -190,24 +229,30 @@ structured-llm-pipeline/
 │   ├── data/                  # 数据集辅助
 │   ├── train/                 # SFT 入口（面向 Unsloth/PEFT）
 │   ├── eval/                  # 格式 / Schema / TTS / 多轮指标
-│   └── serve/                 # 可选：返回解析对象的 API 辅助
+│   └── serve/                 # FastAPI：返回解析后的 VoiceTurn
 ├── examples/echo/
 │   ├── prompts/
 │   ├── sample_data/
 │   ├── eval_cases.json
 │   └── configs/
+├── LICENSE
+├── requirements-min.txt       # 无 GPU 最小依赖
 └── scripts/
     ├── validate_data.py
     ├── train.py
     ├── evaluate.py
-    └── serve.py
+    ├── chat_echo.py           # 真机对话（LoRA 生成 + 契约解析）
+    ├── serve.py               # CLI：解析单段生成文本
+    ├── serve_api.py           # 可选：FastAPI 只做解析
+    ├── demo_request.py        # 可选：假 raw 打 API
+    └── smoke_serve.py         # 可选：API 冒烟
 ```
 
 ---
 
 ## 什么叫「做好了」（建议汇报的指标）
 
-作品集或内部报告中，在同一评测集上对比 **小模型 + 纯 Prompt** vs **SFT adapter**：
+作品集报告中，在同一评测集上对比 **小模型 + 纯 Prompt** vs **SFT adapter**：
 
 - **格式合法率** — 块顺序与标签正确（`think` → `[json]…[/json]`）
 - **Schema 合法率** — `[json]` 内可解析且通过 Schema（必填字段、取值范围）
@@ -238,4 +283,4 @@ Adapter：`outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043`
 
 ## 许可证
 
-MIT（或自选）。Demo 人设与样例对话均为虚构；请勿纳入专有数据集。
+[MIT](LICENSE)。Demo 人设与样例对话均为虚构；请勿纳入非公开数据集。
