@@ -19,3 +19,4 @@ data/processed/
 .idea/
 .vscode/
 *.log
+docs/roadmap.md
