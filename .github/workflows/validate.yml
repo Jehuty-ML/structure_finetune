@@ -1,4 +1,4 @@
-name: validate-echo-data
+name: validate-contracts
 on:
   push:
   pull_request:
@@ -12,9 +12,15 @@ jobs:
           python-version: "3.10"
       - name: 安装轻量依赖
         run: pip install -r requirements-min.txt
-      - name: 校验 train
+      - name: 校验 Echo train
         run: python scripts/validate_data.py --data examples/echo/sample_data/train.json
-      - name: 校验 val
+      - name: 校验 Echo val
         run: python scripts/validate_data.py --data examples/echo/sample_data/val.json
-      - name: fixture 评测
+      - name: Echo fixture 评测
         run: python scripts/evaluate.py --mode fixture
+      - name: 校验 Quest train
+        run: python scripts/validate_data.py --contract quest --data examples/quest/sample_data/train.json
+      - name: 校验 Quest val
+        run: python scripts/validate_data.py --contract quest --data examples/quest/sample_data/val.json
+      - name: Quest fixture 评测
+        run: python scripts/evaluate.py --contract quest --mode fixture

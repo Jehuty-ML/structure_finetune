@@ -49,7 +49,7 @@
 | 要在本地 / 端侧跑小模型，要 **便宜、私有、格式可复现** | 真实业务私有数据或现成商用人设 |
 | 作品集 / 工程实践：契约 → 门禁 → SFT → 对比评测 | 刷榜式通用能力、纯 Prompt 调教大模型 API |
 
-详见 [`docs/roadmap.md`](docs/roadmap.md)「非目标」。
+**非目标：** 不做完整 TTS SDK / 客户端 App；不提供真实业务私有数据或商用人设；不追求刷榜式通用能力。
 
 ---
 
@@ -306,7 +306,6 @@ python scripts/smoke_serve.py
 | [`docs/train.md`](docs/train.md) | SFT 说明 |
 | [`docs/results.md`](docs/results.md) | 评测对比数字 |
 | [`docs/serve.md`](docs/serve.md) | 真聊 / 服务 |
-| [`docs/roadmap.md`](docs/roadmap.md) | 阶段计划 |
 | [`docs/env.md`](docs/env.md) | 安装 / CUDA |
 | [`docs/github.md`](docs/github.md) | GitHub About / Topics / Social preview |
 
@@ -316,7 +315,7 @@ python scripts/smoke_serve.py
 
 ```text
 structured-llm-pipeline/
-├── docs/                  # 设计、契约、训练、评测、路线图
+├── docs/                  # 设计、契约、训练、评测
 │   └── assets/            # README 示意图 + social preview
 ├── schemas/               # Echo JSON Schema
 ├── src/structured_llm/    # contract · data · train · eval · serve

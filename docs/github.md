@@ -2,12 +2,21 @@
 
 仓库：https://github.com/Jehuty-ML/structure_finetune
 
+## About 用英文还是中文？
+
+- **Topics** 几乎全是英文标签（`llm`、`fine-tuning`…），用英文才进得了 GitHub 搜索与相关仓库推荐。
+- **About** 一句话会出现在仓库卡片、搜索结果、社交分享上，面向「逛 GitHub 的人」时英文覆盖面更大。
+- README 可以继续以中文为主；About 与正文不必同一语言。
+
+若更在意国内读者一眼看懂，可改用下面的中文 About（Topics 仍建议保留英文）。
+
 ## About / Topics（可用 `gh`）
+
+英文（推荐，利于发现）：
 
 ```bash
 gh repo edit Jehuty-ML/structure_finetune `
-  --description "SFT small LLMs into a fixed output contract — Echo (voice) & Quest (RPG). Not prompt lottery." `
-  --homepage "" `
+  --description "SFT small LLMs (1.7B–8B) into a fixed output contract for TTS / UI / game engines. Demos: Echo (voice), Quest (RPG)." `
   --add-topic llm `
   --add-topic fine-tuning `
   --add-topic sft `
@@ -18,9 +27,12 @@ gh repo edit Jehuty-ML/structure_finetune `
   --add-topic game-ai
 ```
 
-建议英文一句话（About）：
+中文（可选）：
 
-> SFT small LLMs (1.7B–8B) into a fixed output contract for TTS / UI / game engines. Demos: Echo (voice), Quest (RPG).
+```bash
+gh repo edit Jehuty-ML/structure_finetune `
+  --description "把小模型 SFT 成固定输出契约，对接 TTS / UI / 游戏引擎。Demo：Echo（语音）、Quest（RPG）。"
+```
 
 ## Social preview 图
 
