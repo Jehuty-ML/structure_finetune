@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title">
+  <title id="title">structured-llm-pipeline social preview</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
+    <style>
+      .brand { font: 700 42px "Segoe UI", system-ui, sans-serif; fill: #f8fafc; }
+      .tag { font: 600 26px "Segoe UI", system-ui, sans-serif; fill: #93c5fd; }
+      .body { font: 400 22px "Segoe UI", system-ui, sans-serif; fill: #cbd5e1; }
+      .pill { font: 600 16px "Segoe UI", system-ui, sans-serif; fill: #0f172a; }
+    </style>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect x="80" y="120" width="8" height="120" rx="4" fill="#3dd68c"/>
+  <text x="110" y="170" class="brand">structured-llm-pipeline</text>
+  <text x="110" y="220" class="tag">把小模型的结构化输出训稳 —— 不是 Prompt 碰运气</text>
+  <text x="110" y="280" class="body">固定契约 · 校验门禁 · LoRA SFT · 对比评测 · 真机对话</text>
+  <text x="110" y="320" class="body">Demos: Echo（语音） · Quest（RPG） · 1.7B–8B 端侧友好</text>
+
+  <rect x="110" y="400" width="160" height="40" rx="8" fill="#3dd68c"/>
+  <text x="132" y="426" class="pill">Contract SFT</text>
+  <rect x="290" y="400" width="140" height="40" rx="8" fill="#93c5fd"/>
+  <text x="318" y="426" class="pill">Echo · Quest</text>
+  <rect x="450" y="400" width="100" height="40" rx="8" fill="#e2e8f0"/>
+  <text x="478" y="426" class="pill">MIT</text>
+
+  <text x="110" y="520" class="body" opacity="0.7">github.com/Jehuty-ML/structure_finetune</text>
+</svg>

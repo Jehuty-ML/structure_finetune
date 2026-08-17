@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="260" viewBox="0 0 920 260" role="img" aria-labelledby="title">
+  <title id="title">Echo 评测对比：Prompt vs SFT</title>
+  <defs>
+    <style>
+      .h { font: 700 14px "Segoe UI", system-ui, sans-serif; fill: #111; }
+      .s { font: 400 11px "Segoe UI", system-ui, sans-serif; fill: #555; }
+      .l { font: 600 11px "Segoe UI", system-ui, sans-serif; fill: #1a1a1a; }
+      .n { font: 600 11px "Segoe UI", system-ui, sans-serif; fill: #fff; }
+      .axis { font: 500 10px "Segoe UI", system-ui, sans-serif; fill: #6b7280; }
+    </style>
+  </defs>
+  <rect width="920" height="260" rx="12" fill="#f7f8fa"/>
+  <text x="28" y="34" class="h">实测：Qwen3-1.7B · Echo 契约 v3 · 同一评测集</text>
+  <text x="28" y="54" class="s">基座 + Prompt 焊不稳格式；短 LoRA SFT 后三项全满</text>
+
+  <!-- legend -->
+  <rect x="700" y="24" width="12" height="12" rx="2" fill="#9ca3af"/>
+  <text x="718" y="34" class="s">Prompt-only</text>
+  <rect x="700" y="44" width="12" height="12" rx="2" fill="#2f6f4e"/>
+  <text x="718" y="54" class="s">+ LoRA SFT</text>
+
+  <!-- chart area y=80..220, x labels -->
+  <!-- Pass rate -->
+  <text x="80" y="240" class="axis">通过率</text>
+  <rect x="60" y="174" width="48" height="46" rx="4" fill="#9ca3af"/>
+  <text x="66" y="168" class="l">33%</text>
+  <rect x="118" y="80" width="48" height="140" rx="4" fill="#2f6f4e"/>
+  <text x="124" y="74" class="l">100%</text>
+
+  <!-- Format -->
+  <text x="300" y="240" class="axis">格式合法</text>
+  <rect x="280" y="174" width="48" height="46" rx="4" fill="#9ca3af"/>
+  <text x="286" y="168" class="l">33%</text>
+  <rect x="338" y="80" width="48" height="140" rx="4" fill="#2f6f4e"/>
+  <text x="344" y="74" class="l">100%</text>
+
+  <!-- TTS -->
+  <text x="520" y="240" class="axis">TTS 安全</text>
+  <rect x="500" y="127" width="48" height="93" rx="4" fill="#9ca3af"/>
+  <text x="506" y="121" class="l">67%</text>
+  <rect x="558" y="80" width="48" height="140" rx="4" fill="#2f6f4e"/>
+  <text x="564" y="74" class="l">100%</text>
+
+  <rect x="680" y="100" width="210" height="100" rx="10" fill="#fff" stroke="#e2e5ea"/>
+  <text x="700" y="132" class="l">结论</text>
+  <text x="700" y="156" class="s">Prompt ≈ 抽奖</text>
+  <text x="700" y="176" class="s">SFT ≈ 焊进权重</text>
+</svg>

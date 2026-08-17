@@ -8,6 +8,23 @@
 
 > **English:** SFT small LLMs (1.7B–8B) into a **fixed output contract**—not prompt lottery. Cuts per-turn tokens (often 10k+ vs stuffing a full game bible) and **speeds up inference** for real-time use (digital humans, interactive AI games). Demos: **Echo** (voice), **Quest** (RPG). Same pattern fits tool-routing, IoT, support, forms, tutoring (not built yet).
 
+**目录**
+
+- [30 秒看懂](#30-秒看懂这是干什么的)
+- [适合 / 不适合](#适合--不适合)
+- [一眼结果](#一眼结果)
+- [产品现实](#产品现实下游只吃字段)
+- [流水线](#流水线)
+- [Demo：Echo](#demoecho语音角色助手)
+- [Demo：Quest](#demoquest--ember文字-rpg)
+- [换契约最小清单](#换契约最小清单)
+- [还可适配](#还可适配当前未实现)
+- [快速开始](#快速开始)
+- [文档导航](#文档导航)
+- [仓库结构](#仓库结构)
+- [设计原则](#设计原则)
+- [许可证](#许可证)
+
 ---
 
 ## 30 秒看懂：这是干什么的？
@@ -20,13 +37,19 @@
   <img src="docs/assets/positioning.svg" alt="三条路线对比：大模型 Prompt、小模型 Prompt、契约 SFT" width="920"/>
 </p>
 
-| 你是谁 | 你会关心什么 |
-|--------|----------------|
-| 做数字人 / 语音助手 / AI 游戏 | 秒回、省 token、字段别飘 |
-| 要在本地 / 端侧跑小模型 | 便宜、私有、格式可复现 |
-| 作品集 / 工程实践 | 契约 → 数据门禁 → SFT → 对比评测 一条链 |
-
 **本仓库不是聊天框架**，而是可复用流水线。已落地 Demo：**Echo**（语音角色）、**Quest**（文字 RPG）。许可证：[MIT](LICENSE)。
+
+---
+
+## 适合 / 不适合
+
+| 适合你，如果你… | 不适合你，如果你在找… |
+|-----------------|------------------------|
+| 做数字人 / 语音助手 / AI 游戏，要 **秒回、省 token、字段别飘** | 完整 TTS SDK / 客户端 App |
+| 要在本地 / 端侧跑小模型，要 **便宜、私有、格式可复现** | 真实业务私有数据或现成商用人设 |
+| 作品集 / 工程实践：契约 → 门禁 → SFT → 对比评测 | 刷榜式通用能力、纯 Prompt 调教大模型 API |
+
+详见 [`docs/roadmap.md`](docs/roadmap.md)「非目标」。
 
 ---
 
@@ -34,12 +57,29 @@
 
 同一评测集（Qwen3-1.7B · Echo 契约 v3）：
 
+<p align="center">
+  <img src="docs/assets/results-bars.svg" alt="Prompt 33% vs SFT 100% 条形对比" width="920"/>
+</p>
+
 | 设置 | 通过率 | 格式合法 | TTS 安全 |
 |------|--------|----------|----------|
 | 基座 + Prompt | 33.3% | 33.3% | 66.7% |
 | 基座 + LoRA SFT | **100%** | **100%** | **100%** |
 
 > 小模型靠 Prompt「抽奖」焊不住契约；短 SFT 即可把合规从近 0 拉到可用。详情见 [`docs/results.md`](docs/results.md)。
+
+真机验收（有 GPU + adapter 时）：
+
+<p align="center">
+  <img src="docs/assets/demo-chat-echo.svg" alt="chat_echo --accept 终端示意：ACCEPT_PASS" width="920"/>
+</p>
+
+```bash
+python scripts/chat_echo.py `
+  --adapter outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043 `
+  --accept
+# → ACCEPT_PASS：疲惫 / 静音 / 多轮承接
+```
 
 ---
 
@@ -138,6 +178,10 @@ python scripts/validate_data.py --data examples/echo/sample_data/train.json
 
 第二例：**无整包 JSON**，分块 + `key=value`。`<state>` 只写 FSM，血蓝等在 `<stats>`。契约见 [`docs/quest_schema.md`](docs/quest_schema.md)。
 
+<p align="center">
+  <img src="docs/assets/quest-blocks.svg" alt="Quest 六块契约：think state say cmd stats abstract" width="920"/>
+</p>
+
 ```text
 <think>
 探索阶段，路口可前进；保持 explore。
@@ -174,6 +218,20 @@ python scripts/chat_quest.py --adapter outputs/quest_lora/<run_dir> --accept
 
 ---
 
+## 换契约最小清单
+
+要把流水线迁到新场景（工具路由、IoT、客服…），按这个顺序做即可：
+
+1. **冻结契约** — 写清块顺序与字段；JSON 包用 JSON Schema，分块用 `key=value` 规则  
+2. **实现解析 / 校验** — 挂到 `structured_llm.contract`，与 Echo / Quest 同一 `validate_*` 入口风格  
+3. **合成或标注数据** — `examples/<name>/sample_data/` + 生成脚本；先跑 `validate_data.py`  
+4. **配置训练** — `examples/<name>/configs/*.yaml` 里设 `contract: <name>`；可先 `dry_run: true`  
+5. **评测 + 真聊** — `evaluate.py --contract <name>`；`chat_*.py` 或复用 serve 回合循环  
+
+训练与评测入口可复用；变的是 Schema / 合成器 / `examples/<name>/`。
+
+---
+
 ## 还可适配（当前未实现）
 
 同一套：**定契约 → 合成/标注 → 校验门禁 → SFT → 评测 / 真聊**。仓库里还没有对应 Schema / 样例，便于对照选型：
@@ -185,8 +243,6 @@ python scripts/chat_quest.py --adapter outputs/quest_lora/<run_dir> --accept
 | 客服分流 | 回复话术 | 工单字段、情绪、`escalate` |
 | 表单抽取 | 可选摘要 | 固定字段 JSON，缺项 `null` |
 | 教育陪练 | 讲解 / 鼓励 | 掌握度、下一题、`hint_level` |
-
-换契约通常只需：新 Schema（或分块）→ 新合成器 / 校验器 → `examples/<name>/`。训练与评测入口可复用。
 
 ---
 
@@ -223,12 +279,10 @@ python scripts/evaluate.py --mode generate --compare `
 详见 [`docs/serve.md`](docs/serve.md)。
 
 ```bash
-# 固定场景验收
 python scripts/chat_echo.py `
   --adapter outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043 `
   --accept
 
-# 交互真聊
 python scripts/chat_echo.py `
   --adapter outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043
 ```
@@ -254,6 +308,7 @@ python scripts/smoke_serve.py
 | [`docs/serve.md`](docs/serve.md) | 真聊 / 服务 |
 | [`docs/roadmap.md`](docs/roadmap.md) | 阶段计划 |
 | [`docs/env.md`](docs/env.md) | 安装 / CUDA |
+| [`docs/github.md`](docs/github.md) | GitHub About / Topics / Social preview |
 
 ---
 
@@ -262,7 +317,7 @@ python scripts/smoke_serve.py
 ```text
 structured-llm-pipeline/
 ├── docs/                  # 设计、契约、训练、评测、路线图
-│   └── assets/            # README 示意图
+│   └── assets/            # README 示意图 + social preview
 ├── schemas/               # Echo JSON Schema
 ├── src/structured_llm/    # contract · data · train · eval · serve
 ├── examples/echo/         # 语音 Demo：数据 / 配置 / 评测集

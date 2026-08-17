@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="300" viewBox="0 0 920 300" role="img" aria-labelledby="title">
+  <title id="title">Quest 分块契约</title>
+  <defs>
+    <style>
+      .h { font: 700 14px "Segoe UI", system-ui, sans-serif; fill: #111; }
+      .s { font: 400 11px "Segoe UI", system-ui, sans-serif; fill: #555; }
+      .t { font: 600 11px "Segoe UI", system-ui, sans-serif; fill: #1a1a1a; }
+      .m { font: 500 10px Consolas, monospace; fill: #334155; }
+      .w { font: 600 11px "Segoe UI", system-ui, sans-serif; fill: #fff; }
+    </style>
+  </defs>
+  <rect width="920" height="300" rx="12" fill="#f7f8fa"/>
+  <text x="28" y="34" class="h">Demo Quest：无整包 JSON —— 分块 + key=value</text>
+  <text x="28" y="54" class="s">与 Echo 同一流水线；状态机、旁白、引擎指令、快照各占一块，便于规则校验</text>
+
+  <g transform="translate(28,78)">
+    <rect width="130" height="72" rx="8" fill="#475569"/>
+    <text x="16" y="28" class="w">1 · think</text>
+    <text x="16" y="50" class="m" fill="#cbd5e1">可剥离</text>
+  </g>
+  <g transform="translate(174,78)">
+    <rect width="130" height="72" rx="8" fill="#1d4ed8"/>
+    <text x="16" y="28" class="w">2 · state</text>
+    <text x="16" y="50" class="m" fill="#bfdbfe">phase/node</text>
+  </g>
+  <g transform="translate(320,78)">
+    <rect width="130" height="72" rx="8" fill="#0f766e"/>
+    <text x="16" y="28" class="w">3 · say</text>
+    <text x="16" y="50" class="m" fill="#99f6e4">玩家可见</text>
+  </g>
+  <g transform="translate(466,78)">
+    <rect width="130" height="72" rx="8" fill="#b45309"/>
+    <text x="16" y="28" class="w">4 · cmd</text>
+    <text x="16" y="50" class="m" fill="#fde68a">引擎动作</text>
+  </g>
+  <g transform="translate(612,78)">
+    <rect width="130" height="72" rx="8" fill="#7c3aed"/>
+    <text x="16" y="28" class="w">5 · stats</text>
+    <text x="16" y="50" class="m" fill="#ddd6fe">hp/mp/loc</text>
+  </g>
+  <g transform="translate(758,78)">
+    <rect width="134" height="72" rx="8" fill="#334155"/>
+    <text x="16" y="28" class="w">6 · abstract</text>
+    <text x="16" y="50" class="m" fill="#cbd5e1">下轮记忆</text>
+  </g>
+
+  <rect x="28" y="172" width="864" height="100" rx="10" fill="#fff" stroke="#e2e5ea"/>
+  <text x="48" y="202" class="t">谁消费什么</text>
+  <text x="48" y="226" class="s">玩家只看 &lt;say&gt;  ·  引擎吃 &lt;state&gt; + &lt;cmd&gt; + &lt;stats&gt;  ·  客户端用 &lt;abstract&gt; 压缩进下一轮 Prior</text>
+  <text x="48" y="250" class="s">契约文档：docs/quest_schema.md  ·  真聊：scripts/chat_quest.py</text>
+</svg>
