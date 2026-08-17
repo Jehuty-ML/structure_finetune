@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="300" viewBox="0 0 920 300" role="img" aria-labelledby="title desc">
+  <title id="title">Echo：一次生成，三条通道</title>
+  <desc id="desc">小模型一次输出拆成口播、韵律、App 控制三条下游通道</desc>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#6b7280"/>
+    </marker>
+    <style>
+      .h { font: 700 14px "Segoe UI", system-ui, sans-serif; fill: #111; }
+      .t { font: 600 12px "Segoe UI", system-ui, sans-serif; fill: #1a1a1a; }
+      .s { font: 400 11px "Segoe UI", system-ui, sans-serif; fill: #555; }
+      .mono { font: 500 11px Consolas, "SF Mono", monospace; fill: #c8ddf5; }
+      .w { font: 600 12px "Segoe UI", system-ui, sans-serif; fill: #fff; }
+    </style>
+  </defs>
+  <rect width="920" height="300" rx="12" fill="#f7f8fa"/>
+  <text x="28" y="34" class="h">Demo Echo：一次生成 → 同时驱动人与机器</text>
+  <text x="28" y="54" class="s">数字人 / 语音助手刚需：口播干净、韵律可控、UI 能路由 —— 缺任一字段下游就坏</text>
+  <rect x="28" y="90" width="200" height="160" rx="10" fill="#1e3a5f"/>
+  <text x="48" y="130" class="w">小模型 1.7B–8B</text>
+  <text x="48" y="152" class="w" opacity="0.85">+ LoRA（契约 SFT）</text>
+  <text x="48" y="186" class="mono">&lt;think&gt;…&lt;/think&gt;</text>
+  <text x="48" y="208" class="mono">[json]{…}[/json]</text>
+  <line x1="238" y1="170" x2="290" y2="170" stroke="#6b7280" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="298" y="130" width="120" height="80" rx="10" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+  <text x="322" y="164" class="t">validate</text>
+  <text x="318" y="184" class="s">同一套解析器</text>
+  <line x1="428" y1="150" x2="480" y2="110" stroke="#6b7280" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="428" y1="170" x2="480" y2="170" stroke="#6b7280" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="428" y1="190" x2="480" y2="230" stroke="#6b7280" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="488" y="78" width="400" height="52" rx="8" fill="#fff" stroke="#e2e5ea"/>
+  <text x="508" y="100" class="t">口播文本 → TTS</text>
+  <text x="508" y="118" class="s">utter（干净、无标签）</text>
+  <rect x="488" y="144" width="400" height="52" rx="8" fill="#fff" stroke="#e2e5ea"/>
+  <text x="508" y="166" class="t">韵律 / 情绪 → TTS + 形象</text>
+  <text x="508" y="184" class="s">emotion · volume · pace · should_speak</text>
+  <rect x="488" y="210" width="400" height="52" rx="8" fill="#fff" stroke="#e2e5ea"/>
+  <text x="508" y="232" class="t">机器控制 → App / 状态机</text>
+  <text x="508" y="250" class="s">intent · ui_mode · end_turn</text>
+</svg>
