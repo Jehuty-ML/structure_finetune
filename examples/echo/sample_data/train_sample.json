@@ -1,52 +1,100 @@
 [
   {
-    "id": "echo_001",
+    "id": "hc_mt_055_travel_fund_r1",
     "input": {
-      "user_text": "好累，别让我想太多。",
-      "user_emotion": "tired",
-      "session": {"energy": 28, "bond": 4, "turn": 3},
-      "device": {"can_speak": true, "interruptible": true}
-    },
-    "output": "<think>\n用户疲惫；短句、低音量、慢语速；意图安抚。\n</think>\n\n[json]\n{\"utter\":\"没事，我在这儿。你先歇着。\",\"emotion\":\"gentle\",\"volume\":32,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
-  },
-  {
-    "id": "echo_002",
-    "input": {
-      "user_text": "我升职了！",
+      "user_text": "工资百分比自动进旅行基金，本月第一次成功。",
       "user_emotion": "happy",
-      "session": {"energy": 80, "bond": 5, "turn": 8},
-      "device": {"can_speak": true, "interruptible": true}
+      "session": {
+        "energy": 40,
+        "bond": 4,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
     },
-    "output": "<think>\n简短祝贺；cheerful，音量略高；意图庆祝。\n</think>\n\n[json]\n{\"utter\":\"太棒了，你值得！最开心的点是什么？\",\"emotion\":\"cheerful\",\"volume\":72,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
+    "output": "<think>\n储蓄；celebrate。\n</think>\n\n[json]\n{\"utter\":\"自动转入成功。下个目的地有苗头吗？\",\"emotion\":\"cheerful\",\"volume\":66,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "travel_fund",
+      "contract": "v3",
+      "source": "handcrafted",
+      "multi_turn": true,
+      "round": 1
+    }
   },
   {
-    "id": "echo_003",
+    "id": "hc_tired_05",
     "input": {
-      "user_text": "图书馆模式。",
-      "user_emotion": "neutral",
-      "session": {"energy": 50, "bond": 3, "turn": 9},
-      "device": {"can_speak": false, "interruptible": false}
+      "user_text": "今天被催了七次进度，耳膜都麻了。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 25,
+        "bond": 5,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
     },
-    "output": "<think>\n不可语音；should_speak=false，ui_mode=text_only。\n</think>\n\n[json]\n{\"utter\":\"好，已静音，我只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]"
+    "output": "<think>\n被催促耗尽；comfort，不复盘工作。\n</think>\n\n[json]\n{\"utter\":\"七次够多了。这一刻不许再催自己。\",\"emotion\":\"gentle\",\"volume\":27,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "tired",
+      "contract": "v3",
+      "source": "handcrafted"
+    }
   },
   {
-    "id": "echo_004",
+    "id": "hc_extra_14",
     "input": {
-      "user_text": "这封邮件让我不安。",
+      "user_text": "同事把我的创意当成他们组的，周会上我该不该当场点破？",
       "user_emotion": "anxious",
-      "session": {"energy": 42, "bond": 4, "turn": 5},
-      "device": {"can_speak": true, "interruptible": true}
+      "session": {
+        "energy": 43,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
     },
-    "output": "<think>\n承认感受，再要一个具体点；意图澄清。\n</think>\n\n[json]\n{\"utter\":\"不安很正常。最卡你的是哪一句？\",\"emotion\":\"concerned\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
+    "output": "<think>\n职场边界；clarify。\n</think>\n\n[json]\n{\"utter\":\"当场点破风险高。你更想会后私聊，还是用文档时间戳举证？\",\"emotion\":\"concerned\",\"volume\":48,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "anxious",
+      "contract": "v3",
+      "source": "handcrafted"
+    }
   },
   {
-    "id": "echo_005",
+    "id": "hc_mt_036_interrupt_alarm_r2",
     "input": {
-      "user_text": "今天糟透了，整点轻松的。",
-      "user_emotion": "sad",
-      "session": {"energy": 35, "bond": 5, "turn": 12},
-      "device": {"can_speak": true, "interruptible": true}
+      "user_text": "停，我其实只想设置贪睡两次。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
     },
-    "output": "<think>\n轻度玩笑，避免伤人；意图 joke。\n</think>\n\n[json]\n{\"utter\":\"备用方案：零食，或者离谱舞步。你选哪个？\",\"emotion\":\"playful\",\"volume\":60,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]"
+    "output": "<think>\n打断睡眠长谈；interrupt_ack 回贪睡。\n</think>\n\n[json]\n{\"utter\":\"好，停展开。贪睡两次：把间隔调到两分钟即可。\",\"emotion\":\"neutral\",\"volume\":54,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "prior_utters": [
+      "可以。先从固定起床点说起，还是咖啡因截止时间？"
+    ],
+    "meta": {
+      "scenario": "interrupt_alarm",
+      "contract": "v3",
+      "source": "handcrafted",
+      "multi_turn": true,
+      "round": 2
+    }
   }
 ]

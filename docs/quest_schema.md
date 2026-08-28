@@ -53,20 +53,19 @@ hp=80; mp=20; loc=森林路口; quest=找药草; flags=has_map
 
 实现：`structured_llm.contract.quest_parser` / `quest_validator`。
 
-## 数据（v2：规则卡 + 改写）
-
-不再用大字典加权抽奖。当前流水线：
-
-1. `examples/quest/rules/*.yaml` — 决策标签（`fsm_in` + `assert`）  
-2. `examples/quest/rewrites/*.json` — 每卡独立、去重的 `user_text` / `say` / …  
-3. `scripts/generate_quest_data.py` — 组装、字段断言、**按 user_text 留出 val**
+## 数据（推荐：手写多样性）
 
 ```bash
-python scripts/generate_quest_data.py
+# 推荐：人工撰写（say/任务/地点拉开，含 Abstract 多轮）
+python scripts/build_quest_handcrafted.py
 python scripts/validate_data.py --contract quest --data examples/quest/sample_data/train.json
+
+# 可选对照：规则卡 + 改写库组装（易复用旁白）
+# python scripts/generate_quest_data.py
 python scripts/train.py --config examples/quest/configs/sft_lora.yaml
 ```
 
-首版只覆盖四卡：`explore_fork` / `combat_start` / `combat_attack` / `combat_flee`（不含 `advance`）。
+首版规则卡仍覆盖：`explore_fork` / `combat_start` / `combat_attack` / `combat_flee`（不含 `advance`）。
+手写集遵守同一套 FSM 断言，但每条旁白与任务文案一一对应。
 
 评测 / 聊天：`evaluate.py --contract quest` · `scripts/chat_quest.py`。

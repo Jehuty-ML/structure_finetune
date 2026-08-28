@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""按规则卡 + 改写库组装 Quest 训练数据（校验 + 按 user_text 留出 val）。"""
+"""按规则卡 + 改写库组装 Quest 训练数据（校验 + 按 user_text 留出 val）。
+
+推荐优先使用手写多样性数据：
+  python scripts/build_quest_handcrafted.py
+本脚本适合快速对照实验；旁白易被哈希复用。
+"""
 
 from __future__ import annotations
 

@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""用模板合成 Echo 训练数据，校验后划分 train/val。"""
+"""用模板合成 Echo 训练数据，校验后划分 train/val。
+
+推荐优先使用手写多样性数据：
+  python scripts/build_echo_handcrafted.py
+模板合成易导致口播复读，仅作快速占位或对照实验。
+"""
 
 from __future__ import annotations
 

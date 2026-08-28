@@ -1,117 +1,106 @@
 [
   {
-    "id": "quest_combat_flee_0042",
+    "id": "qh_mt_014_pendant_flee_r2",
     "input": {
-      "user_text": "立刻逃离。",
+      "user_text": "吊坠不值得送命，撤。",
       "fsm": {
         "phase": "combat",
         "node": "round_player"
       },
       "stats": {
-        "hp": "68",
-        "mp": "16",
+        "hp": "72",
+        "mp": "15",
         "loc": "洞穴入口",
-        "quest": "找药草"
+        "quest": "寻月银吊坠"
       }
     },
-    "output": "<think>\n与 attack 同输入 fsm，但本条转场后 state.phase 只能是 explore，绝不是 combat。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n狼没有追出太远。你停在洞穴入口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=68; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\nflee 成功；phase 已回 explore；人在洞穴入口；不在 combat。\n</abstract>",
+    "output": "<think>\n承接吊坠战；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你放弃恋战，逃回洞口。吊坠任务可改日。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=15; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n逃离；寻月银吊坠未完成。\n</abstract>",
+    "prior_utters": [
+      "攻击中；寻月银吊坠。"
+    ],
     "meta": {
       "scenario": "combat_flee",
-      "contract": "quest_v2_rules",
+      "contract": "quest_v2_handcrafted",
       "rule_id": "combat_flee",
-      "repeat": 0
+      "source": "handcrafted",
+      "multi_turn": true,
+      "round": 2
     }
   },
   {
-    "id": "quest_combat_attack_0004",
+    "id": "qh_explore_15",
     "input": {
-      "user_text": "挥剑。",
+      "user_text": "对照罗盘，磁偏指向洞口那侧。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "82",
+        "mp": "16",
+        "loc": "罗盘岔口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "output": "<think>\n罗盘提示；选路。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n罗盘针微偏洞口方向，另一侧更开阔。跟针走，还是走开阔地？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=16; loc=罗盘岔口; quest=取回被盗地图; flags=has_map,compass\n</stats>\n\n<abstract>\n罗盘偏洞口；取回被盗地图。\n</abstract>",
+    "prior_utters": [],
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest_v2_handcrafted",
+      "rule_id": "explore_fork",
+      "source": "handcrafted"
+    }
+  },
+  {
+    "id": "qh_mt_014_pendant_flee_r2",
+    "input": {
+      "user_text": "吊坠不值得送命，撤。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "寻月银吊坠"
+      }
+    },
+    "output": "<think>\n承接吊坠战；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你放弃恋战，逃回洞口。吊坠任务可改日。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=15; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n逃离；寻月银吊坠未完成。\n</abstract>",
+    "prior_utters": [
+      "攻击中；寻月银吊坠。"
+    ],
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest_v2_handcrafted",
+      "rule_id": "combat_flee",
+      "source": "handcrafted",
+      "multi_turn": true,
+      "round": 2
+    }
+  },
+  {
+    "id": "qh_atk_39",
+    "input": {
+      "user_text": "劫案现场的狼，给我一记惩戒砍。",
       "fsm": {
         "phase": "combat",
         "node": "round_player"
       },
       "stats": {
         "hp": "74",
-        "mp": "19",
+        "mp": "16",
         "loc": "洞穴入口",
-        "quest": "找药草"
+        "quest": "取回被盗地图"
       }
     },
-    "output": "<think>\n战斗中的攻击分支；与 flee 对照，本条必须 attack。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n一记横扫。它低吼着准备反击。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=19; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\nphase=combat；action=attack 已执行；任务找药草。\n</abstract>",
+    "output": "<think>\n惩戒砍；attack。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n惩戒砍见血，狼退半步。敌方回合。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat\n</stats>\n\n<abstract>\n现场惩戒砍；取回被盗地图。\n</abstract>",
+    "prior_utters": [],
     "meta": {
       "scenario": "combat_attack",
-      "contract": "quest_v2_rules",
+      "contract": "quest_v2_handcrafted",
       "rule_id": "combat_attack",
-      "repeat": 0
-    }
-  },
-  {
-    "id": "quest_combat_flee_0031",
-    "input": {
-      "user_text": "我跑！",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "68",
-        "mp": "15",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n与 attack 同输入 fsm，但本条转场后 state.phase 只能是 explore，绝不是 combat。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你把背包抱紧狂奔，终于甩开它。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=68; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已退出 combat；回到 explore/cave_mouth；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_flee",
-      "contract": "quest_v2_rules",
-      "rule_id": "combat_flee",
-      "repeat": 0
-    }
-  },
-  {
-    "id": "quest_combat_flee_0074",
-    "input": {
-      "user_text": "跑路。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "68",
-        "mp": "15",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n逃跑分支：输出 explore + flee + end_turn=1；不要写成仍在战斗。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n尘土里只剩你的脚步声。你已离开战斗。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=68; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n已退出 combat；回到 explore/cave_mouth；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_flee",
-      "contract": "quest_v2_rules",
-      "rule_id": "combat_flee",
-      "repeat": 1
-    }
-  },
-  {
-    "id": "quest_combat_attack_0023",
-    "input": {
-      "user_text": "先手砍一刀。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "75",
-        "mp": "17",
-        "loc": "洞穴入口",
-        "quest": "找药草"
-      }
-    },
-    "output": "<think>\n用户要攻击；保持 combat；action=attack；禁止 flee；禁止切 explore。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n剑刃擦过毛皮，狼发出怒吼。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=17; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\nphase=combat；action=attack 已执行；任务找药草。\n</abstract>",
-    "meta": {
-      "scenario": "combat_attack",
-      "contract": "quest_v2_rules",
-      "rule_id": "combat_attack",
-      "repeat": 0
+      "source": "handcrafted"
     }
   }
 ]

@@ -78,8 +78,13 @@ def _resolve_output_dir(config: dict[str, Any], base: Path) -> Path:
     return path
 
 
-def _user_content(input_obj: Any, prior_utters: Any = None) -> str:
-    """与评测一致：可选 Prior 口播 + User JSON。"""
+def _user_content(
+    input_obj: Any,
+    prior_utters: Any = None,
+    *,
+    prior_label: str = "Prior",
+) -> str:
+    """与评测/聊天一致：可选 Prior（Echo）或 Abstract（Quest）+ User JSON。"""
     from structured_llm.data import format_user_message
 
     priors: list[str] | None
@@ -89,7 +94,7 @@ def _user_content(input_obj: Any, prior_utters: Any = None) -> str:
         priors = [str(x) for x in prior_utters]
     else:
         priors = [str(prior_utters)]
-    return format_user_message(input_obj, priors)
+    return format_user_message(input_obj, priors, prior_label=prior_label)
 
 
 def run_unsloth_sft(config: dict[str, Any], project_root: Path) -> Path:
@@ -184,6 +189,9 @@ def run_unsloth_sft(config: dict[str, Any], project_root: Path) -> Path:
     # 自己单进程 tokenize，避免 Unsloth 内部 num_proc=20 在 Windows 崩溃
     response_prefix = [151644, 77091]  # <|im_start|>assistant（Qwen ChatML）
 
+    contract = str(config.get("contract", "echo")).lower()
+    prior_label = "Abstract" if contract == "quest" else "Prior"
+
     def preprocess_and_mask(examples: dict[str, Any]) -> dict[str, Any]:
         texts: list[str] = []
         n = len(examples["input"])
@@ -193,7 +201,7 @@ def run_unsloth_sft(config: dict[str, Any], project_root: Path) -> Path:
         for input_obj, output_text, prior in zip(
             examples["input"], examples["output"], priors
         ):
-            user = _user_content(input_obj, prior)
+            user = _user_content(input_obj, prior, prior_label=prior_label)
             text = (
                 f"<|im_start|>system\n{system_prompt}<|im_end|>\n"
                 f"<|im_start|>user\n{user}<|im_end|>\n"
