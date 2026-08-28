@@ -34,9 +34,13 @@
 ## 划分与重生
 
 ```bash
-python scripts/generate_echo_data.py --count 300 --seed 3407
+# 推荐：人工撰写多样性样本（口播一一对应，非模板池抽样）
+python scripts/build_echo_handcrafted.py
 python scripts/validate_data.py --data examples/echo/sample_data/train.json
 python scripts/validate_data.py --data examples/echo/sample_data/val.json
+
+# 可选对照：旧版模板合成（易复读，不推荐作为主训练集）
+# python scripts/generate_echo_data.py --count 300 --seed 3407
 ```
 
 > 契约变更后需 **重新 SFT**；旧 LoRA（v1/v2）与 v3 不兼容。

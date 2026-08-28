@@ -1,5 +1,5 @@
 # Quest SFT（LoRA）
-# 数据：规则卡 + 改写库组装（见 examples/quest/rules|rewrites）
+# 数据：手写集（scripts/build_quest_handcrafted.py）；规则卡仍约束 FSM
 # 防过拟合：1 epoch、较低 lr；勿把 loss 训到贴地板。
 
 contract: quest
@@ -26,7 +26,7 @@ use_dora: false
 learning_rate: 2.0e-4
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 8
-num_train_epochs: 3
+num_train_epochs: 1
 warmup_steps: 10
 logging_steps: 5
 eval_strategy: epoch
