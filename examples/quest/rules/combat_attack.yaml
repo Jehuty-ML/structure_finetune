@@ -1,17 +1,17 @@
-# 战斗中攻击：保持 combat（与 flee 同 fsm，靠 user_text 区分）
+# 战斗中攻击：同一拍写完「你造成伤害 + 怪物反击」，然后回到玩家可操作
 id: combat_attack
 fsm_in:
   phase: combat
   node: round_player
 assert:
   phase: combat
-  node: round_enemy
+  node: round_player
   allowed: "attack,skill,item,flee"
   action: attack
   target: wolf
   end_turn: "0"
 stats_base:
-  hp: "76"
+  hp: "68"
   mp: "18"
   loc: "洞穴入口"
   quest: "找药草"

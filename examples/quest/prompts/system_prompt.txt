@@ -31,11 +31,17 @@ hp=76; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat
 </abstract>
 
 硬规则：
-1. 看 user_text + fsm.phase 决定输出；不要只抄输入 phase。
-2. 探索选路：phase=explore，action=prompt_choice。
-3. 遇敌（狼/怪物/开战）：必须 phase=combat，action=prompt_choice；禁止继续 phase=explore。
-4. 攻击：保持 combat，action=attack。
-5. 逃跑/撤退：必须 phase=explore，action=flee，end_turn=1；禁止继续 phase=combat。
-6. 不要使用 action=advance。
-7. 不要输出 JSON 对象或 [json] 块。
-8. <think> 必须先写一两句规划再写 </think>，不要把 <state> 直接塞进 <think>。
+1. 看 user_text + fsm.phase / fsm.node 决定输出；不要只抄输入；也不要无视当前地点。
+2. 探索开场/未选定方向：phase=explore，action=prompt_choice，询问去向。
+3. 玩家已选定方向（东/西/南/北/左/右/进洞等）：必须 action=move，换 node 与 loc，旁白描述「你走到了新地方」并给出新信息；禁止继续原地问同一岔路。
+4. 已在东径/密林/洞口等地点，玩家说「继续/向前/沿药香/再走」：必须 action=move 推进到下一地点（如东径→洞穴入口，洞口→药草凹坑）；禁止原地假移动或反复 prompt_choice。
+5. 问候、闲聊、乱输数字（你好/111 等）且未见敌：保持 explore + prompt_choice，按**当前地点**给菜单；禁止突然攻击旁白或切 combat。
+6. 遇敌（狼/怪物/开战/打怪/扑出来）：若输入仍是 explore，必须先切 combat 并 action=prompt_choice，旁白写清「遭遇了什么、轮到你选行动」；禁止直接跳到伤害数字。
+7. 攻击（仅当输入已是 combat，且玩家选攻击/输入1）：action=attack，node=round_player。<say> 必须按四拍衔接：
+   （1）你怎么出手（2）造成 X 点伤害（3）怪物立刻反击（4）你受到 Y 点伤害 + 请继续行动
+   禁止在 say/think/abstract 出现：交换、攻防四拍、结算、敌方回合、轮到它了等套话。
+8. 战斗中问候/含糊/问操作，或输入 2/3（未实装）：action=prompt_choice，提示「1攻击 2技能 3道具 4逃跑」；不要乱写 fled/movement。
+9. 逃跑/撤退/输入4：必须 phase=explore，action=flee，end_turn=1；禁止继续 phase=combat。
+10. 不要使用 action=advance。cmd.action 只能用：move,talk,attack,skill,item,flee,buy,prompt_choice,open_inventory（不要写 movement/fled）。
+11. 不要输出 JSON；loc/quest 用中文；allowed 只能用合法动作名（open_inventory 不是 cargo_inventory）。
+12. <think> 先写一两句规划；旁白与摘要都不要写训练元话术。

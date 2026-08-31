@@ -217,7 +217,10 @@ def main() -> None:
         print("ACCEPT_PASS：Quest 真机对话验收通过")
         return
 
-    print("就绪。输入行动；status=看会话；reset=重置；quit=退出。\n")
+    print(
+        "就绪。命令：/clear|/reset 清空会话；/status 看状态；/help 帮助；/quit 退出。\n"
+        "直接输入行动文字即可。\n"
+    )
     history: list[tuple[str, str]] = []
     fsm = {"phase": "explore", "node": "forest_fork"}
     stats = {
@@ -226,6 +229,19 @@ def main() -> None:
         "loc": "森林路口",
         "quest": "找药草",
     }
+
+    def _reset_session() -> None:
+        nonlocal history, fsm, stats
+        history = []
+        fsm = {"phase": "explore", "node": "forest_fork"}
+        stats = {
+            "hp": "80",
+            "mp": "20",
+            "loc": "森林路口",
+            "quest": "找药草",
+        }
+        print("[session cleared] history/fsm/stats 已重置")
+
     while True:
         try:
             line = input("你> ").strip()
@@ -234,22 +250,30 @@ def main() -> None:
             break
         if not line:
             continue
-        low = line.lower()
-        if low in {"quit", "exit", "q"}:
+        # 支持 /cmd 与旧版无斜杠
+        cmd = line[1:].strip().lower() if line.startswith("/") else line.lower()
+        if cmd in {"quit", "exit", "q"}:
             break
-        if low == "status":
-            print(json.dumps({"fsm": fsm, "stats": stats}, ensure_ascii=False, indent=2))
+        if cmd in {"help", "h", "?"}:
+            print(
+                "命令：\n"
+                "  /clear 或 /reset  — 清空对话记录与 fsm/stats\n"
+                "  /status           — 查看当前 fsm、stats\n"
+                "  /quit             — 退出\n"
+                "其它输入视为游戏行动。"
+            )
             continue
-        if low == "reset":
-            history = []
-            fsm = {"phase": "explore", "node": "forest_fork"}
-            stats = {
-                "hp": "80",
-                "mp": "20",
-                "loc": "森林路口",
-                "quest": "找药草",
-            }
-            print("[session cleared]")
+        if cmd == "status":
+            print(
+                json.dumps(
+                    {"fsm": fsm, "stats": stats, "history_turns": len(history)},
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
+            continue
+        if cmd in {"reset", "clear", "new", "restart"}:
+            _reset_session()
             continue
 
         result = run_quest_turn(

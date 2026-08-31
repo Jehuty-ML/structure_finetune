@@ -49,7 +49,9 @@ hp=80; mp=20; loc=森林路口; quest=找药草; flags=has_map
 
 - `state.allowed`：本回合结束后的**玩家菜单**（逗号分隔）  
 - `cmd.action`：本步已执行的引擎/玩家动作（可为 `prompt_choice` 等，不必 ∈ allowed）  
-- 转场回合（如 `flee` → `explore`）不要求 `action ∈ allowed`
+- 转场回合（如 `flee` → `explore`）不要求 `action ∈ allowed`  
+- **攻击一拍打完**：`action=attack` 时，`<say>` 须包含「你造成 X 点伤害」+「怪物采取的攻击 / 你受到 Y 点伤害」，然后回到玩家可操作；`node=round_player`（不要停在 `round_enemy` 干等下一拍）  
+- **选路推进**：玩家选定东/西/南/北等方向后，应 `action=move` 并更换 `node`/`loc`，禁止一直 `prompt_choice` 原地绕圈
 
 实现：`structured_llm.contract.quest_parser` / `quest_validator`。
 

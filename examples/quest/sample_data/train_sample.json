@@ -1,100 +1,96 @@
 [
   {
-    "id": "qh_mt_014_pendant_flee_r2",
+    "id": "qh_flee_35",
     "input": {
-      "user_text": "吊坠不值得送命，撤。",
+      "user_text": "嚎源太深，今日只逃。",
       "fsm": {
         "phase": "combat",
         "node": "round_player"
       },
       "stats": {
-        "hp": "72",
-        "mp": "15",
+        "hp": "73",
+        "mp": "18",
         "loc": "洞穴入口",
-        "quest": "寻月银吊坠"
+        "quest": "调查狼嚎来源"
       }
     },
-    "output": "<think>\n承接吊坠战；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你放弃恋战，逃回洞口。吊坠任务可改日。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=15; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n逃离；寻月银吊坠未完成。\n</abstract>",
-    "prior_utters": [
-      "攻击中；寻月银吊坠。"
-    ],
+    "output": "<think>\n调查中止逃；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你中止深入，逃回入口。嚎源改日再探。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=73; mp=18; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n中止调查逃离；调查狼嚎来源。\n</abstract>",
+    "prior_utters": [],
     "meta": {
       "scenario": "combat_flee",
       "contract": "quest_v2_handcrafted",
       "rule_id": "combat_flee",
-      "source": "handcrafted",
-      "multi_turn": true,
-      "round": 2
+      "source": "handcrafted"
     }
   },
   {
-    "id": "qh_explore_15",
+    "id": "qh_mt_009_howl_probe_r1",
     "input": {
-      "user_text": "对照罗盘，磁偏指向洞口那侧。",
+      "user_text": "狼嚎从右侧来，我在岔口先听。",
       "fsm": {
         "phase": "explore",
         "node": "forest_fork"
       },
       "stats": {
-        "hp": "82",
-        "mp": "16",
-        "loc": "罗盘岔口",
-        "quest": "取回被盗地图"
+        "hp": "76",
+        "mp": "21",
+        "loc": "震感岔口",
+        "quest": "调查狼嚎来源"
       }
     },
-    "output": "<think>\n罗盘提示；选路。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n罗盘针微偏洞口方向，另一侧更开阔。跟针走，还是走开阔地？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=16; loc=罗盘岔口; quest=取回被盗地图; flags=has_map,compass\n</stats>\n\n<abstract>\n罗盘偏洞口；取回被盗地图。\n</abstract>",
+    "output": "<think>\n调查狼嚎；仍 explore 选路。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n右径嚎声近，左径安静。追嚎，还是避嚎？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=21; loc=震感岔口; quest=调查狼嚎来源; flags=has_map,listening\n</stats>\n\n<abstract>\n听嚎于岔口；调查狼嚎来源。\n</abstract>",
     "prior_utters": [],
     "meta": {
       "scenario": "explore_fork",
       "contract": "quest_v2_handcrafted",
       "rule_id": "explore_fork",
+      "source": "handcrafted",
+      "multi_turn": true,
+      "round": 1
+    }
+  },
+  {
+    "id": "qh_move_12",
+    "input": {
+      "user_text": "东侧矮树丛",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "80",
+        "mp": "20",
+        "loc": "森林路口",
+        "quest": "找药草"
+      }
+    },
+    "output": "<think>\n完整复述东侧选项；move。\n</think>\n\n<state>\nphase=explore; node=east_deep; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你按东侧矮树丛的方向前进。走了十几步，路口已看不见，眼前是更密的药香。\n</say>\n\n<cmd>\naction=move; target=east_deep; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=20; loc=东侧树丛深处; quest=找药草; flags=has_map,herb_scent\n</stats>\n\n<abstract>\n进入东侧树丛深处；药香增强。\n</abstract>",
+    "prior_utters": [
+      "林中岔口，东侧有矮树丛，西侧则通向密林深处。请选择方向。"
+    ],
+    "meta": {
+      "scenario": "explore_move",
+      "contract": "quest_v2_handcrafted",
+      "rule_id": "explore_move",
       "source": "handcrafted"
     }
   },
   {
-    "id": "qh_mt_014_pendant_flee_r2",
+    "id": "qh_atk_nar_04",
     "input": {
-      "user_text": "吊坠不值得送命，撤。",
+      "user_text": "冰锥术打过去。",
       "fsm": {
         "phase": "combat",
         "node": "round_player"
       },
       "stats": {
-        "hp": "72",
-        "mp": "15",
+        "hp": "75",
+        "mp": "18",
         "loc": "洞穴入口",
-        "quest": "寻月银吊坠"
+        "quest": "护送药箱"
       }
     },
-    "output": "<think>\n承接吊坠战；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你放弃恋战，逃回洞口。吊坠任务可改日。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=15; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n逃离；寻月银吊坠未完成。\n</abstract>",
-    "prior_utters": [
-      "攻击中；寻月银吊坠。"
-    ],
-    "meta": {
-      "scenario": "combat_flee",
-      "contract": "quest_v2_handcrafted",
-      "rule_id": "combat_flee",
-      "source": "handcrafted",
-      "multi_turn": true,
-      "round": 2
-    }
-  },
-  {
-    "id": "qh_atk_39",
-    "input": {
-      "user_text": "劫案现场的狼，给我一记惩戒砍。",
-      "fsm": {
-        "phase": "combat",
-        "node": "round_player"
-      },
-      "stats": {
-        "hp": "74",
-        "mp": "16",
-        "loc": "洞穴入口",
-        "quest": "取回被盗地图"
-      }
-    },
-    "output": "<think>\n惩戒砍；attack。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n惩戒砍见血，狼退半步。敌方回合。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat\n</stats>\n\n<abstract>\n现场惩戒砍；取回被盗地图。\n</abstract>",
+    "output": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你凝出冰锥扎向灰狼，造成12点伤害，霜光炸在肩侧，皮毛结起薄霜。狼随即甩头反击，鼻骨撞到你腕骨，你受到8点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=67; mp=18; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box\n</stats>\n\n<abstract>\n冰锥；护送药箱。\n</abstract>",
     "prior_utters": [],
     "meta": {
       "scenario": "combat_attack",

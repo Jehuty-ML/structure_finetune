@@ -1,0 +1,18 @@
+# 选定方向后推进：explore 路口 → move 到新地点（打破选路死循环）
+id: explore_move
+fsm_in:
+  phase: explore
+  node: forest_fork
+assert:
+  phase: explore
+  node: east_trail
+  allowed: "move,talk,open_inventory"
+  action: move
+  target: east_trail
+  end_turn: "0"
+stats_base:
+  hp: "80"
+  mp: "20"
+  loc: "东侧树丛小径"
+  quest: "找药草"
+  flags: "has_map"

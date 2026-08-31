@@ -25,6 +25,22 @@ PLAYER_ACTIONS = frozenset(
 )
 ACTIONS = ENGINE_ACTIONS | PLAYER_ACTIONS
 
+# 模型偶发英文/近义写法 → 合法枚举
+ACTION_ALIASES = {
+    "movement": "move",
+    "walk": "move",
+    "go": "move",
+    "hit": "attack",
+    "strike": "attack",
+    "run": "flee",
+    "escape": "flee",
+    "retreat": "flee",
+    "fled": "flee",
+    "choice": "prompt_choice",
+    "choose": "prompt_choice",
+    "select": "prompt_choice",
+}
+
 _STATE_REQUIRED = ("phase", "node", "allowed")
 _CMD_REQUIRED = ("action", "end_turn")
 _STATS_REQUIRED = ("hp", "mp", "loc", "quest", "flags")
@@ -90,6 +106,10 @@ def validate_quest_turn(
         errors.append(f"phase 非法：{phase}（允许 {sorted(PHASES)}）")
 
     action = parsed.cmd.get("action")
+    if action and action in ACTION_ALIASES:
+        parsed.cmd["action"] = ACTION_ALIASES[action]
+        warnings.append(f"action 别名已归一：{action}→{parsed.cmd['action']}")
+        action = parsed.cmd["action"]
     if action and action not in ACTIONS:
         errors.append(f"action 非法：{action}（允许 {sorted(ACTIONS)}）")
 

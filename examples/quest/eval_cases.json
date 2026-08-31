@@ -46,7 +46,7 @@
         "phase": "combat",
         "action": "attack"
       },
-      "fixture_output": "<think>\n用户要攻击；保持 combat；action=attack；禁止 flee；禁止切 explore。\n</think>\n\n<state>\nphase=combat; node=round_enemy; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你挥剑命中，灰狼退后一步。轮到它了。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n战斗中已攻击；进入敌方回合；仍在洞穴入口。\n</abstract>"
+      "fixture_output": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你上前普通一击砍向灰狼，造成12点伤害，刃口切开它的肩侧皮毛。狼随即扑咬你的护臂，牙关咬紧，你受到8点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=68; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；找药草；回玩家操作。\n</abstract>"
     },
     {
       "id": "flee_back_explore",

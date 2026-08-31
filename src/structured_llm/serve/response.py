@@ -41,16 +41,65 @@ def parse_quest_generation_to_response(
             "raw": text,
         }
     p = result.parsed
+    say = _scrub_quest_jargon(p.say)
+    abstract = _scrub_quest_jargon(p.abstract)
+    warnings = list(result.warnings)
+    if say != p.say or abstract != p.abstract:
+        warnings.append("scrub: 已去掉「交换后」等训练套话")
     return {
         "ok": True,
         "think": p.think,
         "state": dict(p.state),
-        "say": p.say,
+        "say": say,
         "cmd": dict(p.cmd),
         "stats": dict(p.stats),
-        "abstract": p.abstract,
-        "warnings": result.warnings,
+        "abstract": abstract,
+        "warnings": warnings,
     }
+
+
+def _scrub_quest_jargon(text: str) -> str:
+    """去掉易泄漏到玩家旁白的训练元话术。"""
+    if not text:
+        return text
+    out = text
+    for bad, good in (
+        ("交换后，", ""),
+        ("交换后", ""),
+        ("交换结束，", ""),
+        ("交换结束", ""),
+        ("攻防四拍完成；", ""),
+        ("攻防四拍完成", ""),
+        ("攻防四拍已完成；", ""),
+        ("攻防四拍已完成", ""),
+        ("攻防四拍完整；", ""),
+        ("攻防四拍完整", ""),
+        ("攻防四拍结束，", ""),
+        ("攻防四拍结束", ""),
+        ("攻防四拍完；", ""),
+        ("攻防四拍完", ""),
+        ("攻防四拍；", ""),
+        ("攻防四拍", ""),
+        ("four rounds", ""),
+        ("攻防交换完毕；", ""),
+        ("攻击交换完毕；", ""),
+        ("攻防交换完毕", ""),
+        ("攻击交换完毕", ""),
+        ("显式全交换", ""),
+        ("全交换", ""),
+        ("交换完成", ""),
+        ("交换战场", "换了地点"),
+        ("交换", ""),
+        ("回操作菜单。", "请选择攻击、技能、道具或逃跑。"),
+        ("请回操作菜单。", "请选择攻击、技能、道具或逃跑。"),
+        ("回探索菜单。", ""),
+        ("或回探索菜单", ""),
+    ):
+        out = out.replace(bad, good)
+    while "  " in out:
+        out = out.replace("  ", " ")
+    out = out.replace("，，", "，").replace("。。", "。").replace("；；", "；")
+    return out.strip("；， ").strip()
 
 
 def fake_tts_consume(
