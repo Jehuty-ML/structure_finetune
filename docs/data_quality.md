@@ -44,3 +44,12 @@ python scripts/validate_data.py --data examples/echo/sample_data/val.json
 ```
 
 > 契约变更后需 **重新 SFT**；旧 LoRA（v1/v2）与 v3 不兼容。
+
+## DPO 偏好对（可选）
+
+`chosen` 必须满足上文硬失败规则；`rejected` 可为坏格式或合法但更差的回复。
+
+```bash
+python scripts/build_preference_data.py --sft-data examples/echo/sample_data/train.json --out-dir examples/echo/sample_data/preference --contract echo
+python scripts/validate_preference_data.py --data examples/echo/sample_data/preference/train.json
+```

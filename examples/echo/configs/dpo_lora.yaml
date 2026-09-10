@@ -1,0 +1,47 @@
+# Echo DPO（LoRA）
+# 建议：先 SFT 焊契约，再用本配置做偏好对齐。
+# 数据：examples/echo/sample_data/preference/{train,val}.json
+# 可用 scripts/build_preference_data.py 从 SFT 样例合成。
+
+contract: echo
+model_source: modelscope
+model_name_or_path: "Qwen/Qwen3-1.7B"
+model_cache_dir: "models/base"
+
+data_path: "examples/echo/sample_data/preference/train.json"
+val_data_path: "examples/echo/sample_data/preference/val.json"
+system_prompt_path: "examples/echo/prompts/system_prompt.txt"
+schema_path: "schemas/echo_turn.schema.json"
+output_dir: "outputs/echo_dpo"
+
+# 可选：从已训好的 SFT LoRA 热启动（填 run 目录）
+# sft_adapter_path: "outputs/echo_lora/Qwen3-1.7B_r16_len2048_lr2e-4_0811_1043"
+
+max_seq_length: 2048
+max_prompt_length: 1024
+load_in_4bit: true
+local_files_only: false
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+use_rslora: false
+use_dora: false
+
+# DPO 通常比 SFT 更小学习率
+learning_rate: 5.0e-6
+beta: 0.1
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+num_train_epochs: 1
+warmup_steps: 10
+logging_steps: 5
+eval_strategy: epoch
+seed: 3407
+dataset_num_proc: 1
+
+# format 类 rejected 故意不过契约；仅当全是 style 对时可开
+require_rejected_valid: false
+
+# true=只跑偏好门禁；false=门禁通过后启动 Unsloth DPO
+dry_run: true

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "structured-llm-pipeline"
 version = "0.1.0"
-description = "面向固定多块输出契约的小模型 SFT 流水线"
+description = "面向固定多块输出契约的小模型 SFT / DPO 流水线"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

@@ -1,0 +1,40 @@
+# Quest DPO（LoRA）
+# 建议：先 SFT 焊分块契约与 FSM，再 DPO 偏好更好旁白 / 合法动作。
+
+contract: quest
+model_source: modelscope
+model_name_or_path: "Qwen/Qwen3-1.7B"
+model_cache_dir: "models/base"
+
+data_path: "examples/quest/sample_data/preference/train.json"
+val_data_path: "examples/quest/sample_data/preference/val.json"
+system_prompt_path: "examples/quest/prompts/system_prompt.txt"
+schema_path: ""
+output_dir: "outputs/quest_dpo"
+
+# sft_adapter_path: "outputs/quest_lora/<run_dir>"
+
+max_seq_length: 2048
+max_prompt_length: 1024
+load_in_4bit: true
+local_files_only: false
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+use_rslora: false
+use_dora: false
+
+learning_rate: 5.0e-6
+beta: 0.1
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+num_train_epochs: 1
+warmup_steps: 10
+logging_steps: 5
+eval_strategy: epoch
+seed: 3407
+dataset_num_proc: 1
+
+require_rejected_valid: false
+dry_run: true

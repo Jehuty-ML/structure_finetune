@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="300" viewBox="0 0 920 300" role="img" aria-labelledby="title desc">
+  <title id="title">DPO preference pairs for structured contracts</title>
+  <desc id="desc">SFT welds format; DPO ranks chosen over rejected among contract-aware replies.</desc>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#6b7280"/>
+    </marker>
+    <style>
+      .h { font: 700 14px "Segoe UI", system-ui, sans-serif; fill: #111; }
+      .t { font: 600 12px "Segoe UI", system-ui, sans-serif; fill: #1a1a1a; }
+      .s { font: 400 11px "Segoe UI", system-ui, sans-serif; fill: #555; }
+      .w { font: 600 12px "Segoe UI", system-ui, sans-serif; fill: #fff; }
+      .mono { font: 500 11px Consolas, "SF Mono", monospace; fill: #334155; }
+      .tag { font: 700 10px "Segoe UI", system-ui, sans-serif; fill: #fff; }
+    </style>
+  </defs>
+
+  <rect width="920" height="300" rx="12" fill="#f7f8fa"/>
+  <text x="28" y="32" class="h">DPO  rank better turns after the contract is welded</text>
+  <text x="28" y="52" class="s">chosen must pass the same gate as SFT; rejected can be broken format or worse style</text>
+
+  <rect x="28" y="78" width="200" height="180" rx="10" fill="#1e3a5f"/>
+  <text x="48" y="112" class="w">Same prompt</text>
+  <text x="48" y="136" class="w" opacity="0.9">system + user JSON</text>
+  <text x="48" y="168" class="mono" fill="#c8ddf5">ChatML</text>
+  <text x="48" y="192" class="mono" fill="#c8ddf5">Prior / Abstract</text>
+  <text x="48" y="220" class="s" fill="#c8ddf5">shared with SFT / eval</text>
+
+  <line x1="238" y1="168" x2="286" y2="128" stroke="#6b7280" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="238" y1="168" x2="286" y2="208" stroke="#6b7280" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="294" y="88" width="280" height="88" rx="10" fill="#ecfdf5" stroke="#2f6f4e" stroke-width="2"/>
+  <rect x="306" y="98" width="52" height="20" rx="4" fill="#2f6f4e"/>
+  <text x="314" y="112" class="tag">chosen</text>
+  <text x="306" y="138" class="t">Valid contract turn</text>
+  <text x="306" y="158" class="s">clean utter · right intent / FSM</text>
+
+  <rect x="294" y="196" width="280" height="88" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <rect x="306" y="206" width="62" height="20" rx="4" fill="#b91c1c"/>
+  <text x="314" y="220" class="tag">rejected</text>
+  <text x="306" y="246" class="t">Worse or illegal</text>
+  <text x="306" y="266" class="s">bad tags · TTS junk · wrong action</text>
+
+  <line x1="584" y1="168" x2="632" y2="168" stroke="#6b7280" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="640" y="100" width="252" height="140" rx="10" fill="#fff" stroke="#ea580c" stroke-width="2"/>
+  <text x="660" y="132" class="t">pair_type</text>
+  <text x="660" y="158" class="s">format  broken tags / JSON</text>
+  <text x="660" y="180" class="s">style  valid but poorer reply</text>
+  <text x="660" y="202" class="s">cross  another turn's output</text>
+  <text x="660" y="226" class="mono">beta 0.1 · lr 5e-6</text>
+</svg>

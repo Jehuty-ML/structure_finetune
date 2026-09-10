@@ -5,8 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-2f6f4e.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-2563eb.svg)](docs/env.md)
 [![Contract](https://img.shields.io/badge/Contract-Echo%20%7C%20Quest-1e3a5f.svg)](docs/schema.md)
+[![Train](https://img.shields.io/badge/Train-SFT%20%2B%20DPO-ea580c.svg)](docs/train.md)
 
-> **English:** SFT small LLMs (1.7B–8B) into a **fixed output contract**—not prompt lottery. Cuts per-turn tokens (often 10k+ vs stuffing a full game bible) and **speeds up inference** for real-time use (digital humans, interactive AI games). Demos: **Echo** (voice), **Quest** (RPG). Same pattern fits tool-routing, IoT, support, forms, tutoring (not built yet).
+> **English:** Fine-tune small LLMs (1.7B–8B) into a **fixed output contract**—not prompt lottery. **SFT** welds the schema; optional **DPO** ranks better turns among valid ones. Cuts per-turn tokens (often 10k+ vs stuffing a full game bible) for real-time digital humans and interactive games. Demos: **Echo** (voice), **Quest** (RPG).
 
 **目录**
 
@@ -15,6 +16,7 @@
 - [一眼结果](#一眼结果)
 - [产品现实](#产品现实下游只吃字段)
 - [流水线](#流水线)
+- [SFT + DPO](#sft--dpo两阶段训练)
 - [Demo：Echo](#demoecho语音角色助手)
 - [Demo：Quest](#demoquest--ember文字-rpg)
 - [换契约最小清单](#换契约最小清单)
@@ -31,7 +33,7 @@
 
 端侧 / 低成本 GPU 上的 **1.7B–8B** 小模型，往往不只是「会聊天」。产品要的是一份 **固定契约**：每一轮输出都能被 **TTS、UI 状态机、工具或游戏引擎** 稳定解析。
 
-大模型 API + Prompt 能演示；**小模型要把格式通过 SFT 焊进权重**，再用校验与评测证明靠谱。
+大模型 API + Prompt 能演示；**小模型要把格式通过 SFT 焊进权重**，再用可选 **DPO** 拉开「合规且更好」与「坏格式 / 差话术」的差距，最后用校验与评测证明靠谱。
 
 <p align="center">
   <img src="docs/assets/positioning.svg" alt="三条路线对比：大模型 Prompt、小模型 Prompt、契约 SFT" width="920"/>
@@ -47,7 +49,7 @@
 |-----------------|------------------------|
 | 做数字人 / 语音助手 / AI 游戏，要 **秒回、省 token、字段别飘** | 完整 TTS SDK / 客户端 App |
 | 要在本地 / 端侧跑小模型，要 **便宜、私有、格式可复现** | 真实业务私有数据或现成商用人设 |
-| 作品集 / 工程实践：契约 → 门禁 → SFT → 对比评测 | 刷榜式通用能力、纯 Prompt 调教大模型 API |
+| 作品集 / 工程实践：契约 → 门禁 → **SFT →（可选）DPO** → 对比评测 | 刷榜式通用能力、纯 Prompt 调教大模型 API |
 
 **非目标：** 不做完整 TTS SDK / 客户端 App；不提供真实业务私有数据或商用人设；不追求刷榜式通用能力。
 
@@ -66,7 +68,7 @@
 | 基座 + Prompt | 33.3% | 33.3% | 66.7% |
 | 基座 + LoRA SFT | **100%** | **100%** | **100%** |
 
-> 小模型靠 Prompt「抽奖」焊不住契约；短 SFT 即可把合规从近 0 拉到可用。详情见 [`docs/results.md`](docs/results.md)。
+> 小模型靠 Prompt「抽奖」焊不住契约；短 SFT 即可把合规从近 0 拉到可用。DPO 面向 **已合规样本之间的排序**（口播质量、FSM 动作），不是替代 SFT。详情见 [`docs/results.md`](docs/results.md)。
 
 真机验收（有 GPU + adapter 时）：
 
@@ -100,13 +102,63 @@ python scripts/chat_echo.py `
 ## 流水线
 
 <p align="center">
-  <img src="docs/assets/pipeline.svg" alt="数据 → 校验 → SFT → 评测 → 真聊" width="920"/>
+  <img src="docs/assets/pipeline.svg" alt="数据 → 门禁 → SFT → 可选 DPO → 评测 → 真聊" width="920"/>
 </p>
 
+| 阶段 | 做什么 | 要 GPU？ |
+|------|--------|----------|
+| **Data** | 手写 / 合成 SFT 行；可选合成偏好对 | 否 |
+| **Gate** | 契约校验；DPO 时 **chosen 必过** | 否（`dry_run` 到此结束） |
+| **SFT** | LoRA 把契约焊进权重 | 是 |
+| **DPO** | 偏好 chosen ≻ rejected（可选） | 是 |
+| **Eval / Chat** | 同一套解析器打分与真聊 | 评测 generate / 真聊需要 |
+
 ```text
-样例 / 合成 → 校验（格式 + Schema）→ SFT（LoRA）→ 评测 → 真机对话
-                 ↑ 训推共用同一解析器
+样例 → 校验门禁 → SFT（LoRA）→ 可选 DPO → 评测 → 真机对话
+              ↑______________ 训推共用同一解析器 ______________↑
 ```
+
+---
+
+## SFT + DPO：两阶段训练
+
+| | **SFT** | **DPO**（可选二阶段） |
+|--|---------|----------------------|
+| **目标** | 学会输出合法契约 | 在合法之上更偏好更好的回合 |
+| **数据** | `{input, output}` | `{input, chosen, rejected}` |
+| **入口** | `scripts/train.py` | `scripts/train_dpo.py` |
+| **配置** | `examples/*/configs/sft_lora.yaml` | `examples/*/configs/dpo_lora.yaml` |
+| **典型 lr** | `2e-4` | `5e-6`（更小） |
+| **建议** | 必做 | 契约已稳后做；可从 SFT adapter 热启动 |
+
+<p align="center">
+  <img src="docs/assets/dpo-pairs.svg" alt="DPO：同一 prompt 下 chosen 优于 rejected" width="920"/>
+</p>
+
+偏好对三类（可用脚本从 SFT 自动合成）：
+
+| `pair_type` | rejected 长什么样 | 学到什么 |
+|-------------|-------------------|----------|
+| **format** | 缺标签 / 坏 JSON / 裸口播 | 讨厌破坏契约 |
+| **style** | 仍可解析，但话术差、控制字段离谱 | 偏好更干净、更贴场景的回合 |
+| **cross** | 另一条样本的 output | 拒绝「张冠李戴」 |
+
+```bash
+# 合成 + 校验偏好集（无 GPU）
+python scripts/build_preference_data.py `
+  --sft-data examples/echo/sample_data/train.json `
+  --out-dir examples/echo/sample_data/preference `
+  --contract echo
+
+python scripts/validate_preference_data.py `
+  --data examples/echo/sample_data/preference/train.json `
+  --contract echo
+
+# 真训：YAML 里 dry_run: false，建议填 sft_adapter_path
+python scripts/train_dpo.py --config examples/echo/configs/dpo_lora.yaml
+```
+
+> **`dry_run: true`（默认偏安全）** = 只跑偏好门禁，不加载模型。无 GPU / CI 用这个确认数据；有 GPU 再改 `false`。详见 [`docs/train.md`](docs/train.md)。
 
 ---
 
@@ -212,6 +264,7 @@ hp=80; mp=20; loc=森林路口; quest=找药草; flags=has_map
 python scripts/generate_quest_data.py
 python scripts/validate_data.py --contract quest --data examples/quest/sample_data/train.json
 python scripts/train.py --config examples/quest/configs/sft_lora.yaml
+# 可选：python scripts/train_dpo.py --config examples/quest/configs/dpo_lora.yaml
 python scripts/evaluate.py --contract quest --mode fixture
 python scripts/chat_quest.py --adapter outputs/quest_lora/<run_dir> --accept
 ```
@@ -225,8 +278,9 @@ python scripts/chat_quest.py --adapter outputs/quest_lora/<run_dir> --accept
 1. **冻结契约** — 写清块顺序与字段；JSON 包用 JSON Schema，分块用 `key=value` 规则  
 2. **实现解析 / 校验** — 挂到 `structured_llm.contract`，与 Echo / Quest 同一 `validate_*` 入口风格  
 3. **合成或标注数据** — `examples/<name>/sample_data/` + 生成脚本；先跑 `validate_data.py`  
-4. **配置训练** — `examples/<name>/configs/*.yaml` 里设 `contract: <name>`；可先 `dry_run: true`  
-5. **评测 + 真聊** — `evaluate.py --contract <name>`；`chat_*.py` 或复用 serve 回合循环  
+4. **SFT** — `examples/<name>/configs/sft_lora.yaml`；可先 `dry_run: true`  
+5. **（可选）DPO** — 合成偏好对 → `validate_preference_data.py` → `dpo_lora.yaml`  
+6. **评测 + 真聊** — `evaluate.py --contract <name>`；`chat_*.py` 或复用 serve 回合循环  
 
 训练与评测入口可复用；变的是 Schema / 合成器 / `examples/<name>/`。
 
@@ -234,7 +288,7 @@ python scripts/chat_quest.py --adapter outputs/quest_lora/<run_dir> --accept
 
 ## 还可适配（当前未实现）
 
-同一套：**定契约 → 合成/标注 → 校验门禁 → SFT → 评测 / 真聊**。仓库里还没有对应 Schema / 样例，便于对照选型：
+同一套：**定契约 → 合成/标注 → 门禁 → SFT →（可选）DPO → 评测 / 真聊**。仓库里还没有对应 Schema / 样例，便于对照选型：
 
 | 场景 | 人看到什么 | 机器吃什么 |
 |------|------------|------------|
@@ -248,9 +302,9 @@ python scripts/chat_quest.py --adapter outputs/quest_lora/<run_dir> --accept
 
 ## 快速开始
 
-### 最小路径（无 GPU）
+### ① 最小路径（无 GPU）
 
-环境说明：[`docs/env.md`](docs/env.md)。轻量依赖：`requirements-min.txt`。
+环境：[`docs/env.md`](docs/env.md) · 轻量依赖：`requirements-min.txt`。
 
 ```bash
 pip install -r requirements-min.txt
@@ -259,9 +313,14 @@ python scripts/generate_echo_data.py --count 300 --seed 3407
 python scripts/validate_data.py --data examples/echo/sample_data/train.json
 python scripts/validate_data.py --data examples/echo/sample_data/val.json
 python scripts/evaluate.py --cases examples/echo/eval_cases.json --mode fixture
+
+# DPO：只跑偏好门禁（configs 里默认 dry_run: true）
+python scripts/validate_preference_data.py `
+  --data examples/echo/sample_data/preference/train.json
+python scripts/train_dpo.py --config examples/echo/configs/dpo_lora.yaml
 ```
 
-### 训练与对比（需 GPU）
+### ② SFT（需 GPU）
 
 完整依赖：`requirements.txt`。详见 [`docs/train.md`](docs/train.md)。
 
@@ -274,7 +333,19 @@ python scripts/evaluate.py --mode generate --compare `
   --json-out outputs/eval_compare_v3.json
 ```
 
-### 真机对话
+### ③ DPO（需 GPU，建议接在 SFT 之后）
+
+```bash
+# 编辑 examples/echo/configs/dpo_lora.yaml：
+#   dry_run: false
+#   sft_adapter_path: outputs/echo_lora/<你的 run 目录>
+
+python scripts/train_dpo.py --config examples/echo/configs/dpo_lora.yaml
+```
+
+产出在 `outputs/echo_dpo/`（或 Quest 的 `outputs/quest_dpo/`），加载方式与 SFT adapter 相同。
+
+### ④ 真机对话
 
 详见 [`docs/serve.md`](docs/serve.md)。
 
@@ -303,7 +374,8 @@ python scripts/smoke_serve.py
 | [`docs/schema.md`](docs/schema.md) | Echo 输出契约 |
 | [`docs/quest_schema.md`](docs/quest_schema.md) | Quest 分块契约 |
 | [`docs/design.md`](docs/design.md) | 为何 think + `[json]` |
-| [`docs/train.md`](docs/train.md) | SFT 说明 |
+| [`docs/train.md`](docs/train.md) | **SFT / DPO** 配置与命令 |
+| [`docs/data_quality.md`](docs/data_quality.md) | 数据硬失败规则 + 偏好对 |
 | [`docs/results.md`](docs/results.md) | 评测对比数字 |
 | [`docs/serve.md`](docs/serve.md) | 真聊 / 服务 |
 | [`docs/env.md`](docs/env.md) | 安装 / CUDA |
@@ -315,13 +387,22 @@ python scripts/smoke_serve.py
 
 ```text
 structured-llm-pipeline/
-├── docs/                  # 设计、契约、训练、评测
-│   └── assets/            # README 示意图 + social preview
-├── schemas/               # Echo JSON Schema
-├── src/structured_llm/    # contract · data · train · eval · serve
-├── examples/echo/         # 语音 Demo：数据 / 配置 / 评测集
-├── examples/quest/        # RPG Demo：分块契约
-└── scripts/               # validate · train · evaluate · chat_* · serve_*
+├── docs/                       # 设计、契约、训练、评测
+│   └── assets/                 # README 示意图（含 DPO）
+├── schemas/                    # Echo JSON Schema
+├── src/structured_llm/
+│   ├── contract/               # 解析 + 校验（训推共用）
+│   ├── data/                   # SFT 行 · 偏好对合成
+│   ├── train/                  # SFT · DPO（Unsloth + TRL）
+│   ├── eval/ · serve/
+├── examples/echo|quest/
+│   ├── configs/sft_lora.yaml
+│   ├── configs/dpo_lora.yaml
+│   └── sample_data/preference/ # chosen / rejected
+└── scripts/
+    ├── train.py · train_dpo.py
+    ├── build_preference_data.py · validate_preference_data.py
+    └── evaluate · chat_* · serve_*
 ```
 
 ---
@@ -330,8 +411,9 @@ structured-llm-pipeline/
 
 1. **契约优先** — 先有 Schema 与校验器，再训练  
 2. **训推一致** — 标签与生成共用同一套解析器  
-3. **默认小模型** — 按本地 / 端侧部署假设优化  
-4. **Demo ≠ 框架** — Echo / Quest 示范模式；换契约即可迁场景  
+3. **SFT 焊格式，DPO 排好坏** — 合规是门禁；偏好是二阶段  
+4. **默认小模型** — 按本地 / 端侧部署假设优化  
+5. **Demo ≠ 框架** — Echo / Quest 示范模式；换契约即可迁场景  
 
 ---
 

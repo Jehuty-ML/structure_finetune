@@ -1,0 +1,919 @@
+[
+  {
+    "id": "hc_tired_06_dpo_style_1",
+    "input": {
+      "user_text": "眼睛干得睁不开，还想把周报写完。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 24,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n生理疲劳 vs 周报；劝停。\n</think>\n\n[json]\n{\"utter\":\"周报写不完也没关系。先闭眼歇五分钟。\",\"emotion\":\"gentle\",\"volume\":29,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n生理疲劳 vs 周报；劝停。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "tired",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_b2_16_dpo_style_1",
+    "input": {
+      "user_text": "我用优惠券拼成一单水果，总价不到三十。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 71,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n省钱小胜；celebrate。\n</think>\n\n[json]\n{\"utter\":\"不到三十的水果胜利。今晚先切哪样？\",\"emotion\":\"cheerful\",\"volume\":63,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n省钱小胜；celebrate。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "happy",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_b2_08_dpo_format_0",
+    "input": {
+      "user_text": "小区停热水通知，我今晚只能用烧水壶洗漱。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 42,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n生活不便；comfort。\n</think>\n\n[json]\n{\"utter\":\"烧水壶洗漱也能过一夜。热水何时恢复写通知了吗？\",\"emotion\":\"gentle\",\"volume\":35,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "[json]\n{\"utter\":\"烧水壶洗漱也能过一夜。热水何时恢复写通知了吗？\",\"emotion\":\"gentle\",\"volume\":35,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "tired",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_play_07_dpo_format_0",
+    "input": {
+      "user_text": "我养的多肉叶子掉光了，只剩光杆，像不像我的周末计划。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 47,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n自嘲；joke 接住比喻。\n</think>\n\n[json]\n{\"utter\":\"光杆周末也有春天。要不要给多肉和日程一起补土？\",\"emotion\":\"playful\",\"volume\":59,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "光杆周末也有春天。要不要给多肉和日程一起补土？",
+    "meta": {
+      "scenario": "playful",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_extra_13_dpo_format_0",
+    "input": {
+      "user_text": "直播带货话术我背不熟，上场前十分钟心慌。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 47,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n上场前；clarify 或 comfort 偏 clarify 一点。\n</think>\n\n[json]\n{\"utter\":\"十分钟只抓开场三十秒。你卡的是问候，还是价格口播？\",\"emotion\":\"concerned\",\"volume\":49,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "十分钟只抓开场三十秒。你卡的是问候，还是价格口播？",
+    "meta": {
+      "scenario": "anxious",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_happy_02_dpo_format_0",
+    "input": {
+      "user_text": "牙医说我智齿不用拔，阴影拍片一切正常。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 70,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n医疗好消息；轻松祝贺。\n</think>\n\n[json]\n{\"utter\":\"不用拔太好了。今晚可以好好吃饭庆祝一下。\",\"emotion\":\"cheerful\",\"volume\":68,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n随便应付一下。\n</think>\n\n[json]\n{\"utter\":\"好的\",\"emotion\":\"calm\"\n[/json]",
+    "meta": {
+      "scenario": "happy",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_mt_014_date_read_r2_dpo_style_1",
+    "input": {
+      "user_text": "想发收尾，但怕显得咄咄逼人。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [
+      "两天已读不回。你更想再等，还是发一句收尾？"
+    ],
+    "chosen": "<think>\n承接已读不回；给温和收尾方向。\n</think>\n\n[json]\n{\"utter\":\"可以短而软：最近忙的话就改日，我不催。要这版吗？\",\"emotion\":\"gentle\",\"volume\":44,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n承接已读不回；给温和收尾方向。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "date_read",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 2,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_mt_044_script_kill_r2_dpo_style_1",
+    "input": {
+      "user_text": "温和借口，明早有会。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [
+      "早退可以身体不适或明早有会。你想要哪一种说法？"
+    ],
+    "chosen": "<think>\n承接早退话术。\n</think>\n\n[json]\n{\"utter\":\"就说明早有会，玩到中场先走。需要我帮你练一句出口吗？\",\"emotion\":\"gentle\",\"volume\":47,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n承接早退话术。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "script_kill",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 2,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_extra_12_dpo_format_0",
+    "input": {
+      "user_text": "连续四天外卖，今天想自己煮番茄鸡蛋面，步骤要短。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 58,
+        "bond": 4,
+        "turn": 9
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n简单食谱；chat。\n</think>\n\n[json]\n{\"utter\":\"番茄炒出汁，倒水下面，最后淋蛋花。要盐糖比例吗？\",\"emotion\":\"calm\",\"volume\":54,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n简单食谱；chat。\n</think>\n\n\n{\"utter\":\"番茄炒出汁，倒水下面，最后淋蛋花。要盐糖比例吗？\",\"emotion\":\"calm\",\"volume\":54,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n",
+    "meta": {
+      "scenario": "neutral",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_mt_002_move_friends_r2_dpo_style_1",
+    "input": {
+      "user_text": "离开朋友。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [
+      "编制没批就悬着。眼下最沉的是工作，还是离开熟人？"
+    ],
+    "chosen": "<think>\n承接杭州/编制话题；comfort，点朋友与联系。\n</think>\n\n[json]\n{\"utter\":\"舍不得朋友很正常。要不要先定一个和杭州老友的固定通话日？\",\"emotion\":\"gentle\",\"volume\":44,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n承接杭州/编制话题；comfort，点朋友与联系。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "move_friends",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 2,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_mt_048_credit_card_r2_dpo_style_1",
+    "input": {
+      "user_text": "不动，留作应急。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [
+      "最低还款落地就安心一截。剩下的先不动吗？"
+    ],
+    "chosen": "<think>\n承接还款后储蓄意图。\n</think>\n\n[json]\n{\"utter\":\"留应急很稳。要不要设一个不再冲动划走的提醒？\",\"emotion\":\"calm\",\"volume\":52,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n承接还款后储蓄意图。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "credit_card",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 2,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_mt_012_pr_naming_r2_dpo_style_1",
+    "input": {
+      "user_text": "用户服务那层。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [
+      "命名乱最想先改哪个模块的符号？"
+    ],
+    "chosen": "<think>\n承接命名；落到用户服务层。\n</think>\n\n[json]\n{\"utter\":\"那就只清用户服务层命名。要不要我帮你列检查口诀？\",\"emotion\":\"concerned\",\"volume\":46,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n承接命名；落到用户服务层。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "pr_naming",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 2,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_mute_09_dpo_format_0",
+    "input": {
+      "user_text": "请开启飞行场景：驾驶副驾，法规不允许外放对话。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 58,
+        "bond": 4,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n驾驶相关静音；短确认。\n</think>\n\n[json]\n{\"utter\":\"已静音文字。你看路，我只回屏幕。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n驾驶相关静音；短确认。\n</think>\n\n\n{\"utter\":\"已静音文字。你看路，我只回屏幕。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n",
+    "meta": {
+      "scenario": "mute",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_play_03_dpo_style_1",
+    "input": {
+      "user_text": "我的盆栽叶子卷了，像不像它也在嫌弃我加班？",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 52,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n拟人玩笑；joke。\n</think>\n\n[json]\n{\"utter\":\"它大概在举牌：浇水或放假二选一。你选哪个？\",\"emotion\":\"playful\",\"volume\":62,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n拟人玩笑；joke。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "playful",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_mt_054_allhands_host_r2_dpo_format_0",
+    "input": {
+      "user_text": "好，我重写成两句。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [
+      "空很常见。开场留目的一句加议程一句就够。"
+    ],
+    "chosen": "<think>\n承接主持开场；鼓励两句版。\n</think>\n\n[json]\n{\"utter\":\"两句版更稳。要不要对着我试讲一遍计时？\",\"emotion\":\"calm\",\"volume\":50,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "[json]\n{\"utter\":\"两句版更稳。要不要对着我试讲一遍计时？\",\"emotion\":\"calm\",\"volume\":50,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "allhands_host",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 2,
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_extra_03_dpo_style_1",
+    "input": {
+      "user_text": "分手后共同好友约局，我怕撞见前任还得假装没事。",
+      "user_emotion": "sad",
+      "session": {
+        "energy": 34,
+        "bond": 4,
+        "turn": 5
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n社交两难；comfort，点共同好友。\n</think>\n\n[json]\n{\"utter\":\"共同好友局可以晚到或早退。你更想回避，还是打个照面就走？\",\"emotion\":\"gentle\",\"volume\":40,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n社交两难；comfort，点共同好友。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "tired",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_mt_057_projector_fail_r1_dpo_style_1",
+    "input": {
+      "user_text": "投影连不上，五分钟后客户到。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 40,
+        "bond": 4,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n现场故障；clarify。\n</think>\n\n[json]\n{\"utter\":\"五分钟改手机投屏或发链接。热点开了吗？\",\"emotion\":\"concerned\",\"volume\":55,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n现场故障；clarify。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "projector_fail",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 1,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_chat_02_dpo_format_0",
+    "input": {
+      "user_text": "今天北京空气一般，适合户外跑吗？",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 60,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n天气运动咨询；简短 chat。\n</think>\n\n[json]\n{\"utter\":\"空气一般的话，配速放慢或改室内走也行。\",\"emotion\":\"calm\",\"volume\":50,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"chat\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "空气一般的话，配速放慢或改室内走也行。",
+    "meta": {
+      "scenario": "neutral",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_mt_031_mute_then_continue_r1_dpo_format_0",
+    "input": {
+      "user_text": "会议室门外，先别出声。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 40,
+        "bond": 4,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n候场静音。\n</think>\n\n[json]\n{\"utter\":\"静音文字。你打关键字就行。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "rejected": "[json]\n{\"utter\":\"静音文字。你打关键字就行。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "mute_then_continue",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 1,
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_tired_08_dpo_format_0",
+    "input": {
+      "user_text": "论文参考文献格式改到眼花，还差十篇。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 30,
+        "bond": 3,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n学术琐碎疲劳；comfort。\n</think>\n\n[json]\n{\"utter\":\"十篇可以拆成明天的。今晚先停在这里。\",\"emotion\":\"gentle\",\"volume\":28,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "[json]\n{\"utter\":\"十篇可以拆成明天的。今晚先停在这里。\",\"emotion\":\"gentle\",\"volume\":28,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "tired",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_mt_020_star_k_r2_dpo_style_1",
+    "input": {
+      "user_text": "文档那次重构。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [
+      "破千！截图存档了吗？哪次提交你最得意？"
+    ],
+    "chosen": "<think>\n承接 star；点文档重构。\n</think>\n\n[json]\n{\"utter\":\"文档重构能破千很说明问题。要不要写个简短致谢帖？\",\"emotion\":\"cheerful\",\"volume\":68,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n承接 star；点文档重构。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "star_k",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 2,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_extra_18_dpo_format_0",
+    "input": {
+      "user_text": "新键盘配列是 75%，打字声音清脆，我想炫耀十秒。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 77,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n允许炫耀；celebrate/chat 偏 celebrate。\n</think>\n\n[json]\n{\"utter\":\"炫耀许可十秒通过。键程手感哪颗你最爱？\",\"emotion\":\"cheerful\",\"volume\":68,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "炫耀许可十秒通过。键程手感哪颗你最爱？",
+    "meta": {
+      "scenario": "happy",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_mt_001_move_friends_r1_dpo_format_0",
+    "input": {
+      "user_text": "可能要为工作搬去杭州，编制还没批。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 40,
+        "bond": 4,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n搬家未定；clarify 最沉的一块。\n</think>\n\n[json]\n{\"utter\":\"编制没批就悬着。眼下最沉的是工作，还是离开熟人？\",\"emotion\":\"concerned\",\"volume\":50,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n搬家未定；clarify 最沉的一块。\n</think>\n\n\n{\"utter\":\"编制没批就悬着。眼下最沉的是工作，还是离开熟人？\",\"emotion\":\"concerned\",\"volume\":50,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n",
+    "meta": {
+      "scenario": "move_friends",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 1,
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_close_04_dpo_style_1",
+    "input": {
+      "user_text": "电池百分之八，我先省电挂了。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 55,
+        "bond": 4,
+        "turn": 20
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n设备限制收束。\n</think>\n\n[json]\n{\"utter\":\"百分之八先挂。充上电再来。\",\"emotion\":\"calm\",\"volume\":44,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"close\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "rejected": "<think>\n设备限制收束。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":true}\n[/json]",
+    "meta": {
+      "scenario": "end_turn",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_mt_047_credit_card_r1_dpo_format_0",
+    "input": {
+      "user_text": "工资到了，先把信用卡最低还款扣掉。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 40,
+        "bond": 4,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n财务节奏；celebrate。\n</think>\n\n[json]\n{\"utter\":\"最低还款落地就安心一截。剩下的先不动吗？\",\"emotion\":\"cheerful\",\"volume\":62,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "最低还款落地就安心一截。剩下的先不动吗？",
+    "meta": {
+      "scenario": "credit_card",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 1,
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_mute_06_dpo_format_0",
+    "input": {
+      "user_text": "电影院片头广告中，我摸黑打字，别出声。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 60,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n影院静音。\n</think>\n\n[json]\n{\"utter\":\"影院模式开着，只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n影院静音。\n</think>\n\n\n{\"utter\":\"影院模式开着，只回文字。\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"normal\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n",
+    "meta": {
+      "scenario": "mute",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_b2_02_dpo_format_0",
+    "input": {
+      "user_text": "实习 offer 口头有了，书面要下周，我怕变卦。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 44,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n口头 offer；clarify。\n</think>\n\n[json]\n{\"utter\":\"口头到书面常有空窗。你想先发感谢确认，还是等 HR？\",\"emotion\":\"concerned\",\"volume\":46,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "口头到书面常有空窗。你想先发感谢确认，还是等 HR？",
+    "meta": {
+      "scenario": "anxious",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_anx_07_dpo_style_1",
+    "input": {
+      "user_text": "体检出小结节要复查，报告写随诊，我脑子里全是最坏情况。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 36,
+        "bond": 6,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n健康报告焦虑；clarify，避免恐吓。\n</think>\n\n[json]\n{\"utter\":\"随诊不等于宣判。你最想先弄清的是复查时间，还是含义？\",\"emotion\":\"concerned\",\"volume\":43,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n健康报告焦虑；clarify，避免恐吓。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "anxious",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_happy_02_dpo_style_1",
+    "input": {
+      "user_text": "牙医说我智齿不用拔，阴影拍片一切正常。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 70,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n医疗好消息；轻松祝贺。\n</think>\n\n[json]\n{\"utter\":\"不用拔太好了。今晚可以好好吃饭庆祝一下。\",\"emotion\":\"cheerful\",\"volume\":68,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n医疗好消息；轻松祝贺。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "happy",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_mute_10_dpo_style_1",
+    "input": {
+      "user_text": "寺庙区域请保持安静，我改用阅读模式跟你聊。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 52,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": false,
+        "interruptible": false
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n场所安静要求。\n</think>\n\n[json]\n{\"utter\":\"阅读模式，只文字。你想聊哪一点？\",\"emotion\":\"calm\",\"volume\":0,\"pace\":\"slow\",\"should_speak\":false,\"intent\":\"chat\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n场所安静要求。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":false,\"intent\":\"celebrate\",\"ui_mode\":\"text_only\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "mute",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_b2_33_dpo_format_0",
+    "input": {
+      "user_text": "加班到最后一班地铁，车厢味道像泡面和雨衣。",
+      "user_emotion": "tired",
+      "session": {
+        "energy": 26,
+        "bond": 4,
+        "turn": 15
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n通勤疲惫感官；comfort。\n</think>\n\n[json]\n{\"utter\":\"泡面雨衣味也是收工证明。到站前靠一靠。\",\"emotion\":\"gentle\",\"volume\":29,\"pace\":\"slow\",\"should_speak\":true,\"intent\":\"comfort\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n随便应付一下。\n</think>\n\n[json]\n{\"utter\":\"好的\",\"emotion\":\"calm\"\n[/json]",
+    "meta": {
+      "scenario": "tired",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_mt_036_interrupt_alarm_r2_dpo_style_1",
+    "input": {
+      "user_text": "停，我其实只想设置贪睡两次。",
+      "user_emotion": "neutral",
+      "session": {
+        "energy": 45,
+        "bond": 5,
+        "turn": 2
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [
+      "可以。先从固定起床点说起，还是咖啡因截止时间？"
+    ],
+    "chosen": "<think>\n打断睡眠长谈；interrupt_ack 回贪睡。\n</think>\n\n[json]\n{\"utter\":\"好，停展开。贪睡两次：把间隔调到两分钟即可。\",\"emotion\":\"neutral\",\"volume\":54,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"interrupt_ack\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n打断睡眠长谈；interrupt_ack 回贪睡。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "interrupt_alarm",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 2,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_play_11_dpo_format_0",
+    "input": {
+      "user_text": "室友把洗洁精当洗手液用了，泡沫派对在洗手台开张。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 72,
+        "bond": 4,
+        "turn": 8
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n生活笑话；joke。\n</think>\n\n[json]\n{\"utter\":\"洗手台泡沫派对免费入场。他现在冲洗干净了吗？\",\"emotion\":\"playful\",\"volume\":65,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"joke\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "洗手台泡沫派对免费入场。他现在冲洗干净了吗？",
+    "meta": {
+      "scenario": "playful",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "hc_mt_007_visa_gap_r1_dpo_style_1",
+    "input": {
+      "user_text": "签证缺在职证明，下周三大使馆。",
+      "user_emotion": "anxious",
+      "session": {
+        "energy": 40,
+        "bond": 4,
+        "turn": 1
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n签证材料；clarify。\n</think>\n\n[json]\n{\"utter\":\"下周三前补证明。HR 那边你催过几次了？\",\"emotion\":\"concerned\",\"volume\":46,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"clarify\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "<think>\n签证材料；clarify。\n</think>\n\n[json]\n{\"utter\":\"[json]其实吧这个事情呢我觉得我们可以从很多角度慢慢展开讨论，首先你要知道……嗯……总之你先听我说完。\",\"emotion\":\"cheerful\",\"volume\":95,\"pace\":\"fast\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "meta": {
+      "scenario": "visa_gap",
+      "contract": "echo",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 1,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "hc_b2_25_dpo_format_0",
+    "input": {
+      "user_text": "我通过了驾照科目三预约，日子定在下下周一。",
+      "user_emotion": "happy",
+      "session": {
+        "energy": 80,
+        "bond": 4,
+        "turn": 3
+      },
+      "device": {
+        "can_speak": true,
+        "interruptible": true
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n预约成功；celebrate。\n</think>\n\n[json]\n{\"utter\":\"下下周一科目三定了。要不要列个考前检查短单？\",\"emotion\":\"cheerful\",\"volume\":69,\"pace\":\"normal\",\"should_speak\":true,\"intent\":\"celebrate\",\"ui_mode\":\"speak\",\"end_turn\":false}\n[/json]",
+    "rejected": "下下周一科目三定了。要不要列个考前检查短单？",
+    "meta": {
+      "scenario": "happy",
+      "contract": "echo",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  }
+]

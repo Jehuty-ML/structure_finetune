@@ -52,6 +52,12 @@ def format_user_message(
 
 from .generate_echo import generate_dataset, split_train_val  # noqa: E402
 from . import generate_quest as _quest  # noqa: E402
+from .preference import (  # noqa: E402
+    build_preference_pairs,
+    format_dpo_prompt,
+    iter_dpo_rows,
+    preference_to_trl_columns,
+)
 
 generate_quest_dataset = _quest.generate_dataset
 split_quest_train_val = _quest.split_train_val
@@ -65,4 +71,8 @@ __all__ = [
     "split_train_val",
     "generate_quest_dataset",
     "split_quest_train_val",
+    "iter_dpo_rows",
+    "format_dpo_prompt",
+    "build_preference_pairs",
+    "preference_to_trl_columns",
 ]

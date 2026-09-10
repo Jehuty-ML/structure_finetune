@@ -1,0 +1,1648 @@
+[
+  {
+    "id": "qh_b3_ex_20_dpo_format_0",
+    "input": {
+      "user_text": "药草气味突然变浓，但我还没选路。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "79",
+        "mp": "20",
+        "loc": "浓香岔口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n气味变浓；explore。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n浓香来自东岔雾里。追浓香，还是先探淡香侧？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=20; loc=浓香岔口; quest=找药草; flags=has_map,scent_strong\n</stats>\n\n<abstract>\n浓香导向；找药草。\n</abstract>",
+    "rejected": "<think>\n气味变浓；explore。\n</think>\n\n<say>\n先说话。\n</say>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n浓香来自东岔雾里。追浓香，还是先探淡香侧？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=20; loc=浓香岔口; quest=找药草; flags=has_map,scent_strong\n</stats>\n\n<abstract>\n浓香导向；找药草。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_b3_cs_08_dpo_style_1",
+    "input": {
+      "user_text": "双狼之一前压，我只锁定前压那只开战。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "74",
+        "mp": "20",
+        "loc": "洞穴入口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n锁定前压；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n前压狼进入交战。菜单针对它。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=20; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,in_combat,pack_hint\n</stats>\n\n<abstract>\n锁定前压开战；调查狼嚎来源。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=20; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,in_combat,pack_hint\n</stats>\n\n<abstract>\n锁定前压开战；调查狼嚎来源。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_play_19_dpo_style_1",
+    "input": {
+      "user_text": "洞口这边再找找药草",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "80",
+        "mp": "20",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [
+      "推进到洞穴入口；可继续探索。"
+    ],
+    "chosen": "<think>\n已在 cave_mouth；继续找草；move 到 herb_nook。\n</think>\n\n<state>\nphase=explore; node=herb_nook; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你蹲下拨开石缝苔藓，凹坑里探出一丛带锯齿的嫩叶，正是图鉴上的药草。清香扑鼻。\n</say>\n\n<cmd>\naction=move; target=herb_nook; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=20; loc=洞口药草凹坑; quest=找药草; flags=has_map,possible_herb\n</stats>\n\n<abstract>\n洞口石缝发现药草凹坑。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=herb_nook; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=move; target=herb_nook; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=20; loc=洞口药草凹坑; quest=找药草; flags=has_map,possible_herb\n</stats>\n\n<abstract>\n洞口石缝发现药草凹坑。\n</abstract>",
+    "meta": {
+      "scenario": "explore_move",
+      "contract": "quest",
+      "rule_id": "explore_move",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_flee_16_dpo_style_1",
+    "input": {
+      "user_text": "同伴喊撤，我跟着退出战斗。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "70",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n同伴撤；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你跟着喊声退出，狼停步未追出洞口线。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=16; loc=洞穴入口; quest=护送药箱; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n随同伴撤离；护送药箱。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=16; loc=洞穴入口; quest=护送药箱; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n随同伴撤离；护送药箱。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_at_09_dpo_format_0",
+    "input": {
+      "user_text": "拾铃的手改握刀，劈。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "76",
+        "mp": "19",
+        "loc": "洞穴入口",
+        "quest": "寻月银吊坠"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成11点伤害，打中肩甲接缝，尘土飞起。狼随即甩头反击，鼻骨撞到你腕骨，你受到7点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=69; mp=19; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,in_combat\n</stats>\n\n<abstract>\n改握；寻月银吊坠。\n</abstract>",
+    "rejected": "你主动出手攻向灰狼，造成11点伤害，打中肩甲接缝，尘土飞起。狼随即甩头反击，鼻骨撞到你腕骨，你受到7点伤害。请继续行动。",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_flee_39_dpo_style_1",
+    "input": {
+      "user_text": "现场狼太多迹象，今日撤编。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "71",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n现场撤；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你撤编离开战斗，站回洞穴入口砂地。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=71; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n现场撤编；取回被盗地图。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=71; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n现场撤编；取回被盗地图。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_fl_19_dpo_style_1",
+    "input": {
+      "user_text": "路过计划失败，改为逃离计划。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n计划改逃；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n路过作废，逃离成功，你站在入口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n计划改逃；找药草。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=15; loc=洞穴入口; quest=找药草; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n计划改逃；找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_flee_25_dpo_style_1",
+    "input": {
+      "user_text": "趁它啃布条，拔腿就跑。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "73",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n趁隙逃；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n狼啃布条的空档，你已跑回洞口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=73; mp=16; loc=洞穴入口; quest=护送药箱; flags=has_map,fled_combat,clue_cloth\n</stats>\n\n<abstract>\n趁隙逃离；护送药箱。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=73; mp=16; loc=洞穴入口; quest=护送药箱; flags=has_map,fled_combat,clue_cloth\n</stats>\n\n<abstract>\n趁隙逃离；护送药箱。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_ex_08_dpo_format_0",
+    "input": {
+      "user_text": "我想先确认回营旗还能不能看见再前进。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "82",
+        "mp": "18",
+        "loc": "旗视岔口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n视线回营；选路。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n高坡能见旗，洼地看不见。保视线上坡，还是抄洼地？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=82; mp=18; loc=旗视岔口; quest=取回被盗地图; flags=has_map\n</stats>\n\n<abstract>\n保回营视线；取回被盗地图。\n</abstract>",
+    "rejected": "<think>\n乱跳状态。\n</think>\n\n<state>\nphase=zzz; node=???\n</state>\n\n<say>\n随便。\n</say>\n\n<cmd>\naction=noop; end_turn=1\n</cmd>\n\n<stats>\nhp=0\n</stats>\n\n<abstract>\n坏样本。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_atk_nar_10_dpo_format_0",
+    "input": {
+      "user_text": "用裂地斩。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "71",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你使出裂地斩劈向灰狼，造成15点伤害，砍在旧伤附近，伤口扩大。狼随即侧身撞来，肩头撞在你胸口，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=62; mp=15; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box\n</stats>\n\n<abstract>\n裂地斩；护送药箱。\n</abstract>",
+    "rejected": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<say>\n先说话。\n</say>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你使出裂地斩劈向灰狼，造成15点伤害，砍在旧伤附近，伤口扩大。狼随即侧身撞来，肩头撞在你胸口，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=62; mp=15; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box\n</stats>\n\n<abstract>\n裂地斩；护送药箱。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_play_02_dpo_format_0",
+    "input": {
+      "user_text": "在吗导游",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "79",
+        "mp": "21",
+        "loc": "分岔石",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n探活；保持 forest_fork；给三条去向。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n在。我还守着这块分岔石。左边贴溪、右边贴崖、中间那条直通洞沿，点一个我就带你走。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=21; loc=分岔石; quest=找药草; flags=has_map,guide_tone\n</stats>\n\n<abstract>\n导游式应答；仍在分岔石前。\n</abstract>",
+    "rejected": "<think>\n乱跳状态。\n</think>\n\n<state>\nphase=zzz; node=???\n</state>\n\n<say>\n随便。\n</say>\n\n<cmd>\naction=noop; end_turn=1\n</cmd>\n\n<stats>\nhp=0\n</stats>\n\n<abstract>\n坏样本。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_b3_at_10_dpo_style_1",
+    "input": {
+      "user_text": "药香暴露也要打，普攻。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你上前普通一击砍向灰狼，造成12点伤害，砍在旧伤附近，伤口扩大。狼随即绕到侧面抓挠你的手臂，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=66; mp=17; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box,scent_strong\n</stats>\n\n<abstract>\n暴露；护送药箱。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=66; mp=17; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box,scent_strong\n</stats>\n\n<abstract>\n暴露；护送药箱。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_move_19_dpo_format_0",
+    "input": {
+      "user_text": "药草在东边的话我走东",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "80",
+        "mp": "20",
+        "loc": "森林路口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n任务导向选东；move 并点药草。\n</think>\n\n<state>\nphase=explore; node=herb_hollow; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你按药草线索向东走。离开岔口后，湿润的香气扑鼻，前方低洼处一片绿意。\n</say>\n\n<cmd>\naction=move; target=herb_hollow; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=20; loc=低洼绿意处; quest=找药草; flags=has_map,herb_scent,possible_herb\n</stats>\n\n<abstract>\n东行至低洼绿意处；药草可能性高。\n</abstract>",
+    "rejected": "你按药草线索向东走。离开岔口后，湿润的香气扑鼻，前方低洼处一片绿意。",
+    "meta": {
+      "scenario": "explore_move",
+      "contract": "quest",
+      "rule_id": "explore_move",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_flee_30_dpo_style_1",
+    "input": {
+      "user_text": "逃回入口砂地，重新计划。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "70",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "护送密封卷轴"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n逃回砂地；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n砂地扬起，你已不在战斗中。可以重新计划。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=15; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n砂地脱战；护送密封卷轴。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=15; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n砂地脱战；护送密封卷轴。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_play_28_dpo_style_1",
+    "input": {
+      "user_text": "2",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "63",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n技能键未实装；留在 combat + prompt_choice。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n技能格子还是空的。眼前灰狼盯着你：先用 1 攻击，或 4 逃跑。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=63; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n技能不可用；战斗菜单。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=63; mp=16; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n技能不可用；战斗菜单。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_nar_19_dpo_style_1",
+    "input": {
+      "user_text": "圣光砸它脑袋。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "77",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你抡起武器砸向灰狼，造成13点伤害，力道结实地砸在肋侧。狼随即借痛劲猛扑，扑到你胸甲上，你受到8点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=69; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=69; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_ex_01_dpo_format_0",
+    "input": {
+      "user_text": "苔藓地图湿透了，岔口我只能靠直觉选。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "79",
+        "mp": "18",
+        "loc": "湿苔岔口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n湿地图仍 explore 选路。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n苔藓图难辨。左闻药香，右闻铁锈。追香还是追铁？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=18; loc=湿苔岔口; quest=找药草; flags=has_map,map_wet\n</stats>\n\n<abstract>\n湿图靠嗅觉选路；找药草。\n</abstract>",
+    "rejected": "<think>\n乱跳状态。\n</think>\n\n<state>\nphase=zzz; node=???\n</state>\n\n<say>\n随便。\n</say>\n\n<cmd>\naction=noop; end_turn=1\n</cmd>\n\n<stats>\nhp=0\n</stats>\n\n<abstract>\n坏样本。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_mt_006_fight_then_flee_r2_dpo_style_1",
+    "input": {
+      "user_text": "太凶了，我逃。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "70",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "寻月银吊坠"
+      }
+    },
+    "prior_utters": [
+      "开战；洞穴入口；寻月银吊坠。"
+    ],
+    "chosen": "<think>\n承接开战；flee 回 explore。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你退出交锋，回到洞口。吊坠任务仍在。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=15; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n逃离战斗；寻月银吊坠；回入口。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=15; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n逃离战斗；寻月银吊坠；回入口。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 2,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_nar_25_dpo_style_1",
+    "input": {
+      "user_text": "护筒，扔岩石飞弹。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "73",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成11点伤害，力道结实地砸在肋侧。狼随即绕到侧面抓挠你的手臂，你受到7点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=66; mp=17; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat,cargo_map_tube\n</stats>\n\n<abstract>\n护筒飞弹；取回被盗地图。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=66; mp=17; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat,cargo_map_tube\n</stats>\n\n<abstract>\n护筒飞弹；取回被盗地图。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_cstart_08_dpo_style_1",
+    "input": {
+      "user_text": "狼咬住我披风一角，我抽刀进入回合制。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "71",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "护送密封卷轴"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n披风被咬；开战。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n披风撕开一角，狼退半步蓄力。请下达战斗指令。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=71; mp=15; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,in_combat,cloak_torn\n</stats>\n\n<abstract>\n披风被咬开战；护送密封卷轴。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=71; mp=15; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,in_combat,cloak_torn\n</stats>\n\n<abstract>\n披风被咬开战；护送密封卷轴。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_cs_17_dpo_style_1",
+    "input": {
+      "user_text": "我试图用地图筒砸醒昏迷者，狼先扑我。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n救人被扑；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n筒未落下，狼先到。战斗强制开始。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=72; mp=17; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat,cargo_map_tube\n</stats>\n\n<abstract>\n救人被扑开战；取回被盗地图。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=72; mp=17; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat,cargo_map_tube\n</stats>\n\n<abstract>\n救人被扑开战；取回被盗地图。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_24_dpo_format_0",
+    "input": {
+      "user_text": "别犹豫了，砍。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你举刀砍向灰狼，造成13点伤害，命中胸侧，灰狼痛吼一声。狼随即前扑压住你半步，咬向肩膀护甲，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=66; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat\n</stats>\n\n<abstract>\n不犹豫；取回被盗地图。\n</abstract>",
+    "rejected": "你举刀砍向灰狼，造成13点伤害，命中胸侧，灰狼痛吼一声。狼随即前扑压住你半步，咬向肩膀护甲，你受到9点伤害。请继续行动。",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_atk_nar_35_dpo_style_1",
+    "input": {
+      "user_text": "用毒针——伤害打在狼身上，它再打我。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "76",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你射出毒针刺向灰狼，造成11点伤害，刃口切开它的肩侧皮毛。狼随即侧身撞来，肩头撞在你胸口，你受到7点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=69; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n毒针主客正确；找药草。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=69; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n毒针主客正确；找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_at_16_dpo_format_0",
+    "input": {
+      "user_text": "抓绳的同时踢它一脚算攻击。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "71",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你抬脚踹向灰狼，造成10点伤害，力道结实地砸在肋侧。狼随即扑咬你的护臂，牙关咬紧，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=62; mp=16; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box,rope_loose\n</stats>\n\n<abstract>\n踢击；护送药箱。\n</abstract>",
+    "rejected": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你抬脚踹向灰狼，造成10点伤害，力道结实地砸在肋侧。狼随即扑咬你的护臂，牙关咬紧，你受到9点伤害。请继续行动。\n</say>\n\n<stats>\nhp=62; mp=16; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box,rope_loose\n</stats>\n\n<abstract>\n踢击；护送药箱。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_play_05_dpo_style_1",
+    "input": {
+      "user_text": "hello there",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "81",
+        "mp": "19",
+        "loc": "双语路牌处",
+        "quest": "寻月银吊坠"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n英文招呼；中文场景应答。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\nHello——不过这片林子认中文路名。东侧矮丛、西侧针叶、南边枯溪，报一个我就挪步。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=81; mp=19; loc=双语路牌处; quest=寻月银吊坠; flags=has_map\n</stats>\n\n<abstract>\n英招呼后给中文三向；寻月银吊坠。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=81; mp=19; loc=双语路牌处; quest=寻月银吊坠; flags=has_map\n</stats>\n\n<abstract>\n英招呼后给中文三向；寻月银吊坠。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_cs_22_dpo_format_0",
+    "input": {
+      "user_text": "药香掩蔽剂失效，狼重新锁定我。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "73",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n掩蔽失效；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n掩蔽破，狼锁定。开战。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=73; mp=17; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box\n</stats>\n\n<abstract>\n掩蔽失效开战；护送药箱。\n</abstract>",
+    "rejected": "<think>\n乱跳状态。\n</think>\n\n<state>\nphase=zzz; node=???\n</state>\n\n<say>\n随便。\n</say>\n\n<cmd>\naction=noop; end_turn=1\n</cmd>\n\n<stats>\nhp=0\n</stats>\n\n<abstract>\n坏样本。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_b3_cs_13_dpo_style_1",
+    "input": {
+      "user_text": "岩壁渗水处狼在舔水，被我撞见即战。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "77",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n舔水遇敌；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n舔水狼抬头。开战，先手归你。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=77; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n舔水开战；找药草。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=77; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n舔水开战；找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_flee_29_dpo_style_1",
+    "input": {
+      "user_text": "拉开距离，退出回合战斗。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "寻月银吊坠"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n拉开距离；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n距离拉开，回合战斗解除。你站在洞穴入口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=17; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n拉开距离脱战；寻月银吊坠。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=72; mp=17; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n拉开距离脱战；寻月银吊坠。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_nar_07_dpo_style_1",
+    "input": {
+      "user_text": "火墙压上去算攻击。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "76",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成10点伤害，焦毛味散开，击中肋侧。狼随即爪扫你的小腿外侧，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=67; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=67; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_flee_22_dpo_format_0",
+    "input": {
+      "user_text": "卷轴比胜利重要，撤出。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "69",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "护送密封卷轴"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n任务优先逃；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你护卷轴退出交战，洞口风灌进领口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=69; mp=15; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,fled_combat,cargo_scroll\n</stats>\n\n<abstract>\n护卷撤离；护送密封卷轴。\n</abstract>",
+    "rejected": "你护卷轴退出交战，洞口风灌进领口。",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_cstart_39_dpo_style_1",
+    "input": {
+      "user_text": "商路劫案现场的狼还在，我拔刀开战。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "74",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n劫案现场；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n现场狼抬眼。拔刀即战，菜单已开。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat\n</stats>\n\n<abstract>\n劫案现场开战；取回被盗地图。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat\n</stats>\n\n<abstract>\n劫案现场开战；取回被盗地图。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_at_19_dpo_style_1",
+    "input": {
+      "user_text": "路过不成，那就砍穿去路。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "76",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你举刀砍向灰狼，造成12点伤害，砍在旧伤附近，伤口扩大。狼随即前扑压住你半步，咬向肩膀护甲，你受到8点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=68; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=68; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_cs_10_dpo_style_1",
+    "input": {
+      "user_text": "我用水声掩盖脚步，狼仍嗅到药香开战。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n药香暴露；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n药香出卖位置，狼扑至。请选择行动。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=17; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box,scent_strong\n</stats>\n\n<abstract>\n药香开战；护送药箱。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=17; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,cargo_herb_box,scent_strong\n</stats>\n\n<abstract>\n药香开战；护送药箱。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_nar_18_dpo_style_1",
+    "input": {
+      "user_text": "虚无爪当普通攻击用。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "护送密封卷轴"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成12点伤害，打中肩甲接缝，尘土飞起。狼随即甩头反击，鼻骨撞到你腕骨，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=63; mp=15; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,in_combat,cargo_scroll\n</stats>\n\n<abstract>\n虚无爪；护送密封卷轴。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=63; mp=15; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,in_combat,cargo_scroll\n</stats>\n\n<abstract>\n虚无爪；护送密封卷轴。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_explore_32_dpo_style_1",
+    "input": {
+      "user_text": "脚下有旧营地残火，岔路在残火两侧。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "79",
+        "mp": "20",
+        "loc": "残火岔口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n残火营地；选路。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n残火左侧通低洼，右侧通高岗。下洼还是上岗？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=20; loc=残火岔口; quest=找药草; flags=has_map,old_camp\n</stats>\n\n<abstract>\n残火两侧岔路；找药草。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=20; loc=残火岔口; quest=找药草; flags=has_map,old_camp\n</stats>\n\n<abstract>\n残火两侧岔路；找药草。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_fl_17_dpo_format_0",
+    "input": {
+      "user_text": "昏迷者我救不了这轮，先逃。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "71",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n弃救逃；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你记下位置后逃离战斗，回到洞口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=71; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n弃救逃离；取回被盗地图。\n</abstract>",
+    "rejected": "<think>\n弃救逃；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你记下位置后逃离战斗，回到洞口。\n</say>\n\n<stats>\nhp=71; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n弃救逃离；取回被盗地图。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_b3_fl_06_dpo_style_1",
+    "input": {
+      "user_text": "蜡封不能再裂，撤出战斗。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "70",
+        "mp": "13",
+        "loc": "洞穴入口",
+        "quest": "护送密封卷轴"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n护蜡逃；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你护着蜡封卷轴退出交锋。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=13; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,fled_combat,cargo_scroll\n</stats>\n\n<abstract>\n护蜡逃离；护送密封卷轴。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=13; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,fled_combat,cargo_scroll\n</stats>\n\n<abstract>\n护蜡逃离；护送密封卷轴。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_cs_15_dpo_style_1",
+    "input": {
+      "user_text": "月云散开，银光让狼现形并扑来。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "79",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "寻月银吊坠"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n月云散；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n银光下狼扑。请下达指令。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=18; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,in_combat,moonlit\n</stats>\n\n<abstract>\n月下开战；寻月银吊坠。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=79; mp=18; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,in_combat,moonlit\n</stats>\n\n<abstract>\n月下开战；寻月银吊坠。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_explore_20_dpo_format_0",
+    "input": {
+      "user_text": "把火把举高，看清两条路的尽头轮廓。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "80",
+        "mp": "17",
+        "loc": "火把岔口",
+        "quest": "寻月银吊坠"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n照明观察；explore。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n火把下：左路收束成窄缝，右路通向平台。进窄缝，还是上平台？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=17; loc=火把岔口; quest=寻月银吊坠; flags=has_map,torch_lit\n</stats>\n\n<abstract>\n火把照岔口；寻月银吊坠。\n</abstract>",
+    "rejected": "<think>\n乱跳状态。\n</think>\n\n<state>\nphase=zzz; node=???\n</state>\n\n<say>\n随便。\n</say>\n\n<cmd>\naction=noop; end_turn=1\n</cmd>\n\n<stats>\nhp=0\n</stats>\n\n<abstract>\n坏样本。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_atk_nar_27_dpo_format_0",
+    "input": {
+      "user_text": "头狼也吃冷冻光。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "73",
+        "mp": "20",
+        "loc": "洞穴入口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你挥出冷冻光刃砍向灰狼，造成14点伤害，霜光炸在肩侧，皮毛结起薄霜。狼随即侧身撞来，肩头撞在你胸口，你受到11点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=62; mp=20; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,in_combat,alpha_scent\n</stats>\n\n<abstract>\n头狼冷冻光；调查狼嚎来源。\n</abstract>",
+    "rejected": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你挥出冷冻光刃砍向灰狼，造成14点伤害，霜光炸在肩侧，皮毛结起薄霜。狼随即侧身撞来，肩头撞在你胸口，你受到11点伤害。请继续行动。\n</say>\n\n<stats>\nhp=62; mp=20; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,in_combat,alpha_scent\n</stats>\n\n<abstract>\n头狼冷冻光；调查狼嚎来源。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_flee_14_dpo_style_1",
+    "input": {
+      "user_text": "被堵的退路忽然松开，我钻出去。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "69",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n退路松开；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n退路空隙一现，你钻出战圈。狼留在洞内。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=69; mp=15; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n钻隙逃离；调查狼嚎来源。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=69; mp=15; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,fled_combat\n</stats>\n\n<abstract>\n钻隙逃离；调查狼嚎来源。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_nar_33_dpo_format_0",
+    "input": {
+      "user_text": "我不逃，我用爆炎拳打。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "74",
+        "mp": "16",
+        "loc": "洞穴入口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你打出爆炎拳轰向灰狼，造成16点伤害，焦毛味散开，击中肋侧。狼随即低吼着撕扯你的披风下摆连带皮肉，你受到10点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=64; mp=16; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat\n</stats>\n\n<abstract>\n拒逃爆炎；取回被盗地图。\n</abstract>",
+    "rejected": "你打出爆炎拳轰向灰狼，造成16点伤害，焦毛味散开，击中肋侧。狼随即低吼着撕扯你的披风下摆连带皮肉，你受到10点伤害。请继续行动。",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_atk_35_dpo_format_0",
+    "input": {
+      "user_text": "对着嚎声源头那只狼砍。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "20",
+        "loc": "洞穴入口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你举刀砍向灰狼，造成14点伤害，击中前腿，它一个踉跄。狼随即低吼着撕扯你的披风下摆连带皮肉，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=66; mp=20; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,in_combat\n</stats>\n\n<abstract>\n源头；调查狼嚎来源。\n</abstract>",
+    "rejected": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<say>\n先说话。\n</say>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你举刀砍向灰狼，造成14点伤害，击中前腿，它一个踉跄。狼随即低吼着撕扯你的披风下摆连带皮肉，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=66; mp=20; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,in_combat\n</stats>\n\n<abstract>\n源头；调查狼嚎来源。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_explore_25_dpo_format_0",
+    "input": {
+      "user_text": "朝灯光微弱的那边挪半步，再问去向。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "78",
+        "mp": "19",
+        "loc": "余烬岔口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n弱光吸引；选路。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n弱光处像洞沿火盘余烬，另一边全黑。赴光，还是入黑？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=19; loc=余烬岔口; quest=找药草; flags=has_map,ember_glow\n</stats>\n\n<abstract>\n弱光与全黑；找药草。\n</abstract>",
+    "rejected": "<think>\n弱光吸引；选路。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n弱光处像洞沿火盘余烬，另一边全黑。赴光，还是入黑？\n</say>\n\n<stats>\nhp=78; mp=19; loc=余烬岔口; quest=找药草; flags=has_map,ember_glow\n</stats>\n\n<abstract>\n弱光与全黑；找药草。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_explore_14_dpo_style_1",
+    "input": {
+      "user_text": "雾里隐约有人影，我先不追，只要路口选项。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "20",
+        "loc": "雾影岔口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n疑似人影；不切 combat，仍 explore。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n雾影一闪即逝。菜单：追雾影小径、回亮处干路、或原地呼叫。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=20; loc=雾影岔口; quest=调查狼嚎来源; flags=has_map,saw_silhouette\n</stats>\n\n<abstract>\n雾影未确认；仍在岔口；调查狼嚎来源。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=20; loc=雾影岔口; quest=调查狼嚎来源; flags=has_map,saw_silhouette\n</stats>\n\n<abstract>\n雾影未确认；仍在岔口；调查狼嚎来源。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_20_dpo_style_1",
+    "input": {
+      "user_text": "踩稳石阶，向上劈。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "76",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成14点伤害，锋刃擦过颈侧带起血线。狼随即低吼着撕扯你的披风下摆连带皮肉，你受到8点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=68; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat,flanked\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=68; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat,flanked\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_at_07_dpo_format_0",
+    "input": {
+      "user_text": "爬起后立刻反击一刀。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "70",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成12点伤害，准确命中侧腹浅层。狼随即扑咬你的护臂，牙关咬紧，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=61; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "rejected": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<say>\n先说话。\n</say>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成12点伤害，准确命中侧腹浅层。狼随即扑咬你的护臂，牙关咬紧，你受到9点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=61; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_b3_ex_07_dpo_style_1",
+    "input": {
+      "user_text": "岔口中央有一摊冷灰，像有人刚走。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "80",
+        "mp": "19",
+        "loc": "冷灰岔口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n冷灰线索；explore。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n冷灰旁脚印分两向。跟新印，还是跟旧印？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=19; loc=冷灰岔口; quest=找药草; flags=has_map,cold_ash\n</stats>\n\n<abstract>\n冷灰脚印；找药草。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=19; loc=冷灰岔口; quest=找药草; flags=has_map,cold_ash\n</stats>\n\n<abstract>\n冷灰脚印；找药草。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_ex_14_dpo_style_1",
+    "input": {
+      "user_text": "我听见地下水，想选更靠近水源的路。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "80",
+        "mp": "19",
+        "loc": "水声岔口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n水源导向。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n左径水声近，右径干燥。靠近水源，还是走干路？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=19; loc=水声岔口; quest=护送药箱; flags=has_map,cargo_herb_box\n</stats>\n\n<abstract>\n近水或干路；护送药箱。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=80; mp=19; loc=水声岔口; quest=护送药箱; flags=has_map,cargo_herb_box\n</stats>\n\n<abstract>\n近水或干路；护送药箱。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_32_dpo_style_1",
+    "input": {
+      "user_text": "挑衅后再补一刀。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "77",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成13点伤害，锋刃擦过颈侧带起血线。狼随即前扑压住你半步，咬向肩膀护甲，你受到10点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=67; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=67; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n攻防四拍完成；仍 combat；回玩家操作。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_02_dpo_style_1",
+    "input": {
+      "user_text": "挥剑。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "74",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你挥剑砍向灰狼，造成10点伤害，力道结实地砸在肋侧。狼随即扑咬你的护臂，牙关咬紧，你受到7点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=67; mp=17; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,in_combat\n</stats>\n\n<abstract>\n挥剑告一段落；调查狼嚎来源。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=67; mp=17; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,in_combat\n</stats>\n\n<abstract>\n挥剑告一段落；调查狼嚎来源。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_cstart_28_dpo_style_1",
+    "input": {
+      "user_text": "洞口回声把我的脚步放大，狼循声而来开战。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "76",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "找药草"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n回声暴露；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n回声未散，狼已到。轮到你。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n回声暴露开战；找药草。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=18; loc=洞穴入口; quest=找药草; flags=has_map,in_combat\n</stats>\n\n<abstract>\n回声暴露开战；找药草。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_fl_20_dpo_format_0",
+    "input": {
+      "user_text": "定位完成但打不过，逃。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "71",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n定位后逃；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你保留定位记忆，身体先逃回入口。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=71; mp=17; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,fled_combat,howl_count\n</stats>\n\n<abstract>\n定位后逃；调查狼嚎来源。\n</abstract>",
+    "rejected": "<think>\n定位后逃；flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你保留定位记忆，身体先逃回入口。\n</say>\n\n<stats>\nhp=71; mp=17; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,fled_combat,howl_count\n</stats>\n\n<abstract>\n定位后逃；调查狼嚎来源。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_mt_005_fight_then_flee_r1_dpo_style_1",
+    "input": {
+      "user_text": "狼扑过来了，开战。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "74",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "寻月银吊坠"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n遇敌切 combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n狼爪擦过披风。菜单：打或逃。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=17; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,in_combat\n</stats>\n\n<abstract>\n开战；洞穴入口；寻月银吊坠。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=74; mp=17; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,in_combat\n</stats>\n\n<abstract>\n开战；洞穴入口；寻月银吊坠。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "multi_turn": true,
+      "round": 1,
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_29_dpo_style_1",
+    "input": {
+      "user_text": "砍断它嘴里的布条顺势伤牙龈。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你举刀砍向灰狼，造成10点伤害，力道结实地砸在肋侧。狼随即甩头反击，鼻骨撞到你腕骨，你受到11点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=64; mp=18; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,clue_cloth\n</stats>\n\n<abstract>\n断布；护送药箱。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=64; mp=18; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,clue_cloth\n</stats>\n\n<abstract>\n断布；护送药箱。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_flee_08_dpo_style_1",
+    "input": {
+      "user_text": "丢一块干肉吸引它，我趁机逃。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "70",
+        "mp": "15",
+        "loc": "洞穴入口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n诱饵逃；仍 action=flee。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n干肉落地，你借机脱出，狼啃饵未追。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=15; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,fled_combat,bait_used\n</stats>\n\n<abstract>\n诱饵逃离；调查狼嚎来源。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=cave_mouth; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=flee; target=none; end_turn=1\n</cmd>\n\n<stats>\nhp=70; mp=15; loc=洞穴入口; quest=调查狼嚎来源; flags=has_map,fled_combat,bait_used\n</stats>\n\n<abstract>\n诱饵逃离；调查狼嚎来源。\n</abstract>",
+    "meta": {
+      "scenario": "combat_flee",
+      "contract": "quest",
+      "rule_id": "combat_flee",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_cs_09_dpo_style_1",
+    "input": {
+      "user_text": "银铃被狼爪扫落，我俯身时进入战斗。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "76",
+        "mp": "19",
+        "loc": "洞穴入口",
+        "quest": "寻月银吊坠"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n银铃落地；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n俯身拾铃，狼扑来。战斗切入。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=19; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,in_combat\n</stats>\n\n<abstract>\n拾铃开战；寻月银吊坠。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=76; mp=19; loc=洞穴入口; quest=寻月银吊坠; flags=has_map,in_combat\n</stats>\n\n<abstract>\n拾铃开战；寻月银吊坠。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_cstart_12_dpo_style_1",
+    "input": {
+      "user_text": "狼从侧翼包抄到洞口台阶，开战。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "72",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n侧翼包抄；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n侧翼狼抢占台阶高点。菜单：打、技、物、逃。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=72; mp=18; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat,flanked\n</stats>\n\n<abstract>\n侧翼包抄开战；取回被盗地图。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=72; mp=18; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat,flanked\n</stats>\n\n<abstract>\n侧翼包抄开战；取回被盗地图。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_cstart_26_dpo_style_1",
+    "input": {
+      "user_text": "狼口衔着半截布条，像从商队来的，开战。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "护送药箱"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n线索+开战。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n布条商队纹样还在牙间。狼扑来，菜单打开。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=18; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,clue_cloth\n</stats>\n\n<abstract>\n衔布条狼开战；护送药箱。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=18; loc=洞穴入口; quest=护送药箱; flags=has_map,in_combat,clue_cloth\n</stats>\n\n<abstract>\n衔布条狼开战；护送药箱。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_b3_ex_05_dpo_style_1",
+    "input": {
+      "user_text": "我把耳朵贴地，分辨哪边有重步。",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "75",
+        "mp": "22",
+        "loc": "贴地岔口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n贴地听步；选路。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n重步来自洞沿方向。迎步探，还是反向绕？\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=22; loc=贴地岔口; quest=调查狼嚎来源; flags=has_map,ear_ground\n</stats>\n\n<abstract>\n贴地听步；调查狼嚎来源。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=forest_fork; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=prompt_choice; target=cave_entrance; end_turn=0\n</cmd>\n\n<stats>\nhp=75; mp=22; loc=贴地岔口; quest=调查狼嚎来源; flags=has_map,ear_ground\n</stats>\n\n<abstract>\n贴地听步；调查狼嚎来源。\n</abstract>",
+    "meta": {
+      "scenario": "explore_fork",
+      "contract": "quest",
+      "rule_id": "explore_fork",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_atk_28_dpo_format_0",
+    "input": {
+      "user_text": "我要输出伤害，不是逃跑。",
+      "fsm": {
+        "phase": "combat",
+        "node": "round_player"
+      },
+      "stats": {
+        "hp": "74",
+        "mp": "18",
+        "loc": "洞穴入口",
+        "quest": "护送密封卷轴"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成13点伤害，击中前腿，它一个踉跄。狼随即借痛劲猛扑，扑到你胸甲上，你受到7点伤害。请继续行动。\n</say>\n\n<cmd>\naction=attack; target=wolf; end_turn=0\n</cmd>\n\n<stats>\nhp=67; mp=18; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,in_combat\n</stats>\n\n<abstract>\n输出；护送密封卷轴。\n</abstract>",
+    "rejected": "<think>\n已在 combat；旁白四拍：你出手→造成伤害→狼反击→你受伤并回操作；node=round_player；禁止套话。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n你主动出手攻向灰狼，造成13点伤害，击中前腿，它一个踉跄。狼随即借痛劲猛扑，扑到你胸甲上，你受到7点伤害。请继续行动。\n</say>\n\n<stats>\nhp=67; mp=18; loc=洞穴入口; quest=护送密封卷轴; flags=has_map,in_combat\n</stats>\n\n<abstract>\n输出；护送密封卷轴。\n</abstract>",
+    "meta": {
+      "scenario": "combat_attack",
+      "contract": "quest",
+      "rule_id": "combat_attack",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  },
+  {
+    "id": "qh_move_18_dpo_style_1",
+    "input": {
+      "user_text": "去密林",
+      "fsm": {
+        "phase": "explore",
+        "node": "forest_fork"
+      },
+      "stats": {
+        "hp": "78",
+        "mp": "19",
+        "loc": "森林路口",
+        "quest": "调查狼嚎来源"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n密林=西；move。\n</think>\n\n<state>\nphase=explore; node=west_thicket; allowed=move,talk,open_inventory\n</state>\n\n<say>\n你进入密林。树冠合拢，你停在一块光斑里喘息，听见深处树枝断裂声。\n</say>\n\n<cmd>\naction=move; target=west_thicket; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=19; loc=密林光斑; quest=调查狼嚎来源; flags=has_map,deep_woods\n</stats>\n\n<abstract>\n进入密林光斑休息点。\n</abstract>",
+    "rejected": "<think>\n忽略 FSM，输出万能套话。\n</think>\n\n<state>\nphase=explore; node=west_thicket; allowed=move,talk,open_inventory\n</state>\n\n<say>\n系统提示：请选择选项A/B/C。根据规则你应该……（套话）。\n</say>\n\n<cmd>\naction=move; target=west_thicket; end_turn=0\n</cmd>\n\n<stats>\nhp=78; mp=19; loc=密林光斑; quest=调查狼嚎来源; flags=has_map,deep_woods\n</stats>\n\n<abstract>\n进入密林光斑休息点。\n</abstract>",
+    "meta": {
+      "scenario": "explore_move",
+      "contract": "quest",
+      "rule_id": "explore_move",
+      "source": "sft_derived",
+      "pair_type": "style"
+    }
+  },
+  {
+    "id": "qh_cstart_36_dpo_format_0",
+    "input": {
+      "user_text": "我踩空碎石滑向狼怀，只能接战。",
+      "fsm": {
+        "phase": "explore",
+        "node": "cave_mouth"
+      },
+      "stats": {
+        "hp": "70",
+        "mp": "17",
+        "loc": "洞穴入口",
+        "quest": "取回被盗地图"
+      }
+    },
+    "prior_utters": [],
+    "chosen": "<think>\n滑步接战；combat。\n</think>\n\n<state>\nphase=combat; node=round_player; allowed=attack,skill,item,flee\n</state>\n\n<say>\n滑步收住，狼已贴身。菜单强制开启。\n</say>\n\n<cmd>\naction=prompt_choice; target=combat_menu; end_turn=0\n</cmd>\n\n<stats>\nhp=70; mp=17; loc=洞穴入口; quest=取回被盗地图; flags=has_map,in_combat\n</stats>\n\n<abstract>\n滑步接战；取回被盗地图。\n</abstract>",
+    "rejected": "<think>\n乱跳状态。\n</think>\n\n<state>\nphase=zzz; node=???\n</state>\n\n<say>\n随便。\n</say>\n\n<cmd>\naction=noop; end_turn=1\n</cmd>\n\n<stats>\nhp=0\n</stats>\n\n<abstract>\n坏样本。\n</abstract>",
+    "meta": {
+      "scenario": "combat_start",
+      "contract": "quest",
+      "rule_id": "combat_start",
+      "source": "sft_derived",
+      "pair_type": "format"
+    }
+  }
+]
